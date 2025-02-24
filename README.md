@@ -18,7 +18,7 @@ From an end-user perspective, HydroForest will:
 -  Visually represent progress through a growing virtual forest.  
 -  Track historical hydration data to show trends over time.  
 -  Gamify the experience with forest customization.  
--  Send reminders and notifications to encourage hydration.  
+-  Send reminders and notifications to encourage hydration. 
 
 ## Project History  
 HydroForest was conceived as a Agile Software Development & DevOps course project, inspired by the challenge of maintaining consistent hydration habits. Recognizing that many people struggle with drinking enough water daily, our team wanted to create a fun and engaging solution that makes hydration more rewarding. 
@@ -28,4 +28,6 @@ The idea started as a brainstorming session among our team members, where we exp
 Our team follows an **Agile approach**, focusing on building core functionality first and iterating over time to ensure an engaging and polished product by the semester’s end.  
 
 ## How to Contribute  
-Interested in contributing? Check out our [CONTRIBUTING.md](https://github.com/agiledev-students-spring2025/4-final-hydroforest/blob/master/CONTRIBUTING.md) for guidelines on how to get involved.  
+If you are interested in contributing? Check out our [CONTRIBUTING.md](https://github.com/agiledev-students-spring2025/4-final-hydroforest/blob/master/CONTRIBUTING.md) for guidelines on how to get involved.
+
+Thank you!
