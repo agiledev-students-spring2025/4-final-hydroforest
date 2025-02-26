@@ -13,7 +13,7 @@ This document outlines the UX design for our application. Below, you will find a
 
 Below is a structured representation of the app's navigation flow:
 
-![App Map](images/AppMap.jpg)
+![App Map](images/AppMapPic.jpg)
 
 - **Login & Registration**
 
