@@ -4,6 +4,7 @@
 
 [Figma Prototype](https://www.figma.com/proto/9uGmtnCArbxgwMMX8CGeq3/HydroForest?node-id=5-265&p=f&t=LQ4XWFUNy0XtHjmP-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=5%3A72&show-proto-sidebar=1)
 
+[Figma App Map](https://www.figma.com/design/9uGmtnCArbxgwMMX8CGeq3/HydroForest?node-id=6-2&p=f&t=JjE2Z645F88uRBlf-0)
 ## App Overview
 
 This document outlines the UX design for our application. Below, you will find an **app map** followed by detailed wireframes representing different screens of the app.
@@ -11,6 +12,8 @@ This document outlines the UX design for our application. Below, you will find a
 ## App Map
 
 Below is a structured representation of the app's navigation flow:
+
+![App Map](images/AppMap.jpg)
 
 - **Login & Registration**
 
