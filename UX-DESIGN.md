@@ -21,11 +21,10 @@ Below is a structured representation of the app's navigation flow:
 
 - **Main Features**
 
-  - Home Page
+  - Home Page (Log water intake)
   - Forest (Main Tracking Screen)
-  - Calendar
+  - Calendar (Checking past data)
   - Social (Friends & Leaderboard)
-  - Leaderboard
 
 - **User Settings**
 
