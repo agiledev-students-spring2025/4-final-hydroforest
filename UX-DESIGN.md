@@ -1,25 +1,33 @@
 # UX Design Documentation
 
+## Prototype Link
+
+[Figma Prototype](https://www.figma.com/proto/9uGmtnCArbxgwMMX8CGeq3/HydroForest?node-id=5-265&p=f&t=LQ4XWFUNy0XtHjmP-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=5%3A72&show-proto-sidebar=1)
+
 ## App Overview
+
 This document outlines the UX design for our application. Below, you will find an **app map** followed by detailed wireframes representing different screens of the app.
 
 ## App Map
+
 Below is a structured representation of the app's navigation flow:
 
 - **Login & Registration**
+
   - Login Page
   - Registration Page
   - Forgot Password
   - Password Reset Confirmation
 
 - **Main Features**
-  - Home Page
+
+  - Home Page (Log water intake)
   - Forest (Main Tracking Screen)
-  - Calendar
+  - Calendar (Checking past data)
   - Social (Friends & Leaderboard)
-  - Leaderboard
 
 - **User Settings**
+
   - My Account
   - Change Password
   - Change Email
@@ -73,6 +81,7 @@ Below is a structured representation of the app's navigation flow:
 ![Social Page](images/Social-2.png)
 
 ### 9. Leaderboard
+
 **Purpose:** Displays rankings based on user hydration progress, fostering friendly competition.
 
 ![Leaderboard](images/Leaderboard-2.png)
@@ -107,9 +116,8 @@ Below is a structured representation of the app's navigation flow:
 ### 15. Hamburger Menu
 **Purpose:** Offers quick access to different app sections, including My Account, Privacy Policy, and Logout.
 
-![Hamburger Menu](images/Hamburger%20menu%20(User)-2.png)
+![Hamburger Menu](<images/Hamburger%20menu%20(User)-2.png>)
 
----
 
 ## Conclusion
 This document serves as a reference for understanding the application's user experience and navigation. The wireframes above illustrate the essential screens, ensuring a seamless and intuitive user journey.
