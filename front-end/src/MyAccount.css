@@ -1,0 +1,114 @@
+/* Container and Layout */
+.account-container {
+    font-family: 'Arial', sans-serif;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Profile Section */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #4caf50;
+    margin-bottom: 10px;
+}
+
+.username {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4caf50;
+}
+
+/* Stats Section */
+.stats {
+    text-align: center;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stats p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.stats span {
+    font-weight: bold;
+    color: #4caf50;
+}
+
+/* Editable Fields Section */
+.account-info {
+    margin-bottom: 20px;
+}
+
+.account-info label {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.editable-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.editable-field input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.editable-field button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.editable-field button:hover {
+    background-color: #388e3c;
+}
+
+/* Preferences Section */
+.preferences {
+    text-align: left;
+    margin-top: 15px;
+}
+
+.preferences label {
+    font-size: 14px;
+    color: #333;
+}
