@@ -342,3 +342,15 @@ body {
     border-right: 15px solid transparent;
     border-top: 15px solid #5DA271; /* Triangle color */
   }
+
+  /* Burger Menu */
+
+  
+  .logout {
+    color: red;
+  }
+  
+  .logout:hover {
+    color: darkred;
+  }
+  

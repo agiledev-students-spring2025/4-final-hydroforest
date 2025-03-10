@@ -6,9 +6,10 @@ import ChangePassword from './ChangePassword';
 import Homepage from './Homepage';
 import CalendarPage from './CalendarPage';
 import ForestPage from './ForestPage';
-import Login from './Login'; // Adjust if your login file name is different
+import Login from './Login'; 
 import Signup from './Signup';
 import ForgotPassword from './ForgotPassword';
+import Social from './Social';
 
 function App() {
   const completedDays = 5;
@@ -25,6 +26,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
+        <Route path="/social" element={<Social />} />
       </Routes>
     </Router>
   );
