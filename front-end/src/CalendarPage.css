@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=DM+Sans:wght@400;500;700;900&display=swap');
+
 /* 🌿 General Layout */
 .calendar-page {
     text-align: center;
@@ -8,12 +10,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-family: 'Poppins'; /* Modern, clean font */
+    font-family: 'Poppins'; 
     position: relative;
     overflow: hidden;
+    font-family: 'Inter', sans-serif; 
+
+    
   }
   
-  /* 🍃 Animated Background Vines */
+  /* Animated Background Vines */
   .plant-vine {
     position: absolute;
     font-size: 3rem;
@@ -22,29 +27,30 @@
     pointer-events: none;
   }
   
-  /* 🌿 Left Vine */
+  /* Left Vine */
   .vine-left {
     left: 2%;
     top: 10%;
     transform: rotate(-50deg);
   }
   
-  /* 🌱 Right Vine */
+  /* Right Vine */
   .vine-right {
     right: 2%;
     top: 15%;
     transform: rotate(-100deg);
   }
-  
-  /* 🏛️ Page Title */
+ 
   .page-title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #1b5e20; /* Deep green */
+    color: #1b5e20; 
     margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+
   }
   
-  /* 🏛️ Calendar Container */
+
   .calendar-container {
     background: white;
     border-radius: 12px;
@@ -53,14 +59,13 @@
     max-width: 350px;
   }
   
-  /* 📅 Calendar Styling */
   .custom-calendar {
     width: 100%;
     border: none;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif; 
   }
   
-  /* ❌ Disable Future Dates */
+  /* Disable Future Dates */
   .react-calendar__tile--now {
     background: #a5d6a7 !important;
     border-radius: 50%;
@@ -71,7 +76,7 @@
     pointer-events: none; /* Prevent clicking */
   }
   
-  /* 🌟 Selected Day Effect */
+  /*  Selected Day Effect */
   .react-calendar__tile--active {
     background: #4caf50 !important;
     color: white !important;
@@ -79,14 +84,12 @@
     transition: all 0.3s ease-in-out;
   }
   
-  /* 🔥 Hover Effect */
   .react-calendar__tile:hover {
     background: rgba(76, 175, 80, 0.1) !important;
     border-radius: 50%;
     transition: 0.2s ease-in-out;
   }
   
-  /* ⏭️ Calendar Navigation */
   .react-calendar__navigation button {
     color: #4caf50;
     font-weight: bold;
@@ -97,7 +100,7 @@
     color: #388e3c;
   }
   
-  /* 💦 Water Intake Section */
+  /* Water Intake Section */
   .intake-overview {
     margin-top: 20px;
     padding: 20px;
@@ -108,7 +111,9 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-size: 1.2rem;
     font-weight: bold;
+    font-family: 'Inter';
     color: #1b5e20;
     transition: all 0.3s ease-in-out;
   }
+  
   

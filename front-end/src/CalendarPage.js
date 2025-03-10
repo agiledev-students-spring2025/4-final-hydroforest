@@ -7,9 +7,9 @@ import "./CalendarPage.css";
 const CalendarPage = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // 🌱 Mock past water intake log
+  // Mock past water intake log
   const waterIntakeLog = {
-    "2024-03-01": 2.5, // Liters
+    "2024-03-01": 2.5, 
     "2024-03-02": 3.0,
     "2024-03-03": 1.8,
     "2024-03-04": 2.2,
@@ -25,7 +25,7 @@ const CalendarPage = () => {
 
   return (
     <div className="calendar-page">
-      {/* 🍃 Animated Background Vines */}
+      {/* Animated Background Vines */}
       <motion.div 
         className="plant-vine vine-left"
         animate={{ x: [0, 7, 0], rotate: [0, 6, 0] }}
@@ -44,7 +44,7 @@ const CalendarPage = () => {
 
       <h1 className="page-title">Hydration Calendar </h1>
 
-      {/* 📅 Animated Calendar */}
+      {/* Animated Calendar */}
       <motion.div 
         className="calendar-container"
         initial={{ opacity: 0, scale: 0.9 }}
@@ -55,11 +55,11 @@ const CalendarPage = () => {
           onChange={handleDateChange} 
           value={selectedDate} 
           className="custom-calendar"
-          maxDate={new Date()} // ❌ Disables future dates
+          maxDate={new Date()} //  Disables future dates
         />
       </motion.div>
 
-      {/* 💦 Water Intake Log (Animated) */}
+      {/* Water Intake Log */}
       <motion.div 
         className="intake-overview"
         initial={{ opacity: 0, y: 20 }}
