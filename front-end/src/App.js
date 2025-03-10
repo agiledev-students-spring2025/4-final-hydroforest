@@ -17,8 +17,8 @@ function App() {
         <Route path="/Account" element={<MyAccount />} />
         <Route path="/change-email" element={<ChangeEmail />} />
         <Route path="/change-password" element={<ChangePassword />} />
-        <Route path="/calendar" element={<CalendarPage />} /> {/* ✅ Add this line */}
-        <Route path="/forest" element={<ForestPage completedDays={completedDays} />} /> {/* ✅ Pass completed days */}
+        <Route path="/Calendar" element={<CalendarPage />} /> {/* ✅ Add this line */}
+        <Route path="/Forest" element={<ForestPage completedDays={completedDays} />} /> {/* ✅ Pass completed days */}
       </Routes>
     </Router>
   );
