@@ -4,8 +4,11 @@ import MyAccount from './MyAccount';
 import ChangeEmail from './ChangeEmail';
 import ChangePassword from './ChangePassword';
 import Homepage from './Homepage';
-import CalendarPage from './CalendarPage'; // Import the Calendar Page
-import ForestPage from "./ForestPage";
+import CalendarPage from './CalendarPage';
+import ForestPage from './ForestPage';
+import Login from './Login'; // Adjust if your login file name is different
+import Signup from './Signup';
+import ForgotPassword from './ForgotPassword';
 
 function App() {
   const completedDays = 5;
@@ -13,12 +16,15 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Homepage/>} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/Account" element={<MyAccount />} />
         <Route path="/change-email" element={<ChangeEmail />} />
         <Route path="/change-password" element={<ChangePassword />} />
-        <Route path="/Calendar" element={<CalendarPage />} /> {/* ✅ Add this line */}
-        <Route path="/Forest" element={<ForestPage completedDays={completedDays} />} /> {/* ✅ Pass completed days */}
+        <Route path="/calendar" element={<CalendarPage />} />
+        <Route path="/forest" element={<ForestPage completedDays={completedDays} />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/ForgotPassword" element={<ForgotPassword />} />
       </Routes>
     </Router>
   );
