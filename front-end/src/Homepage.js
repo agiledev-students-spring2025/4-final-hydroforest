@@ -6,11 +6,11 @@ import { motion } from "framer-motion";
 // Define multiple trees with their stage images
 const trees = {
   tree1: {
-    seed: "https://picsum.photos/200?random=1",
-    sprout: "https://picsum.photos/200?random=2",
-    seedling: "https://picsum.photos/200?random=3",
-    sapling: "https://picsum.photos/200?random=4",
-    "adult tree": "https://picsum.photos/200?random=5",
+    seed: "/images/tree1/seed.png",
+    sprout: "/images/tree1/sprout.png",
+    seedling: "/images/tree1/seedling.png",
+    sapling: "/images/tree1/sapling.png",
+    "adult tree": "/images/tree1/adult_tree.png",
   },
   tree2: {
     seed: "https://picsum.photos/200?random=6",
