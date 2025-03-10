@@ -92,8 +92,8 @@ const HomePage = () => {
           <input className="waterAmount" type="number" value={inputAmount} onChange={(e) => setInputAmount(e.target.value)} placeholder="Enter amount" />
           <select className="unit" value={unit} onChange={(e) => setUnit(e.target.value)}>
             <option value="cups">Cups</option>
-            <option value="oz">Ounces</option>
-            <option value="ml">Milliliters</option>
+            <option value="oz">OZ</option>
+            <option value="ml">ML</option>
           </select>
         </div>
         <button className="btn" onClick={handleLogWater}>Log Water Intake</button>
