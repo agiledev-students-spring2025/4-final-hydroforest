@@ -2,48 +2,55 @@
 .change-email-container {
     font-family: 'Arial', sans-serif;
     max-width: 400px;
-    margin: 0 auto;
+    margin: 50px auto; /* Center container horizontally with vertical margin */
     padding: 20px;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Header */
-.header {
     display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    flex-direction: column; /* Stack child elements vertically */
 }
 
-.back-arrow {
-    font-size: 18px;
+/* Back Button */
+.back-button {
+    font-size: 16px;
     color: #4caf50;
     cursor: pointer;
+    background: none; /* Remove button background */
+    border: none; /* Remove border */
+    text-align: left; /* Align text to the left */
+    margin-bottom: 20px; /* Add spacing below the back button */
+    padding: 0; /* Remove default button padding */
 }
 
-.header h1 {
-    font-size: 20px;
+/* Heading */
+.form-heading {
+    font-size: 24px;
+    font-weight: bold;
     color: #333;
-    margin: 0;
+    margin-bottom: 30px; /* Add spacing below the heading */
+    text-align: left; /* Left-align the heading */
 }
 
 /* Input Groups */
 .input-group {
     display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
+    flex-direction: column; /* Stack label and input vertically */
+    margin-bottom: 20px; /* Add spacing between input groups */
+    width: 100%; /* Make input fields take full width */
 }
 
 .input-group label {
     margin-bottom: 5px;
     font-size: 14px;
     color: #555;
+    text-align: left; /* Align labels to the left */
 }
 
+/* Input Fields */
 .input-group input {
+    width: 100%; /* Full width of container */
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -53,7 +60,7 @@
 }
 
 .input-group input:focus {
-    border-color: #4caf50;
+    border-color: #4caf50; /* Green border when focused */
 }
 
 /* Confirmation Message */
@@ -62,11 +69,12 @@
     color: #777;
     margin-bottom: 15px;
     line-height: 1.5;
+    text-align: center; /* Center-align confirmation text */
 }
 
 /* Submit Button */
 .submit-button {
-    width: 100%;
+    width: 100%; /* Full width button */
     padding: 10px;
     background-color: #4caf50;
     color: white;
@@ -75,13 +83,15 @@
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    text-align: center; /* Center-align button text */
 }
 
 .submit-button:disabled {
     background-color: #ccc;
-    cursor: not-allowed;
+    cursor: not-allowed; /* Disable hover if button is disabled */
 }
 
 .submit-button:hover:not(:disabled) {
-    background-color: #388e3c;
+    background-color: #388e3c; /* Darker green on hover */
 }
+

@@ -1,8 +1,8 @@
 /* Container and Layout */
 .account-container {
     font-family: 'Arial', sans-serif;
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: 600px; /* Increased width for a more spacious layout */
+    margin: 30px auto; /* Center container horizontally with vertical spacing */
     padding: 20px;
     background-color: #ffffff;
     border: 1px solid #ddd;
@@ -14,6 +14,7 @@
 .title {
     text-align: center;
     font-size: 24px;
+    font-weight: bold;
     color: #333;
     margin-bottom: 20px;
 }
@@ -22,7 +23,8 @@
 .profile-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center; /* Center all child elements (profile picture and username) */
+    justify-content: center; /* Center contents vertically */
     margin-bottom: 20px;
 }
 
@@ -37,7 +39,9 @@
 .username {
     font-size: 20px;
     font-weight: bold;
-    color: #4caf50;
+    color: #333; /* Ensure visibility */
+    text-align: center; /* Explicitly align text to the center */
+    margin: 0; /* Remove any default margin that might misalign it */
 }
 
 /* Stats Section */
@@ -82,10 +86,10 @@
 
 .editable-field input {
     flex: 1;
-    padding: 8px;
+    padding: 10px;
+    font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 14px;
 }
 
 .editable-field button {
@@ -102,7 +106,7 @@
     background-color: #388e3c;
 }
 
-/* Preferences Section */
+/* Notification Preferences Section */
 .preferences {
     text-align: left;
     margin-top: 15px;

@@ -24,15 +24,24 @@ const ChangePassword = () => {
 
   return (
     <div className="change-password-container">
-      <button className="back-button" onClick={() => navigate('/')}>Back</button>
-      <h1>Change Password</h1>
+      {/* Back Button */}
+      <button className="back-button" onClick={() => navigate('/')}>
+        Back
+      </button>
+
+      {/* Heading */}
+      <h1 className="form-heading">Change Password</h1>
 
       <form onSubmit={handleSubmit}>
+        {/* Current Password Field */}
         <div className="input-group">
-          <label htmlFor="current-password">Current Password</label>
+          <label htmlFor="current-password" style={{ display: 'block', height: '20px' }}>
+            {/* Empty Label for Spacing */}
+          </label>
           <input
             type="password"
             id="current-password"
+            placeholder="Current Password"
             value={currentPassword}
             onChange={(e) => {
               setCurrentPassword(e.target.value);
@@ -41,11 +50,15 @@ const ChangePassword = () => {
           />
         </div>
 
+        {/* New Password Field */}
         <div className="input-group">
-          <label htmlFor="new-password">New Password</label>
+          <label htmlFor="new-password" style={{ display: 'block', height: '20px' }}>
+            {/* Empty Label for Spacing */}
+          </label>
           <input
             type="password"
             id="new-password"
+            placeholder="New Password"
             value={newPassword}
             onChange={(e) => {
               setNewPassword(e.target.value);
@@ -54,11 +67,15 @@ const ChangePassword = () => {
           />
         </div>
 
+        {/* Re-enter New Password Field */}
         <div className="input-group">
-          <label htmlFor="re-enter-new-password">Re-enter New Password</label>
+          <label htmlFor="re-enter-new-password" style={{ display: 'block', height: '20px' }}>
+            {/* Empty Label for Spacing */}
+          </label>
           <input
             type="password"
             id="re-enter-new-password"
+            placeholder="Re-enter New Password"
             value={reEnterNewPassword}
             onChange={(e) => {
               setReEnterNewPassword(e.target.value);
@@ -67,6 +84,7 @@ const ChangePassword = () => {
           />
         </div>
 
+        {/* Submit Button */}
         <button
           type="submit"
           className="submit-button"
@@ -80,4 +98,3 @@ const ChangePassword = () => {
 };
 
 export default ChangePassword;
-
