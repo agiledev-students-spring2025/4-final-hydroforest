@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+/* General Layout */
+.social-page {
+    text-align: center;
+    padding: 40px;
+    background: #f0fdf4; 
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 80px; 
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1b5e20; 
+    margin-bottom: 20px;
+}
+
+/* Sections */
+.add-friend-section,
+.leaderboard-section {
+    margin: 20px auto;
+    max-width: 600px;
+    width: 90%;
+}
+
+.add-friend-section h2,
+.leaderboard-section h2 {
+    margin-bottom: 10px;
+    color: #1b5e20;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Search Bar */
+.search-bar {
+    position: relative;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Inter', sans-serif;
+    color: black; /* Set input text color to black */
+}
+
+/* Suggestions Dropdown */
+.suggestions-list {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    max-height: 150px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+.suggestions-list li {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: black; /* Set suggestions list text color to black */
+}
+
+.suggestions-list li:hover {
+    background: #e0f7fa;
+}
+
+.suggestions-list button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.suggestions-list button:hover {
+    background-color: #388e3c;
+}
+
+/* Leaderboard Container */
+.leaderboard-container {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Leaderboard Table */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: 'Inter', sans-serif;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    color: black; /* Set leaderboard text color to black */
+}
+
+.leaderboard-table th {
+    background: #e0f7fa;
+    font-weight: 600;
+}
+
+/* Remove Button in Leaderboard */
+.remove-button {
+    padding: 5px 10px;
+    background-color: #e53935; /* Red color */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.remove-button:hover {
+    background-color: #d32f2f;
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2E8B57; /* Deep green color */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 30px 0;
+    z-index: 1000;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    position: relative;
+}
+
+.nav-item span {
+    margin-top: 5px;
+}
+
+/* Triangular Pop-up Indicator */
+.nav-item.active::after {
+    content: " ";
+    position: absolute;
+    top: -30px; /* Position above the nav item */
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #5DA271; /* Triangle color */
+}
