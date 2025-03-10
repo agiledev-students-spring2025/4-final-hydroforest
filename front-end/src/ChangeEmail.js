@@ -19,12 +19,20 @@ const ChangeEmail = () => {
 
   return (
     <div className="change-email-container">
-      <button className="back-button" onClick={() => navigate('/')}>Back</button>
-      <h1>Change Email</h1>
+      {/* Back Button */}
+      <button className="back-button" onClick={() => navigate('/')}>
+        Back
+      </button>
+
+      {/* Heading */}
+      <h1 className="form-heading">Change Your Email</h1>
 
       <form onSubmit={handleSubmit}>
+        {/* Current Email Field */}
         <div className="input-group">
-          <label htmlFor="current-email">Current Email</label>
+          <label htmlFor="current-email" style={{ display: 'block', height: '20px' }}>
+            {/* Empty label for spacing */}
+          </label>
           <input
             type="email"
             id="current-email"
@@ -37,8 +45,11 @@ const ChangeEmail = () => {
           />
         </div>
 
+        {/* New Email Field */}
         <div className="input-group">
-          <label htmlFor="new-email">New Email</label>
+          <label htmlFor="new-email" style={{ display: 'block', height: '20px' }}>
+            {/* Empty label for spacing */}
+          </label>
           <input
             type="email"
             id="new-email"
@@ -51,11 +62,12 @@ const ChangeEmail = () => {
           />
         </div>
 
+        {/* Confirmation Message */}
         <p className="confirmation-message">
-          A confirmation will be sent to your new email. Click the link inside
-          to complete the update!
+          A confirmation will be sent to your new email. Click the link inside to complete the update!
         </p>
 
+        {/* Submit Button */}
         <button
           type="submit"
           className="submit-button"

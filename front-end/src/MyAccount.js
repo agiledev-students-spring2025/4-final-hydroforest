@@ -14,16 +14,20 @@ const MyAccount = () => {
 
   return (
     <div className="account-container">
+      {/* Page Title */}
       <h1 className="title">My Account</h1>
 
       {/* Profile Section */}
       <div className="profile-section">
         <img
-          src="https://picsum.photos/100"
+          src="https://picsum.photos/100" /* Placeholder profile picture */
           alt="Profile"
           className="profile-picture"
         />
-        <h2 className="username">LiTheLegend</h2>
+        <h2 className="username" style={{ color: '#333' }}>
+          {/* Added inline style as a fallback to ensure visibility */}
+          LiTheLegend
+        </h2>
       </div>
 
       {/* Stats Section */}
@@ -59,6 +63,22 @@ const MyAccount = () => {
           />
           {notificationsEnabled ? 'Turn Off Notifications' : 'Turn On Notifications'}
         </label>
+      </div>
+
+      {/* Bottom Navigation Bar */}
+      <div className="navbar">
+        <div className="nav-item active" onClick={() => navigate("/")}>
+          <span>Home</span>
+        </div>
+        <div className="nav-item" onClick={() => navigate("/Forest")}>
+          <span>Forest</span>
+        </div>
+        <div className="nav-item" onClick={() => navigate("/Calendar")}>
+          <span>Calendar</span>
+        </div>
+        <div className="nav-item" onClick={() => navigate("/social")}>
+          <span>Social</span>
+        </div>
       </div>
     </div>
   );
