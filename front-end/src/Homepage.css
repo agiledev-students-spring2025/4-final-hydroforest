@@ -139,7 +139,7 @@ body {
 	border-radius: 50% 50% 0 0;
 	border-right: 4px dashed #0bf;
 	top: 290px;
-	left: 180px;
+	left: 43%;
 	z-index: 1;
 	opacity: 0;
 	animation: water 10s linear;
@@ -229,7 +229,7 @@ body {
     border-radius: 10px;
     background-color: white;
     height: 40px;
-    width: 120px;
+    width: 80px;
     border: 1px solid #ccc;
     box-sizing: border-box;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
