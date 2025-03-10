@@ -202,9 +202,9 @@ const HomePage = () => {
             {treeOptions.map((treeKey) => (
               <Grid item xs={4} key={treeKey}>
                 <img
-                  src={trees[treeKey][treeStage]} // Show the current stage of each tree
+                  src={trees[treeKey]["adult tree"]} // Show the current stage of each tree
                   alt={`Tree ${treeKey}`}
-                  style={{ width: "100%", height: "100px", cursor: "pointer", borderRadius: "10px" }}
+                  style={{ width: "100px", height: "100px", cursor: "pointer", borderRadius: "50%" }}
                   onClick={() => handleTreeChange(treeKey)}
                 />
               </Grid>
