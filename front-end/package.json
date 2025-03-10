@@ -13,7 +13,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@react-spring/web": "^9.7.5",
+    "framer-motion": "^12.4.10",
     "react": "^18.3.1",
+    "react-calendar": "^5.1.0",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.3.0",
     "react-scripts": "^5.0.1"
