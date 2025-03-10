@@ -95,6 +95,7 @@ const HomePage = () => {
             <li onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
         </ul>
         </motion.div>
+        
       <p className="topCaption">Today you drank {totalIntake} {unit}</p>
       <h3>{treeStage}</h3>
       {showWaterPouring && <img src="/images/water-bottle.png" alt="Water Pouring" className="water-bottle" />}
