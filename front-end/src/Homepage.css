@@ -28,7 +28,7 @@ body {
     justify-content: space-between;
     width: 100%;
     position: absolute;
-    top: 40px;
+    top: 0px;
   }
   .username{
     
@@ -40,6 +40,7 @@ body {
     margin-right: 30px; /* Adjust right spacing */
     padding-top: 10px;
     cursor: pointer;
+    z-index: 1200;
   }
 
   .topCaption {
@@ -353,4 +354,42 @@ body {
   .logout:hover {
     color: darkred;
   }
+
+  .sidebar-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    z-index:1100;
+  }
+  
+  .sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .sidebar-menu li {
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .sidebar-menu li:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+  }
+  
   
