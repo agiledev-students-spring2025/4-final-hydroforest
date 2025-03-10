@@ -164,7 +164,7 @@
 .nav-item span {
     margin-top: 5px;
 }
-
+  
 /* Triangular Pop-up Indicator */
 .nav-item.active::after {
     content: " ";
