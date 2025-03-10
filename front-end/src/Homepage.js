@@ -59,15 +59,24 @@ const HomePage = () => {
       const newTotalIntake = totalIntake + amount;
       setTotalIntake(newTotalIntake);
   
-      if (newTotalIntake >= 2 && newTotalIntake < 4) setTreeStage("sprout");
-      else if (newTotalIntake >= 4 && newTotalIntake < 6) setTreeStage("seedling");
-      else if (newTotalIntake >= 6 && newTotalIntake < 8) setTreeStage("sapling");
-      else if (newTotalIntake >= 8) setTreeStage("adult tree");
-    }
+    // Determine next tree stage but delay setting it
+    let nextTreeStage = treeStage;
+
+    if (newTotalIntake >= 2 && newTotalIntake < 4) nextTreeStage = "sprout";
+    else if (newTotalIntake >= 4 && newTotalIntake < 6) nextTreeStage = "seedling";
+    else if (newTotalIntake >= 6 && newTotalIntake < 8) nextTreeStage = "sapling";
+    else if (newTotalIntake >= 8) nextTreeStage = "adult tree";
+
+    // Delay changing the tree stage to avoid instant image swap
+    setTimeout(() => {
+      setTreeStage(nextTreeStage);
+    },1200); // Adjust timing to match animation smoothness
+  }
   };
 
   return (
     <div className="container">
+      
       <header>
         <h2 className="username">Hi, Jaleen!</h2>
         <div className="hamburger-menu">
@@ -78,12 +87,24 @@ const HomePage = () => {
       <h3>{treeStage}</h3>
       {showWaterPouring && <img src="/images/water-bottle.png" alt="Water Pouring" className="water-bottle" />}
       {showWaterPouring && <div className="water"></div> }      
-      <motion.div animate={{ scale: isWatering ? [1, 1.08, 1] : 1 }} transition={{ duration: 1.1, delay:0.7 }} className="tree-wrapper">
-
+      <motion.div 
+        animate={{ scale: isWatering ? [1, 1.08, 1] : 1 }} 
+        transition={{ duration: 1.1, delay: 0.7 }} 
+        className="tree-wrapper"
+        >
         <div className="tree-container">
-            <img src={trees[selectedTree][treeStage]} alt="Tree Icon" className="tree-image" />
-        </div>
+            <motion.img
+            key={treeStage} // This forces re-render on stage change
+            src={trees[selectedTree][treeStage]} 
+            alt="Tree Icon" 
+            className="tree-image"
+            initial={{ opacity: 0 }} // Start faded out and slightly lower
+            animate={{ opacity: 1,}} // Smoothly fade in and move up
+            transition={{ duration: 1.5 }} // Smooth fade-in transition
+            />
+    </div>
     </motion.div>
+
 
       <button id="changetreebtn" className="btn" onClick={() => setIsModalOpen(true)}>Change Tree</button>
 
