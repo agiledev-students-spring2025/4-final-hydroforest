@@ -38,8 +38,8 @@ const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTree, setSelectedTree] = useState("tree1");
   const [showWaterPouring, setShowWaterPouring] = useState(false);
-  const [currentPage, setCurrentPage] = useState("home");
   const navigate = useNavigate();
+  const [isOpen, setOpen] = useState(false);
 
   const handleLogWater = () => {
     const amount = Number(inputAmount);
@@ -79,9 +79,23 @@ const HomePage = () => {
       <header>
         <h2 className="username">Hi, Jaleen!</h2>
         <div className="hamburger-menu">
-        <Hamburger color="white" /></div>
+        <Hamburger toggled={isOpen} toggle={setOpen} color="white" /></div>
       </header>
-
+        {/* Sliding Sidebar Menu */}
+        <motion.div 
+        className="sidebar-menu" 
+        initial={{ x: "100%" }} 
+        animate={{ x: isOpen ? 0 : "100%" }} 
+        transition={{ type: "tween", duration: 0.4 }}
+        >
+        <ul>
+            <li onClick={() => { navigate("/Account"); setOpen(false); }}>My Account</li>
+            <li onClick={() => { navigate("/AboutUs"); setOpen(false); }}>About Us</li>
+            <li onClick={() => { navigate("/Help"); setOpen(false); }}>Help</li>
+            <li onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
+        </ul>
+        </motion.div>
+        
       <p className="topCaption">Today you drank {totalIntake} {unit}</p>
       <h3>{treeStage}</h3>
       {showWaterPouring && <img src="/images/water-bottle.png" alt="Water Pouring" className="water-bottle" />}
