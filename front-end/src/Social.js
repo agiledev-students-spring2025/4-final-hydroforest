@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from "react-router-dom";
 import './Social.css';
 
 const Social = () => {
+  //adding this for navigation
   const navigate = useNavigate();
+  const location = useLocation(); // Get current URL path
+
   const [searchQuery, setSearchQuery] = useState('');
   const [friendSuggestions, setFriendSuggestions] = useState([]);
   const [friends, setFriends] = useState([
+
     // Initial mock friend data with hydration values
     { id: 1, name: 'Alice', hydration: 7.5 },
     { id: 2, name: 'Bob', hydration: 6.2 },
@@ -114,21 +118,21 @@ const Social = () => {
         </motion.div>
       </div>
 
-      {/* Bottom Navigation Bar */}
-      <div className="navbar">
-        <div className="nav-item" onClick={() => navigate("/")}>
-          <span>Home</span>
-        </div>
-        <div className="nav-item" onClick={() => navigate("/forest")}>
-          <span>Forest</span>
-        </div>
-        <div className="nav-item" onClick={() => navigate("/calendar")}>
-          <span>Calendar</span>
-        </div>
-        <div className="nav-item active" onClick={() => navigate("/social")}>
-          <span>Social</span>
-        </div>
+        {/* Bottom Navigation Bar */}
+        <div className="navbar">
+      <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>
+        <span>Home</span>
       </div>
+      <div className={`nav-item ${location.pathname === "/Forest" ? "active" : ""}`} onClick={() => navigate("/Forest")}>
+        <span>Forest</span>
+      </div>
+      <div className={`nav-item ${location.pathname === "/Calendar" ? "active" : ""}`} onClick={() => navigate("/Calendar")}>
+        <span>Calendar</span>
+      </div>
+      <div className={`nav-item ${location.pathname === "/Social" ? "active" : ""}`} onClick={() => navigate("/Social")}>
+        <span>Social</span>
+      </div>
+    </div>
     </div>
   );
 };

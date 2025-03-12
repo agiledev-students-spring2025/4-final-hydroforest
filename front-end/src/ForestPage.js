@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./ForestPage.css"; 
 
 const GRID_SIZE = 5;
@@ -17,6 +18,11 @@ const plantImages = [
 ];
 
 const ForestPage = ({ completedDays }) => {
+  //adding this for navigation
+  const navigate = useNavigate();
+  const location = useLocation(); // Get current URL path
+
+
   const [selectedPlant, setSelectedPlant] = useState(null);
 
   const unlockedPlants = plantImages.slice(0, completedDays);
@@ -75,9 +81,29 @@ const ForestPage = ({ completedDays }) => {
          </div>
        </motion.div>
       )}
+
+         {/* Bottom Navigation Bar */}
+         <div className="navbar">
+      <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>
+        <span>Home</span>
+      </div>
+      <div className={`nav-item ${location.pathname === "/Forest" ? "active" : ""}`} onClick={() => navigate("/Forest")}>
+        <span>Forest</span>
+      </div>
+      <div className={`nav-item ${location.pathname === "/Calendar" ? "active" : ""}`} onClick={() => navigate("/Calendar")}>
+        <span>Calendar</span>
+      </div>
+      <div className={`nav-item ${location.pathname === "/Social" ? "active" : ""}`} onClick={() => navigate("/Social")}>
+        <span>Social</span>
+      </div>
+    </div>
+
     </div>
     
+    
   );
+
+  
 };
 
 export default ForestPage;

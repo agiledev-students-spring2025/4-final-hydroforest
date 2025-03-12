@@ -1,48 +1,40 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+
 import "react-calendar/dist/Calendar.css"; 
 import "./CalendarPage.css"; 
 
 const CalendarPage = () => {
+  //adding this for navigation
+  const navigate = useNavigate();
+  const location = useLocation(); // Get current URL path
+
+
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // Mock past water intake log
-  const waterIntakeLog = {
-    "2024-03-01": 2.5, 
-    "2024-03-02": 3.0,
-    "2024-03-03": 1.8,
-    "2024-03-04": 2.2,
-    "2024-03-05": 2.9
-  };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
-  const formattedDate = selectedDate.toISOString().split("T")[0]; // Format date as YYYY-MM-DD
-  const intakeAmount = waterIntakeLog[formattedDate] || "No data available";
+  const intakeAmount = "No data available";
 
   return (
     <div className="calendar-page">
       {/* Animated Background Vines */}
       <motion.div 
         className="plant-vine vine-left"
-        animate={{ x: [0, 7, 0], rotate: [0, 6, 0] }}
+        animate={{ x: [0, 10, 0], rotate: [0, 6, 0] }}
         transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
       >
         🌿
       </motion.div>
 
-      <motion.div 
-        className="plant-vine vine-right"
-        animate={{ x: [0, -7, 0], rotate: [0, -2, 0] }}
-        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 2 }}
-      >
-        🌱
-      </motion.div>
 
-      <h1 className="page-title">Hydration Calendar </h1>
+
+      <h1 className="calendar-title">Hydration Calendar </h1>
 
       {/* Animated Calendar */}
       <motion.div 
@@ -75,6 +67,22 @@ const CalendarPage = () => {
           {typeof intakeAmount === "number" ? `${intakeAmount} Liters` : intakeAmount}
         </motion.p>
       </motion.div>
+
+          {/* Bottom Navigation Bar */}
+          <div className="navbar">
+      <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>
+        <span>Home</span>
+      </div>
+      <div className={`nav-item ${location.pathname === "/Forest" ? "active" : ""}`} onClick={() => navigate("/Forest")}>
+        <span>Forest</span>
+      </div>
+      <div className={`nav-item ${location.pathname === "/Calendar" ? "active" : ""}`} onClick={() => navigate("/Calendar")}>
+        <span>Calendar</span>
+      </div>
+      <div className={`nav-item ${location.pathname === "/Social" ? "active" : ""}`} onClick={() => navigate("/Social")}>
+        <span>Social</span>
+      </div>
+    </div>
     </div>
   );
 };

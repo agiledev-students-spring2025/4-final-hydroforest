@@ -303,46 +303,45 @@ body {
     transform: scale(1.1);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
-  
 /* Navbar Styles */
 .navbar {
-    position: fixed;
-    bottom: 0px;
-    left: 0;
-    width: 100%;
-    background-color: #2E8B57; /* Deep green color */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 30px 0 30px 0;
-    z-index: 1000;
-  }
-  
-  .nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .nav-item span {
-    margin-top: 5px;
-  }
-  
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  background-color: #37885a; /* Deep green color */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px 0 30px 0;
+  z-index: 1000;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+}
+
+.nav-item span {
+  margin-top: 5px;
+}
+
 /* Triangular Pop-up Indicator */
 .nav-item.active::after {
-    content: " ";
-    position: absolute;
-    top: -30px; /* Position above the nav item */
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 15px solid #5DA271; /* Triangle color */
-  }
+  content: " ";
+  position: absolute;
+  top: -30px; /* Position above the nav item */
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid #5DA271; /* Triangle color */
+}
 
   /* Burger Menu */
 
