@@ -19,13 +19,13 @@ Welcome to Hydroforest! We appreciate your interest in contributing to our proje
 
 ## Daily standups
 
- - We will have 45 minutes standups on weekdays based on members's availability. They will be conducted on Zoom call and members will share their screens to show everyone what they've been up to and what holdups they may be having.
+ - We will have 45 minute standup meetings on weekdays based on members' availability. They will be conducted via Zoom call and members will share their screens to show everyone what they've been up to and what holdups they may be having.
 - Members who do not participate will be reported to Product Owner.
 - Members who make no progress for two meetings and don't reach out for help will be reported to management.
 
 ## Coding standards
 
-- We will use visual studio code
+- We will use Visual Studio Code
 - Code for each task and spike must be peer-reviewed and pass tests before merging into the `main` branch of code.
 - Always push working code, if a member break the pipeline/build then the member is required to fix it.
 - Make granular and small commits, per feature or per bug fix.
@@ -63,7 +63,7 @@ We follow a structured Git workflow to maintain code quality and organization.
 - Contact the project founders if you have any questions or need guidance.
 
 ## Setting Up The Local Development Environment
-- Download VS code
+- Download Visual Studio Code
 - Clone the git repo
 
 We hope you enjoy working on Hydroforest and welcome any and all contributors!

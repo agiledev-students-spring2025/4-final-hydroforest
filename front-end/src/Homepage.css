@@ -3,7 +3,6 @@ body {
     background-color: #5DA271;
     /* 
     background-color: rgb(81,	163,135	); */
-    font-family: 'Arial', sans-serif;
     color: white;
     text-align: center;
     margin: 0;
@@ -11,6 +10,9 @@ body {
     overflow: hidden;
     height: 100%;
     -webkit-overflow-scrolling: none; 
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
   }
   
   .container {
@@ -29,6 +31,9 @@ body {
     width: 100%;
     position: absolute;
     top: 0px;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
   }
   .username{
     
@@ -45,6 +50,9 @@ body {
 
   .topCaption {
     font-size: 25px;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
   }
   /* Tree Container with Animation */
   .tree-container {
@@ -116,6 +124,9 @@ body {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
   }
   
   .btn:hover {

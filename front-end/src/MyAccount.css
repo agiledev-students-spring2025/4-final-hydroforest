@@ -1,6 +1,8 @@
 /* Container and Layout */
 .account-container {
-    font-family: 'Arial', sans-serif;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
     max-width: 600px; /* Increased width for a more spacious layout */
     margin: 30px auto; /* Center container horizontally with vertical spacing */
     padding: 20px;
@@ -17,6 +19,9 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 20px;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
 /* Profile Section */
@@ -42,6 +47,9 @@
     color: #333; /* Ensure visibility */
     text-align: center; /* Explicitly align text to the center */
     margin: 0; /* Remove any default margin that might misalign it */
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
 /* Stats Section */

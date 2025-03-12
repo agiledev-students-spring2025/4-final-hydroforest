@@ -102,10 +102,11 @@
 /* Leaderboard Container */
 .leaderboard-container {
     background: white;
-    border-radius: 12px;
-    padding: 15px;
+    border-radius: 15px;
+    padding: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+    overflow-x: auto; 
+}  
 
 /* Leaderboard Table */
 .leaderboard-table {
@@ -120,7 +121,7 @@
     border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
-    color: black; /* Set leaderboard text color to black */
+    color: black; 
 }
 
 .leaderboard-table th {
