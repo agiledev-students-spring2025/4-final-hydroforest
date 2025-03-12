@@ -50,7 +50,7 @@
     display: flex;
     flex-direction: column; /* Stack label and input vertically */
     margin-bottom: 20px; /* Add spacing between input groups */
-    width: 100%; /* Make input fields take full width */
+    width: 95%; /* Make input fields take full width */
 }
 
 .input-group-email label {
