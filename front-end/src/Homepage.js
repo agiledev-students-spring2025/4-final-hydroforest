@@ -6,7 +6,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./Homepage.css";
 
 const trees = {
-  tree1: {
+  "Misty Bonsai": {
     seed: "/images/tree1/seed.png",
     sprout: "/images/tree1/sprout.png",
     seedling: "/images/tree1/seedling.png",
@@ -36,7 +36,7 @@ const HomePage = () => {
   const [inputAmount, setInputAmount] = useState(0);
   const [isWatering, setIsWatering] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTree, setSelectedTree] = useState("tree1");
+  const [selectedTree, setSelectedTree] = useState("Misty Bonsai");
   const [showWaterPouring, setShowWaterPouring] = useState(false);
   const [showUnlockPopup, setShowUnlockPopup] = useState(false); //  state for pop-up
   const [hasUnlockedTree, setHasUnlockedTree] = useState(false); // Track if popup was shown
@@ -51,7 +51,7 @@ const HomePage = () => {
       setHasUnlockedTree(true); // Prevent re-triggering
       setTimeout(() => {
         setShowUnlockPopup(true); // Delay popup
-      }, 2500);
+      }, 2000);
     }
   }, [totalIntake]);
 
@@ -104,7 +104,7 @@ const HomePage = () => {
           <li onClick={() => { navigate("/Account"); setOpen(false); }}>My Account</li>
           <li onClick={() => { navigate("/AboutUs"); setOpen(false); }}>About Us</li>
           <li onClick={() => { navigate("/Help"); setOpen(false); }}>Help</li>
-          <li onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
+          <li className="logout" onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
         </ul>
       </motion.div>
 
