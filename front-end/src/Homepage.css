@@ -87,7 +87,7 @@ body {
   .water-bottle {
     position: absolute;
     z-index: 1000;
-    left: 39%;
+    left: 41%;
 
     transform: translateX(-50%) rotate(50deg);
     width: 70px;
