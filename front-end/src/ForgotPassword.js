@@ -33,7 +33,7 @@ const ForgotPassword = () => {
       >
         <h1 className="forgot-password-title">Forgot Password</h1>
         <p className="forgot-password-text">
-          Enter your email address and we'll send you a link to reset your password.
+          Enter your email address and we'll send you instructions.
         </p>
         <form className="forgot-password-form" onSubmit={handleSubmit}>
           <input

@@ -16,8 +16,9 @@
 }
 
 .page-title {
-    font-size: 2rem;
-    font-weight: 900; 
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
     color: #f8f8f8;
     font-family: 'Inter', sans-serif;
     text-align: center;
@@ -36,9 +37,9 @@
 .add-friend-section h2,
 .leaderboard-section h2 {
     margin-bottom: 10px;
-    color: #1b5e20;
-    font-family: 'Inter', sans-serif;
-    font-weight: 900; 
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
     color: #f8f8f8;
 }
 
