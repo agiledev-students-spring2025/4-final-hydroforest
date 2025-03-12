@@ -62,7 +62,7 @@
 
 /* Input Fields */
 .input-group-email input {
-    width: 100%; /* Full width of container */
+    width: 95%; /* Full width of container */
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
