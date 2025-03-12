@@ -1,6 +1,14 @@
 /*used to be body*/
 .entire-account-page{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #5DA271; /* Subtle green background */
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
 /* Container and Layout */
 .account-container {
