@@ -45,7 +45,7 @@ const ForestPage = ({ completedDays }) => {
   return (
     <div className="forest-page">
       <header>
-      <h1 className="forest-title">Welcome to Your Forest</h1>
+            <h1 className="forest-title">Welcome to Your Forest</h1>
 
        {/* 🍔 Hamburger Menu Button (Aligned Right) */}
        <div className="hamburger-menu">
