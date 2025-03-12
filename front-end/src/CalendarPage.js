@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Sling as Hamburger } from 'hamburger-react';
+
 
 import "react-calendar/dist/Calendar.css"; 
 import "./CalendarPage.css"; 
@@ -21,8 +23,12 @@ const CalendarPage = () => {
 
   const intakeAmount = "No data available";
 
+  //adding for hamburger
+  const [isOpen, setOpen] = useState(false);
+
   return (
     <div className="calendar-page">
+      
       {/* Animated Background Vines */}
       <motion.div 
         className="plant-vine vine-left"
@@ -32,9 +38,33 @@ const CalendarPage = () => {
         🌿
       </motion.div>
 
+     {/* 📌 Header Section */}
+     
+        <header className="calendar-header">
+          
+        <h1 className="calendar-title">Hydration Calendar</h1>
 
+          {/* 🍔 Hamburger Menu Button (Aligned Right) */}
+          <div className="hamburger-menu">
+            <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
+          </div>
 
-      <h1 className="calendar-title">Hydration Calendar </h1>
+          {/* 📌 Sliding Sidebar Menu */}
+          <motion.div 
+            className="sidebar-menu"
+            initial={{ x: "100%" }} 
+            animate={{ x: isOpen ? 0 : "100%" }} 
+            transition={{ type: "tween", duration: 0.4 }}
+          >
+            <ul>
+              <li onClick={() => { navigate("/Account"); setOpen(false); }}>My Account</li>
+              <li onClick={() => { navigate("/AboutUs"); setOpen(false); }}>About Us</li>
+              <li onClick={() => { navigate("/Help"); setOpen(false); }}>Help</li>
+              <li className="logout" onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
+            </ul>
+          </motion.div>
+        </header>
+        
 
       {/* Animated Calendar */}
       <motion.div 

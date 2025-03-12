@@ -2,11 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from "react-router-dom";
 import './Social.css';
+import { Sling as Hamburger } from 'hamburger-react';
 
 const Social = () => {
   //adding this for navigation
   const navigate = useNavigate();
   const location = useLocation(); // Get current URL path
+  //adding this for hamburher
+  const [isOpen, setOpen] = useState(false);
+
 
   const [searchQuery, setSearchQuery] = useState('');
   const [friendSuggestions, setFriendSuggestions] = useState([]);
@@ -56,7 +60,30 @@ const Social = () => {
 
   return (
     <div className="social-page">
+      <header>
       <h1 className="page-title">Social</h1>
+           {/* 🍔 Hamburger Menu Button (Aligned Right) */}
+           <div className="hamburger-menu">
+            <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
+          </div>
+
+          {/* 📌 Sliding Sidebar Menu */}
+          <motion.div 
+            className="sidebar-menu"
+            initial={{ x: "100%" }} 
+            animate={{ x: isOpen ? 0 : "100%" }} 
+            transition={{ type: "tween", duration: 0.4 }}
+          >
+            <ul>
+              <li onClick={() => { navigate("/Account"); setOpen(false); }}>My Account</li>
+              <li onClick={() => { navigate("/AboutUs"); setOpen(false); }}>About Us</li>
+              <li onClick={() => { navigate("/Help"); setOpen(false); }}>Help</li>
+              <li className="logout" onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
+            </ul>
+          </motion.div>
+          </header>
+
+
       
       <div className="add-friend-section">
         <h2>Add Friends</h2>
