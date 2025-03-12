@@ -55,6 +55,14 @@ const HomePage = () => {
     }
   }, [totalIntake]);
 
+  const getWaterNeededForNextStage = () => {
+    if (treeStage === "seed") return { amount: Math.max(2 - totalIntake, 0), nextStage: "Sprout" };
+    if (treeStage === "sprout") return { amount: Math.max(4 - totalIntake, 0), nextStage: "Seedling" };
+    if (treeStage === "seedling") return { amount: Math.max(6 - totalIntake, 0), nextStage: "Sapling" };
+    if (treeStage === "sapling") return { amount: Math.max(8 - totalIntake, 0), nextStage: "Adult Tree" };
+    return { amount: 0, nextStage: "" };
+  };
+
   const handleLogWater = () => {
     const amount = Number(inputAmount);
     if (amount > 0) {
@@ -110,8 +118,12 @@ const HomePage = () => {
 
       <p className="topCaption">Today you drank {totalIntake} {unit}</p>
       
-      <p>{treeStage}</p>
-      {showWaterPouring && <img src="/images/water-bottle.png" alt="Water Pouring" className="water-bottle" />}
+      <p className="howFarFromGoal">{treeStage !== "adult tree"
+    ? `Only ${getWaterNeededForNextStage().amount} more ${unit} to reach the ${getWaterNeededForNextStage().nextStage}`
+    : "Congrats! Your tree is fully grown"}
+      </p>
+
+      {showWaterPouring && <img src="/images/water-bottle2.png" alt="Water Pouring" className="water-bottle" />}
       {showWaterPouring && <div className="water"></div>}
 
       <motion.div

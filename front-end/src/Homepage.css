@@ -54,6 +54,9 @@ body {
     font-weight: 300;
     font-style: normal;
   }
+  .howFarFromGoal{
+    font-style: italic;
+  }
   /* Tree Container with Animation */
   .tree-container {
     width: 200px;
@@ -90,7 +93,7 @@ body {
     left: 41%;
 
     transform: translateX(-50%) rotate(50deg);
-    width: 70px;
+    width: 80px;
     opacity: 1;
     animation: pourWater 1.5s ease-in-out;
   }
