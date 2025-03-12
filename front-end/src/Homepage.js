@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Hamburger from 'hamburger-react';
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import "./Homepage.css";
 
@@ -38,7 +38,10 @@ const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTree, setSelectedTree] = useState("tree1");
   const [showWaterPouring, setShowWaterPouring] = useState(false);
+  //adding this for navigation
   const navigate = useNavigate();
+  const location = useLocation(); // Get current URL path
+
   const [isOpen, setOpen] = useState(false);
 
   const handleLogWater = () => {
@@ -148,17 +151,17 @@ const HomePage = () => {
       )}
 
       {/* Bottom Navigation Bar */}
-      <div className="navbar">
-      <div className="nav-item active" onClick={() => navigate("/")}>
+         <div className="navbar">
+      <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>
         <span>Home</span>
       </div>
-      <div className="nav-item" onClick={() => navigate("/Forest")}>
+      <div className={`nav-item ${location.pathname === "/Forest" ? "active" : ""}`} onClick={() => navigate("/Forest")}>
         <span>Forest</span>
       </div>
-      <div className="nav-item" onClick={() => navigate("/Calendar")}>
+      <div className={`nav-item ${location.pathname === "/Calendar" ? "active" : ""}`} onClick={() => navigate("/Calendar")}>
         <span>Calendar</span>
       </div>
-      <div className="nav-item" onClick={() => navigate("/social")}>
+      <div className={`nav-item ${location.pathname === "/Social" ? "active" : ""}`} onClick={() => navigate("/Social")}>
         <span>Social</span>
       </div>
     </div>
