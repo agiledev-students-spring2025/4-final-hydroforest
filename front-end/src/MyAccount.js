@@ -41,17 +41,20 @@ const MyAccount = () => {
 
       {/* Editable Fields Section */}
       <div className="account-info">
+        
+      <label>Email:</label>
+        <div className="editable-field">
+          <input type="text" value="junli123@email.com" readOnly />
+          <button onClick={() => navigate('/change-email')}>Edit</button>
+        </div>
+
         <label>Password:</label>
         <div className="editable-field">
           <input type="password" value="********" readOnly />
           <button onClick={() => navigate('/change-password')}>Edit</button>
         </div>
 
-        <label>Email:</label>
-        <div className="editable-field">
-          <input type="text" value="junli123@email.com" readOnly />
-          <button onClick={() => navigate('/change-email')}>Edit</button>
-        </div>
+
       </div>
 
       {/* Notification Preferences Section */}
