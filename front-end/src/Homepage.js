@@ -180,7 +180,7 @@ const HomePage = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          onClick={() => setShowUnlockPopup(false)}
+          // onClick={() => setShowUnlockPopup(false)}
         >
           <div className="popup-content">
             <img src={trees[selectedTree]["adult tree"]} alt="Unlocked Tree" className="popup-plant-image" />
