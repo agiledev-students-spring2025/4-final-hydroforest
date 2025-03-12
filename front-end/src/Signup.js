@@ -18,11 +18,11 @@ const SignupPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // 🔹 Simulating signup logic (replace with actual backend logic)
+    //  Simulating signup logic (replace with actual backend logic)
     if (formData.username && formData.email && formData.password) {
       console.log("Sign up data:", formData);
 
-      // ✅ Redirect to Login Page after signup
+      //  Redirect to Login Page after signup
       navigate("/login");
     } else {
       console.log("Please fill in all fields");
@@ -80,7 +80,7 @@ const SignupPage = () => {
           </motion.button>
         </form>
 
-        {/* 🔹 Centered Already Have an Account? */}
+        {/* Centered Already Have an Account? */}
         <div className="login-section">
           <p 
             className="login-text"

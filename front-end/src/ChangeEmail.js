@@ -18,9 +18,10 @@ const ChangeEmail = () => {
   };
 
   return (
+    <div className= "entire-changeEmail-page">
     <div className="change-email-container">
       {/* Back Button */}
-      <button className="back-button" onClick={() => navigate('/')}>
+      <button className="back-button" onClick={() => navigate('/Account')}>
         Back
       </button>
 
@@ -29,7 +30,7 @@ const ChangeEmail = () => {
 
       <form onSubmit={handleSubmit}>
         {/* Current Email Field */}
-        <div className="input-group">
+        <div className="input-group-email">
           <label htmlFor="current-email" style={{ display: 'block', height: '20px' }}>
             {/* Empty label for spacing */}
           </label>
@@ -46,7 +47,7 @@ const ChangeEmail = () => {
         </div>
 
         {/* New Email Field */}
-        <div className="input-group">
+        <div className="input-group-email">
           <label htmlFor="new-email" style={{ display: 'block', height: '20px' }}>
             {/* Empty label for spacing */}
           </label>
@@ -76,6 +77,7 @@ const ChangeEmail = () => {
           Send Verification
         </button>
       </form>
+    </div>
     </div>
   );
 };
