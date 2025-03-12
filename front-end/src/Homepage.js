@@ -21,11 +21,11 @@ const trees = {
     "adult tree": "/images/tree2/adult_tree.png",
   },
   tree3: {
-    seed: "https://picsum.photos/200?random=11",
-    sprout: "https://picsum.photos/200?random=12",
-    seedling: "https://picsum.photos/200?random=13",
-    sapling: "https://picsum.photos/200?random=14",
-    "adult tree": "https://picsum.photos/200?random=15",
+    seed: "/images/tree3/seed.png",
+    sprout: "/images/tree3/sprout.png",
+    seedling: "/images/tree3/seedling.png",
+    sapling: "/images/tree3/sapling.png",
+    "adult tree": "/images/tree3/adult_tree.png",
   },
 };
 
@@ -125,7 +125,7 @@ const HomePage = () => {
       <button id="changetreebtn" className="btn" onClick={() => setIsModalOpen(true)}>Change Tree</button>
 
       <div className="card">
-        <div className="input-group">
+        <div className="input-group-water">
           <input className="waterAmount" type="number" value={inputAmount} onChange={(e) => setInputAmount(e.target.value)} placeholder="Enter amount" />
           <select className="unit" value={unit} onChange={(e) => setUnit(e.target.value)}>
             <option value="cups">Cups</option>
