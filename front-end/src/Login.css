@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-/* 🌿 Full-Page Styling */
+/*  Full-Page Styling */
 .login-page {
   display: flex;
   justify-content: center;
@@ -17,7 +17,7 @@
   font-style: normal;
 }
 
-/* 🟢 Centered Login Container */
+/* Centered Login Container */
 .login-container {
   background: rgba(255, 255, 255, 0.115);
   padding: 40px;
@@ -31,7 +31,7 @@
   box-sizing: border-box;
 }
 
-/* 📝 Title */
+/*  Title */
 .login-title {
   font-family: "dm-sans-24pt", sans-serif;
   font-weight: 300;
@@ -46,6 +46,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
 }
 
 /* ✏️ Input Fields */
@@ -62,20 +63,21 @@
   background: rgba(255, 255, 255, 0.8);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
 }
 
 .login-input::placeholder {
   color: #666;
 }
 
-/* 🟢 Input Focus Effect */
+/*  Input Focus Effect */
 .login-input:focus {
   background: white;
   box-shadow: 0 0 6px rgba(76, 175, 80, 0.5);
   border: 1px solid #4caf50;
 }
 
-/* ✅ Login Button */
+/*  Login Button */
 .login-btn {
   width: 100%;
   padding: 12px;
@@ -92,7 +94,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* 🔄 Button Hover & Active Effects */
+/*  Button Hover & Active Effects */
 .login-btn:hover {
   background: #4a8a5a;
   transform: scale(1.02);
@@ -102,7 +104,7 @@
   transform: scale(0.98);
 }
 
-/* 🟢 Forgot Password Text (Right-Aligned & White) */
+/*  Forgot Password Text (Right-Aligned & White) */
 .forgot-password-text {
   text-align: right;
   font-size: 0.85rem; /* Increased for readability */
@@ -118,7 +120,7 @@
   text-decoration: underline;
 }
 
-/* 🟢 Centered Sign-Up Text */
+/*  Centered Sign-Up Text */
 .signup-section {
   margin-top: 15px;
   text-align: center;

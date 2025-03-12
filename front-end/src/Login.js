@@ -15,11 +15,11 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // 🔹 Simulating authentication (replace with real auth logic)
+    //  Simulating authentication (replace with real auth logic)
     if (credentials.username && credentials.password) {
       console.log("Logging in with:", credentials);
 
-      // ✅ Redirect to Homepage
+      //  Redirect to Homepage
       navigate("/");
     } else {
       console.log("Invalid credentials");
