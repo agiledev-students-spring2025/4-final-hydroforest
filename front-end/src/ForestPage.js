@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./ForestPage.css"; 
+import { Sling as Hamburger } from 'hamburger-react';
 
 const GRID_SIZE = 5;
 
@@ -22,6 +23,8 @@ const ForestPage = ({ completedDays }) => {
   const navigate = useNavigate();
   const location = useLocation(); // Get current URL path
 
+   //adding this for hamburher
+   const [isOpen, setOpen] = useState(false);
 
   const [selectedPlant, setSelectedPlant] = useState(null);
 
@@ -41,7 +44,29 @@ const ForestPage = ({ completedDays }) => {
 
   return (
     <div className="forest-page">
+      <header>
       <h1 className="forest-title">Welcome to Your Forest</h1>
+
+       {/* 🍔 Hamburger Menu Button (Aligned Right) */}
+       <div className="hamburger-menu">
+            <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
+          </div>
+
+          {/* 📌 Sliding Sidebar Menu */}
+          <motion.div 
+            className="sidebar-menu"
+            initial={{ x: "100%" }} 
+            animate={{ x: isOpen ? 0 : "100%" }} 
+            transition={{ type: "tween", duration: 0.4 }}
+          >
+            <ul>
+              <li onClick={() => { navigate("/Account"); setOpen(false); }}>My Account</li>
+              <li onClick={() => { navigate("/AboutUs"); setOpen(false); }}>About Us</li>
+              <li onClick={() => { navigate("/Help"); setOpen(false); }}>Help</li>
+              <li className="logout" onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
+            </ul>
+          </motion.div>
+          </header>
       <p className="forest-caption">Each plant represents a hydration goal met! Keep going to unlock more.</p>
 
       {/* Isometric Grid Forest */}
