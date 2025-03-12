@@ -47,7 +47,7 @@
 
 /* Input Groups */
 .input-group-email {
-    display: flex;
+    display: inline;
     flex-direction: column; /* Stack label and input vertically */
     margin-bottom: 20px; /* Add spacing between input groups */
     width: 95%; /* Make input fields take full width */
