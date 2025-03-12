@@ -29,3 +29,25 @@ Our team follows an **Agile approach**, focusing on building core functionality 
 
 ## How to Contribute  
 Interested in contributing? Check out our [CONTRIBUTING.md](https://github.com/agiledev-students-spring2025/4-final-hydroforest/blob/master/CONTRIBUTING.md) for guidelines on how to get involved.  
+
+# Running the Program
+
+Follow these steps to run the project on your local machine:
+
+1. **Fork and Clone the Repository:**
+   - Fork the repository on GitHub.
+   - Clone the forked repository to your local machine:
+    git clone https://github.com/agiledev-students-spring2025/4-final-hydroforest
+
+2. **Open the Project in VS Code:**
+   - Launch Visual Studio Code.
+   - Open the cloned repository folder.
+
+3. **Navigate to the Front-End Folder:**
+   - Open the integrated terminal in VS Code.
+   - Change directory to the `front-end` folder: cd front-end
+
+4. **Install Dependencies and Launch the Application:**
+   - Install the necessary packages: npm install
+
+   - Start the application: npm start
