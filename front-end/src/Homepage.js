@@ -109,6 +109,7 @@ const HomePage = () => {
       </motion.div>
 
       <p className="topCaption">Today you drank {totalIntake} {unit}</p>
+      
       <p>{treeStage}</p>
       {showWaterPouring && <img src="/images/water-bottle.png" alt="Water Pouring" className="water-bottle" />}
       {showWaterPouring && <div className="water"></div>}
