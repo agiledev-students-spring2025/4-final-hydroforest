@@ -38,12 +38,10 @@ const CalendarPage = () => {
         🌿
       </motion.div>
 
-     {/* 📌 Header Section */}
      
+     <h1 className="calendar-title">Hydration Calendar</h1>
         <header className="calendar-header">
-          
-        <h1 className="calendar-title">Hydration Calendar</h1>
-
+          <h1></h1>
           {/* 🍔 Hamburger Menu Button (Aligned Right) */}
           <div className="hamburger-menu">
             <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
@@ -88,7 +86,7 @@ const CalendarPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        <h3>Water Intake for {selectedDate.toDateString()}</h3>
+        <p>Water Intake for {selectedDate.toDateString()}</p>
         <motion.p 
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
