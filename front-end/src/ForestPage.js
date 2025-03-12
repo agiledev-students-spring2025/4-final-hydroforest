@@ -97,7 +97,7 @@ const ForestPage = ({ completedDays }) => {
          animate={{ opacity: 1 }}
          exit={{ opacity: 0 }}
          transition={{ duration: 0.5 }}
-         onClick={() => setSelectedPlant(null)}
+        //  onClick={() => setSelectedPlant(null)}
        >
          <div className="popup-content">
            <img src={selectedPlant.src} alt={selectedPlant.name} className="popup-plant-image" />

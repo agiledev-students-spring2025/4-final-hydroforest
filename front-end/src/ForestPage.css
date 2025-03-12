@@ -60,7 +60,7 @@
   }
   
   .grid-plant:hover {
-    transform: translateY(-25px) translateX(-25px)  scale(1.1) rotateZ(-45deg);
+    transform: translateY(-35px) translateX(-35px)  scale(1.1) rotateZ(-45deg);
   }
   
   
