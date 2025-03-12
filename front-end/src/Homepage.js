@@ -80,7 +80,7 @@ const HomePage = () => {
     <div className="container">
       
       <header>
-        <h2 className="username">Hi, Jaleen!</h2>
+        <h2 className="username"></h2>
         <div className="hamburger-menu">
         <Hamburger toggled={isOpen} toggle={setOpen} color="white" /></div>
       </header>

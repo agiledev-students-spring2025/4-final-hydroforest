@@ -44,13 +44,14 @@ const ForestPage = ({ completedDays }) => {
 
   return (
     <div className="forest-page">
-      <header>
-      <h1 className="forest-title">Welcome to Your Forest</h1>
-
-       {/* 🍔 Hamburger Menu Button (Aligned Right) */}
+      <header>       {/* 🍔 Hamburger Menu Button (Aligned Right) */}
+        <h2> </h2>
        <div className="hamburger-menu">
             <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
-          </div>
+          </div></header>
+      <h1 className="forest-title">Welcome to Your Forest</h1>
+
+
 
           {/* 📌 Sliding Sidebar Menu */}
           <motion.div 
@@ -66,7 +67,7 @@ const ForestPage = ({ completedDays }) => {
               <li className="logout" onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
             </ul>
           </motion.div>
-          </header>
+          
       <p className="forest-caption">Each plant represents a hydration goal met! Keep going to unlock more.</p>
 
       {/* Isometric Grid Forest */}
