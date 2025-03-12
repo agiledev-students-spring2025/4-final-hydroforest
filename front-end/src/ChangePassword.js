@@ -26,7 +26,7 @@ const ChangePassword = () => {
     <div className="entire-change-password-page">
     <div className="change-password-container">
       {/* Back Button */}
-      <button className="back-button" onClick={() => navigate('/')}>
+      <button className="back-button" onClick={() => navigate('/Account')}>
         Back
       </button>
 

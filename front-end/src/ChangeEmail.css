@@ -14,7 +14,7 @@
 .change-email-container {
     font-family: 'Arial', sans-serif;
     max-width: 400px;
-    margin: 50px auto; /* Center container horizontally with vertical margin */
+    margin: 30px ; /* Center container horizontally with vertical margin */
     padding: 20px;
     background-color: #ffffff;
     border: 1px solid #ddd;

@@ -21,7 +21,7 @@ const ChangeEmail = () => {
     <div className= "entire-changeEmail-page">
     <div className="change-email-container">
       {/* Back Button */}
-      <button className="back-button" onClick={() => navigate('/')}>
+      <button className="back-button" onClick={() => navigate('/Account')}>
         Back
       </button>
 
