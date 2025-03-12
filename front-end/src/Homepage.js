@@ -172,7 +172,7 @@ const HomePage = () => {
           <div className="popup-content">
             <img src={trees[selectedTree]["adult tree"]} alt="Unlocked Tree" className="popup-plant-image" />
             <p className="popup-caption">
-          You unlocked the <strong>{selectedTree || "Mystery Tree"}</strong> on Day {dayNumber || "?"} by staying hydrated! 💧🌱
+          You unlocked the <strong>{selectedTree || "Mystery Tree"}</strong>  by staying hydrated! 
         </p>
             <button className="close-btn" onClick={() => setShowUnlockPopup(false)}>Close</button>
           </div>
