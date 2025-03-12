@@ -130,7 +130,6 @@
 
 /* 🔵 Active Item */
 .nav-item.active {
-  color: #f6edbe; 
   font-weight: bold;
 }
 
