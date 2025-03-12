@@ -13,6 +13,7 @@ const MyAccount = () => {
   };
 
   return (
+    <div className="entire-account-page">
     <div className="account-container">
       {/* Page Title */}
       <h1 className="title">My Account</h1>
@@ -80,6 +81,7 @@ const MyAccount = () => {
           <span>Social</span>
         </div>
       </div>
+    </div>
     </div>
   );
 };

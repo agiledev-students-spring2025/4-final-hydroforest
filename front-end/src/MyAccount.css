@@ -1,3 +1,7 @@
+/*used to be body*/
+.entire-account-page{
+    display: flex;
+}
 /* Container and Layout */
 .account-container {
     font-family: "dm-sans-24pt", sans-serif;
