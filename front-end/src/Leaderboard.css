@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+/* General Layout */
+.leaderboard-page {
+    text-align: center;
+    padding: 80px 40px 40px;
+    background-color: #5DA271;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Inter', sans-serif;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 80px;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-transform: none;
+    letter-spacing: 1.5px;
+    animation: fadeInUp 1.5s ease-out;
+}
+
+/* Leaderboard Container */
+.leaderboard-container {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 90%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+/* Leaderboard Table */
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    font-family: 'Inter', sans-serif;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    color: black;
+}
+
+.leaderboard-table th {
+    background: #e0f7fa;
+    font-weight: 600;
+}
+
+/* Back Button */
+.back-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #2E8B57;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #1d6b45;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #2E8B57;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 0;
+    z-index: 1000;
+}
+
+.nav-item {
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.nav-item:hover {
+    color: #f0f0f0;
+}
+
+.nav-item.active {
+    border-bottom: 3px solid white;
+    padding-bottom: 5px;
+}
+
+/* Sidebar Menu */
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1100;
+}
+
+.sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar-menu li {
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.sidebar-menu li:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+}
+
+.logout {
+    color: red;
+    font-weight: bold;
+}
+
+.logout:hover {
+    color: darkred;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+}

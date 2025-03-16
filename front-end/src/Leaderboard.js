@@ -1,0 +1,88 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Sling as Hamburger } from 'hamburger-react';
+import './Leaderboard.css';
+
+const Leaderboard = ({ friends }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [isOpen, setOpen] = useState(false);
+
+  // Sort friends in descending order of hydration
+  const sortedFriends = [...friends].sort((a, b) => b.hydration - a.hydration);
+
+  return (
+    <div className="leaderboard-page">
+      <h1 className="page-title">Leaderboard</h1>
+      <header>
+        <h1></h1>
+        <div className="hamburger-menu">
+          <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
+        </div>
+        <motion.div 
+          className="sidebar-menu"
+          initial={{ x: "100%" }} 
+          animate={{ x: isOpen ? 0 : "100%" }} 
+          transition={{ type: "tween", duration: 0.4 }}
+        >
+          <ul>
+            <li onClick={() => { navigate("/Account"); setOpen(false); }}>My Account</li>
+            <li onClick={() => { navigate("/AboutUs"); setOpen(false); }}>About Us</li>
+            <li onClick={() => { navigate("/Help"); setOpen(false); }}>Help</li>
+            <li className="logout" onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
+          </ul>
+        </motion.div>
+      </header>
+
+      {/* Leaderboard Table */}
+      <motion.div 
+        className="leaderboard-container"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <table className="leaderboard-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Friend</th>
+              <th>Hydration (L)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sortedFriends.map((friend, index) => (
+              <tr key={friend.id}>
+                <td>{index + 1}</td>
+                <td>{friend.name}</td>
+                <td>{friend.hydration}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </motion.div>
+
+      <button className="back-button" onClick={() => navigate('/social')}>
+        Back to Social
+      </button>
+
+      {/* Bottom Navigation Bar */}
+      <div className="navbar">
+        <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>
+          <span>Home</span>
+        </div>
+        <div className={`nav-item ${location.pathname === "/Forest" ? "active" : ""}`} onClick={() => navigate("/Forest")}>
+          <span>Forest</span>
+        </div>
+        <div className={`nav-item ${location.pathname === "/Calendar" ? "active" : ""}`} onClick={() => navigate("/Calendar")}>
+          <span>Calendar</span>
+        </div>
+        <div className={`nav-item ${location.pathname === "/Social" ? "active" : ""}`} onClick={() => navigate("/Social")}>
+          <span>Social</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Leaderboard;
