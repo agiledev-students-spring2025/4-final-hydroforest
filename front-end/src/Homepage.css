@@ -15,7 +15,7 @@ body {
     font-style: normal;
   }
   
-  .container {
+  .home-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -29,7 +29,7 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    position: absolute;
+    position: fixed;
     top: 0px;
     font-family: "dm-sans-24pt", sans-serif;
     font-weight: 300;

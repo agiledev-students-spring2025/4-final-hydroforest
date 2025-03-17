@@ -94,7 +94,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="container">
+    <div className="home-container">
       <header>
         <h2 className="username"></h2>
         <div className="hamburger-menu">

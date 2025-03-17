@@ -3,14 +3,15 @@
 /* General Layout */
 .social-page {
     text-align: center;
-    padding: 80px 40px 40px; /* ⬆️ Increased top padding */
+    padding: 80px 40px 40px; /*  Increased top padding */
     background-color: #5DA271;
-    min-height: 100vh;
+    min-height: 115vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
     padding-bottom: 80px;
     margin: 0;
     padding: 0;
@@ -18,6 +19,7 @@
     font-weight: 300;
     font-style: normal;
 }
+
 h1 {
     font-family: "dm-sans-24pt", sans-serif;
     font-weight: 300;
@@ -155,6 +157,34 @@ h1 {
     background: #e0e0e0;
 }
 
+/* Profile Image */
+.profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+/* Text Section (Name and Hydration Level) */
+.text {
+    flex: 1;
+    margin-left: 12px;
+    text-align: left;
+}
+
+.text h6 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.text p {
+    margin: 0;
+    font-size: 14px;
+    color: grey;
+}
+
+/* Remove Button */
 .remove-friend-button {
     background: #e53935;
     color: white;
@@ -172,6 +202,14 @@ h1 {
 
 .remove-friend-button:hover {
     background: #d32f2f;
+}
+
+/* Horizontal Line */
+hr {
+    margin: 5px auto;
+    width: 60%;
+    border: 0;
+    border-top: 1px solid #eee;
 }
 
 /* Leaderboard Button */
@@ -234,7 +272,7 @@ h1 {
     border-left: 15px solid transparent;
     border-right: 15px solid transparent;
     border-top: 15px solid #5DA271; /* Triangle color */
-  }
+}
 
 /* Sidebar Menu */
 .sidebar-menu {
@@ -280,7 +318,4 @@ h1 {
 
 .logout:hover {
     color: darkred;
-}
-.test {
-    display: inline-block;
 }

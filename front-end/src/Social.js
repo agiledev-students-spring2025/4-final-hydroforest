@@ -11,15 +11,15 @@ const Social = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [friendSuggestions, setFriendSuggestions] = useState([]);
   const [friends, setFriends] = useState([
-    { id: 1, name: 'Alice', hydration: 7.5 },
-    { id: 2, name: 'Bob', hydration: 6.2 },
-    { id: 3, name: 'Charlie', hydration: 8.0 },
+    { id: 1, name: 'Alice', hydration: 7.5, src:"https://picsum.photos/101" },
+    { id: 2, name: 'Bob', hydration: 6.2, src:"https://picsum.photos/102" },
+    { id: 3, name: 'Charlie', hydration: 8.0, src:"https://picsum.photos/103" },
   ]);
 
   const allUsers = [
-    { id: 4, name: 'David' },
-    { id: 5, name: 'Eva' },
-    { id: 6, name: 'Frank' },
+    { id: 4, name: 'David',hydration: 7.5, src:"https://picsum.photos/104"},
+    { id: 5, name: 'Eva' ,hydration: 7.5, src:"https://picsum.photos/105"},
+    { id: 6, name: 'Frank' ,hydration: 7.5, src:"https://picsum.photos/106"},
   ];
 
   useEffect(() => {
@@ -113,35 +113,55 @@ const Social = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        <div className='test'>
-        <h2>Your Friends</h2>       
-        <button className="leaderboard-button" onClick={() => navigate('/leaderboard')}>
-        View Leaderboard
-      </button>
-      </div>
+        <h2>Your Friends</h2>
         <AnimatePresence>
           {friends.length > 0 ? (
             <ul className="friends-list">
-              {friends.map(friend => (
+              {friends.map((friend) => (
                 <motion.li 
                   key={friend.id} 
-                  className="friend-item"
+                  className="friend-item friend-drawer friend-drawer--onhover"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 20 }}
                 >
-                  <span>{friend.name} - {friend.hydration}L</span>
-                  <button className="remove-friend-button" onClick={() => handleRemoveFriend(friend.id)}>Remove</button>
+                  {/* Profile Image */}
+                  <img 
+                    className="profile-image" 
+                    src={friend.src} 
+                    alt={friend.name} 
+                  />
+
+                  {/* Friend Name and Hydration Level */}
+                  <div className="text">
+                    <h6>{friend.name}</h6>
+                    <p className="text-muted">{friend.hydration}L Hydrated</p>
+                  </div>
+
+                  {/* Remove Button */}
+                  <button 
+                    className="remove-friend-button" 
+                    onClick={() => handleRemoveFriend(friend.id)}
+                  >
+                    Remove
+                  </button>
+
                 </motion.li>
               ))}
+              {/* Horizontal Line */}
+              <hr />
             </ul>
           ) : (
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>You have no friends added yet.</motion.p>
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              You have no friends added yet.
+            </motion.p>
           )}
         </AnimatePresence>
       </motion.div>
 
-
+      <button className="leaderboard-button" onClick={() => navigate('/leaderboard')}>
+        View Leaderboard
+      </button>
 
       <div className="navbar">
         <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>
