@@ -24,15 +24,6 @@ const AboutUs = () => {
         <p>HydroForest is a web app designed to help users track their daily water intake while making hydration a fun and rewarding experience. Every time a user logs a bottle of water, a virtual tree grows in their digital forest. Over time, consistent hydration leads to a thriving forest, encouraging users to build healthy habits through gamification.</p>
       </motion.div>
       
-      <motion.div 
-        className="about-section"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-      >
-        <h2>Product Vision Statement</h2>
-        <p><strong>HydroForest transforms the habit of drinking water into an engaging and rewarding experience by allowing users to grow a virtual forest as they stay hydrated.</strong></p>
-      </motion.div>
       
       <motion.div 
         className="about-section"

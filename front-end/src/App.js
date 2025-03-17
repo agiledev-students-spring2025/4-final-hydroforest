@@ -11,6 +11,7 @@ import Signup from './Signup';
 import ForgotPassword from './ForgotPassword';
 import Social from './Social';
 import Leaderboard from './Leaderboard';
+import AboutUs from './AboutUs';
 
 function App() {
   const completedDays = 5;
@@ -32,6 +33,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/Account" element={<MyAccount />} />
+        <Route path="/AboutUs" element={<AboutUs />} />
         <Route path="/change-email" element={<ChangeEmail />} />
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/calendar" element={<CalendarPage />} />
