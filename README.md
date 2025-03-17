@@ -30,9 +30,17 @@ From an end-user perspective, HydroForest will:
 
 HydroForest began as an innovative project for our Agile Software Development & DevOps course, sparked by the everyday challenge of staying properly hydrated. Recognizing that many people struggle to drink enough water, our team set out to create a fun and engaging solution that makes hydration rewarding and interactive.
 
-Our journey started with a dynamic brainstorming session where we explored creative ways to encourage healthy habits through digital incentives. The result was the concept of a virtual forest—each time you log your water intake, your trees grow as a living testament to your commitment to better hydration.
+Our journey started with a dynamic brainstorming session where we explored creative ways to encourage healthy habits through digital incentives. The result was the concept of a virtual forest—each time users log their water intake, they are one step closer to build their own personal forest.
 
-Using an **Agile approach**, we focused on building core functionality first and are continuously iterating to refine and enhance the experience. Our goal is to deliver a polished, engaging product by the end of the semester that not only helps you stay hydrated but also makes the process enjoyable.
+Using an **Agile** approach, we focused on building core functionality first and are continuously iterating to refine and enhance the experience. Here’s a snapshot of our progress so far:
+
+- **Sprint 0**:
+  We laid the foundation for HydroForest by creating the app map and prototype. This helped us visualize the user flow and define the core features, such as logging water intake, tracking hydration progress, and growing a virtual forest.
+
+- **Sprint 1**:
+  We completed the front-end development, bringing the app’s design to life. This included building the user interface for the hydration tracker, forest visualization, calendar page, social page and navigation system.
+
+Our goal is to deliver a polished, engaging product by the end of the semester that not only helps you stay hydrated but also makes the process enjoyable.
 
 ## How to Contribute
 
