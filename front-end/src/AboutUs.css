@@ -1,0 +1,71 @@
+.about-us-page {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-height: 90vh;
+  }
+  
+  .about-title {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  
+  .about-section {
+    background: #ffffff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-section h2 {
+    color: #16a085;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .about-section p, .about-section ul {
+    font-size: 1rem;
+    color: #34495e;
+    line-height: 1.6;
+  }
+  
+  .about-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .about-section li {
+    margin: 8px 0;
+  }
+  
+  .about-section a {
+    text-decoration: none;
+    color: #2980b9;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .about-section a:hover {
+    color: #1abc9c;
+  }
+  
+  .back-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background: #2E8B57;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .back-button:hover {
+    background: #1d6b45;
+  }

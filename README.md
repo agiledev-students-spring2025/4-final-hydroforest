@@ -21,11 +21,33 @@ From an end-user perspective, HydroForest will:
 -  Send reminders and notifications to encourage hydration.  
 
 ## Project History  
-HydroForest was conceived as a Agile Software Development & DevOps course project, inspired by the challenge of maintaining consistent hydration habits. Recognizing that many people struggle with drinking enough water daily, our team wanted to create a fun and engaging solution that makes hydration more rewarding. 
+HydroForest began as an innovative project for our Agile Software Development & DevOps course, sparked by the everyday challenge of staying properly hydrated. Recognizing that many people struggle to drink enough water, our team set out to create a fun and engaging solution that makes hydration rewarding and interactive.
 
-The idea started as a brainstorming session among our team members, where we explored ways to encourage positive behavior through digital incentives. We decided on a virtual forest concept, where trees grow as users log their water intake!
+Our journey started with a dynamic brainstorming session where we explored creative ways to encourage healthy habits through digital incentives. The result was the concept of a virtual forest—each time you log your water intake, your trees grow as a living testament to your commitment to better hydration.
 
-Our team follows an **Agile approach**, focusing on building core functionality first and iterating over time to ensure an engaging and polished product by the semester’s end.  
+Using an **Agile approach**, we focused on building core functionality first and are continuously iterating to refine and enhance the experience. Our goal is to deliver a polished, engaging product by the end of the semester that not only helps you stay hydrated but also makes the process enjoyable.
 
 ## How to Contribute  
 Interested in contributing? Check out our [CONTRIBUTING.md](https://github.com/agiledev-students-spring2025/4-final-hydroforest/blob/master/CONTRIBUTING.md) for guidelines on how to get involved.  
+
+# Running the Program
+
+Follow these steps to run the project on your local machine:
+
+1. **Fork and Clone the Repository:**
+   - Fork the repository on GitHub.
+   - Clone the forked repository to your local machine:
+    git clone https://github.com/agiledev-students-spring2025/4-final-hydroforest
+
+2. **Open the Project in VS Code:**
+   - Launch Visual Studio Code.
+   - Open the cloned repository folder.
+
+3. **Navigate to the Front-End Folder:**
+   - Open the integrated terminal in VS Code.
+   - Change directory to the `front-end` folder: cd front-end
+
+4. **Install Dependencies and Launch the Application:**
+   - Install the necessary packages: npm install
+
+   - Start the application: npm start

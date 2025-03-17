@@ -56,10 +56,11 @@
 }
 
 .leaderboard-table th {
-    background:  rgb(46, 139, 86);
+    background: rgba(46, 139, 86, 0.952);
     font-weight: bold;
     color: white;
 }
+
 /* Navbar */
 .navbar {
     position: fixed;

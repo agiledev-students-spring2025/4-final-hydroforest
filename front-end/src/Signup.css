@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
-/* 🌿 Full-Page Styling */
+/*  Full-Page Styling */
 .signup-page {
   display: flex;
   justify-content: center;
@@ -15,7 +15,7 @@
   font-family: "Inter", sans-serif;
 }
 
-/* 🟢 Centered Signup Container (Matches Login Page) */
+/*  Centered Signup Container (Matches Login Page) */
 .signup-container {
   background: rgba(255, 255, 255, 0.15);
   padding: 40px;
@@ -29,7 +29,7 @@
   box-sizing: border-box;
 }
 
-/* 📝 Title */
+/*  Title */
 .signup-title {
   font-family: "dm-sans-24pt", sans-serif;
   font-weight: 300;
@@ -39,12 +39,13 @@
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-/* 📌 Form Styling */
+/*  Form Styling */
 .signup-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  box-sizing: border-box;
 }
 
 /* ✏️ Input Fields */
@@ -58,20 +59,21 @@
   background: rgba(255, 255, 255, 0.8);
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
 }
 
 .signup-input::placeholder {
   color: #666;
 }
 
-/* 🟢 Input Focus Effect */
+/*  Input Focus Effect */
 .signup-input:focus {
   background: white;
   box-shadow: 0 0 6px rgba(76, 175, 80, 0.5);
   border: 1px solid #4caf50;
 }
 
-/* ✅ Signup Button */
+/*  Signup Button */
 .signup-btn {
   width: 100%;
   padding: 12px;
@@ -88,7 +90,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* 🔄 Button Hover & Active Effects */
+/*  Button Hover & Active Effects */
 .signup-btn:hover {
   background: #4a8a5a;
   transform: scale(1.02);
@@ -98,7 +100,7 @@
   transform: scale(0.98);
 }
 
-/* 🔹 Return to Login Button (Same Style as Signup Button) */
+/*  Return to Login Button (Same Style as Signup Button) */
 .return-login-btn {
   width: 100%;
   padding: 12px;
@@ -118,7 +120,7 @@
   color: #5DA271;
 }
 
-/* 🟢 Centered Already Have an Account? */
+/*  Centered Already Have an Account? */
 .login-section {
   margin-top: 15px;
   text-align: center;

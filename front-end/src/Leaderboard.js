@@ -24,8 +24,8 @@ const Leaderboard = () => {
 
   return (
     <div className="leaderboard-page">
-      <h1 className="page-title">Leaderboard</h1>
 
+      <h1 className="page-title">Leaderboard</h1>
       {/* Hamburger Menu */}
       <header>
         <h1></h1>
@@ -67,7 +67,7 @@ const Leaderboard = () => {
         <motion.div className="podium-item podium-third">
           <img className="profile-image" src={friends[2].src} alt={friends[2].name} />
           <p className="podium-name">{friends[2].name}</p>
-          <p className="podium-rank">3rd place </p>
+          <p className="podium-rank">3rd place</p>
           <p className="podium-score">{friends[2].hydration} L</p>
         </motion.div>
       </div>

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=DM+Sans:wght@400;500;700;900&display=swap');
 
-/* 🌿 General Layout */
+/*  General Layout */
 .calendar-page {
   text-align: center;
   padding: 20px;
@@ -15,7 +15,7 @@
   overflow: hidden;
 }
 
-/* 🪴 Animated Background Vines */
+/*  Animated Background Vines */
 .plant-vine {
   position: absolute;
   font-size: 3rem;
@@ -31,7 +31,7 @@
   transform: rotate(-50deg);
 }
 
-/* 📅 Calendar Styling */
+/*  Calendar Styling */
 .calendar-container {
   background: white;
   border-radius: 12px;
@@ -45,7 +45,7 @@
   font-style: normal;
 }
 
-/* 📅 Make Calendar Responsive */
+/*  Make Calendar Responsive */
 .custom-calendar {
   width: 100%;
   border: none;
@@ -54,7 +54,7 @@
   font-style: normal;
 }
 
-/* 📝 Title & Caption */
+/*  Title & Caption */
 .calendar-title {
     font-size: 2rem;
     font-weight: 900;
@@ -70,12 +70,12 @@
 }
 
 
-/* 💧 Water Intake Section */
+/*  Water Intake Section */
 .intake-overview {
   margin-top: 15px;
   padding: 15px;
   width: 85%;
-  max-width: 400px;
+  max-width: 330px;
   border-radius: 12px;
   background: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
@@ -127,7 +127,7 @@
   transform: scale(1.1);
 }
 
-/* 🔵 Active Item */
+/*  Active Item */
 .nav-item.active {
   font-weight: bold;
 }
