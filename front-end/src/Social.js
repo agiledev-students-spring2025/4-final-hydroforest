@@ -21,6 +21,20 @@ const Social = () => {
     { id: 5, name: 'Eva' ,hydration: 7.5, src:"https://picsum.photos/105"},
     { id: 6, name: 'Frank' ,hydration: 7.5, src:"https://picsum.photos/106"},
   ];
+  
+    // Effect to control body overflow
+    useEffect(() => {
+      // Save the original overflow value
+      const originalOverflow = document.body.style.overflow;
+  
+      // Set overflow to "auto" for this page
+      document.body.style.overflow = "auto";
+  
+      // Cleanup: Reset to the original overflow value on unmount
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }, []);
 
   useEffect(() => {
     if (searchQuery.trim() === '') {
@@ -145,7 +159,7 @@ const Social = () => {
                   >
                     Remove
                   </button>
-
+                  
                 </motion.li>
               ))}
               {/* Horizontal Line */}
