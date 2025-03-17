@@ -9,22 +9,29 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Inter', sans-serif;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
     position: relative;
     overflow: hidden;
     padding-bottom: 80px;
+    margin: 0;
+    padding: 0;
 }
 
 .page-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: white;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    text-transform: none;
-    letter-spacing: 1.5px;
+    font-size: 2rem;
+    font-weight: 900; 
+    color: #f8f8f8;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    text-align: center;
+    margin-top: 10vh;
+    letter-spacing: 1px;
     animation: fadeInUp 1.5s ease-out;
 }
+
 
 /* Leaderboard Container */
 .leaderboard-container {
@@ -36,14 +43,26 @@
     width: 90%;
     overflow-x: auto;
     margin-top: 20px;
+    animation: slideIn 1s ease-out;
 }
-
+@keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 /* Leaderboard Table */
 .leaderboard-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
 .leaderboard-table th,
@@ -60,7 +79,7 @@
 }
 
 /* Back Button */
-.back-button {
+.social-back-button {
     margin-top: 20px;
     padding: 10px 20px;
     background-color: #2E8B57;
@@ -69,11 +88,13 @@
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    font-weight: 600;
     transition: background 0.3s ease;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
-.back-button:hover {
+.social-back-button:hover {
     background-color: #1d6b45;
 }
 
@@ -147,17 +168,10 @@
 
 .logout {
     color: red;
-    font-weight: bold;
 }
 
 .logout:hover {
     color: darkred;
 }
 
-/* Hamburger Menu */
-.hamburger-menu {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1100;
-}
+

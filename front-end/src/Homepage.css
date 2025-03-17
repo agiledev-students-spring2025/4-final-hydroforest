@@ -15,7 +15,7 @@ body {
     font-style: normal;
   }
   
-  .container {
+  .home-container {
     display: flex;
     flex-direction: column;
     align-items: center;

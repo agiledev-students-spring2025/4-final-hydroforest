@@ -2,15 +2,13 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Sling as Hamburger } from 'hamburger-react';
-import './Leaderboard.css';
+import './AboutUs.css';
 
-const Leaderboard = ({ friends }) => {
+const AboutUs = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isOpen, setOpen] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
-  // Sort friends in descending order of hydration
-  const sortedFriends = [...friends].sort((a, b) => b.hydration - a.hydration);
 
   return (
     <div className="leaderboard-page">
@@ -94,10 +92,6 @@ const Leaderboard = ({ friends }) => {
           </tbody>
         </table>
       </motion.div>
-
-      <button className="social-back-button" onClick={() => navigate('/social')}>
-        Back to Social
-      </button>
 
       {/* Bottom Navigation Bar */}
       <div className="navbar">

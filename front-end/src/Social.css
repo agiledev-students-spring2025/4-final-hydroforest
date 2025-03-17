@@ -3,26 +3,38 @@
 /* General Layout */
 .social-page {
     text-align: center;
-    padding: 80px 40px 40px; /* ⬆️ Increased top padding */
+    padding: 80px 40px 40px; /*  Increased top padding */
     background-color: #5DA271;
-    min-height: 100vh;
+    min-height: 115vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Inter', sans-serif;
     position: relative;
-    overflow: hidden;
     padding-bottom: 80px;
+    margin: 0;
+    padding: 0;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    overflow-x: hidden;
 }
 
-.page-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: white;
-    margin-top: 20px; /* ✅ Ensures title is not cut off */
-    margin-bottom: 20px;
-    text-transform: none;
-    letter-spacing: 1.5px;
+h1 {
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.social-title {
+    font-size: 2rem;
+    font-weight: 900; 
+    color: #f8f8f8;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    text-align: center;
+    margin-top: 10vh;
+    letter-spacing: 1px;
     animation: fadeInUp 1.5s ease-out;
 }
 
@@ -84,7 +96,8 @@
     align-items: center;
     font-size: 16px;
     color: black;
-    width: 100%;
+    width: calc(100% - 20px);
+    max-width: 100%;
 }
 
 .suggestions-list li:hover {
@@ -143,6 +156,34 @@
     background: #e0e0e0;
 }
 
+/* Profile Image */
+.profile-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+/* Text Section (Name and Hydration Level) */
+.text {
+    flex: 1;
+    margin-left: 12px;
+    text-align: left;
+}
+
+.text h6 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.text p {
+    margin: 0;
+    font-size: 14px;
+    color: grey;
+}
+
+/* Remove Button */
 .remove-friend-button {
     background: #e53935;
     color: white;
@@ -162,14 +203,24 @@
     background: #d32f2f;
 }
 
+/* Horizontal Line */
+hr {
+    margin: 5px auto;
+    width: 60%;
+    border: 0;
+    border-top: 1px solid #eee;
+}
+
 /* Leaderboard Button */
 .leaderboard-button {
     margin-top: 20px;
     padding: 12px 20px;
     background-color: #2E8B57;
     color: white;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
     font-size: 18px;
-    font-weight: 600;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -209,6 +260,17 @@
 .nav-item.active {
     border-bottom: 3px solid white;
     padding-bottom: 5px;
+}
+
+.nav-item.active::after {
+    content: " ";
+    position: absolute;
+    top: -15px; /* Position above the nav item */
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #5DA271; /* Triangle color */
 }
 
 /* Sidebar Menu */
@@ -251,9 +313,60 @@
 /* Logout Button */
 .logout {
     color: red;
-    font-weight: bold;
 }
 
 .logout:hover {
     color: darkred;
 }
+.icon-image {
+    width: 30px;
+    height: 30px;
+}
+
+.help-popup {
+    position: fixed;
+    top: 40px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 400px;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .help-message h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: #2E8B57;
+  }
+  
+  .help-message h3 {
+    font-size: 18px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    color: #2E8B57;
+  }
+  
+  .help-message p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+  }
+  
+  .help-message button {
+    margin-top: 16px;
+    padding: 8px 16px;
+    background: #2E8B57;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .help-message button:hover {
+    background: #1d6b45;
+  }
