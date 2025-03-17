@@ -29,7 +29,7 @@ const ForestPage = ({ completedDays }) => {
   const [selectedPlant, setSelectedPlant] = useState(null);
 
   const unlockedPlants = plantImages.slice(0, completedDays);
-
+  const [showHelp, setShowHelp] = useState(false);
   const grid = Array(GRID_SIZE)
     .fill(null)
     .map(() => Array(GRID_SIZE).fill(null));
@@ -63,10 +63,44 @@ const ForestPage = ({ completedDays }) => {
             <ul>
               <li onClick={() => { navigate("/Account"); setOpen(false); }}>My Account</li>
               <li onClick={() => { navigate("/AboutUs"); setOpen(false); }}>About Us</li>
-              <li onClick={() => { navigate("/Help"); setOpen(false); }}>Help</li>
+              <li onClick={() => { setShowHelp(true); setOpen(false); }}>Help</li>
               <li className="logout" onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
             </ul>
           </motion.div>
+              {/* this is for help */}
+              {showHelp && (
+            <motion.div 
+              className="help-popup"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="help-message">
+                <h2>HydroForest</h2>
+                <p>
+                  This app is designed to help you stay hydrated while growing a virtual forest. Here's how it works:
+                </p>
+        
+                <h3>Daily 8 Cups Goal</h3>
+                <p>
+                  Your daily goal is to drink <strong>8 cups (2 liters)</strong> of water. Each time you log a cup of water, you help a plant in your virtual forest grow!
+                </p>
+        
+                <h3>Unlocking Plants</h3>
+                <p>
+                  When you reach your daily goal of 8 cups, you unlock a new plant in your forest. These plants are unique and can be found in your forest collection. Keep hydrating to grow a lush and vibrant forest!
+                </p>
+        
+                <h3> Forest Collection</h3>
+                <p>
+                  Visit your forest to see all the plants you've unlocked. Each plant represents a day you successfully met your hydration goal. The more consistent you are, the more diverse and beautiful your forest will become!
+                </p>
+        
+                <button onClick={() => setShowHelp(false)}>Close</button>
+              </div>
+                </motion.div>
+              )}
           
       <p className="forest-caption">Each plant represents a hydration goal met! Keep going to unlock more.</p>
 

@@ -322,3 +322,51 @@ hr {
     width: 30px;
     height: 30px;
 }
+
+.help-popup {
+    position: fixed;
+    top: 40px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-width: 400px;
+    width: 90%;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .help-message h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: #2E8B57;
+  }
+  
+  .help-message h3 {
+    font-size: 18px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    color: #2E8B57;
+  }
+  
+  .help-message p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+  }
+  
+  .help-message button {
+    margin-top: 16px;
+    padding: 8px 16px;
+    background: #2E8B57;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .help-message button:hover {
+    background: #1d6b45;
+  }
