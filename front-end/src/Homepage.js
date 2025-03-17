@@ -117,7 +117,7 @@ const HomePage = () => {
         </ul>
       </motion.div>
       
-          {/* this is for help */}
+          {/* this is for help pop up */}
           {showHelp && (
         <motion.div 
           className="help-popup"
