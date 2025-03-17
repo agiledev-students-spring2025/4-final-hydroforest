@@ -95,7 +95,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/*  Button Hover & Active Effects */
 .login-btn:hover {
   background: #4a8a5a;
   transform: scale(1.02);
@@ -105,7 +104,6 @@
   transform: scale(0.98);
 }
 
-/*  Forgot Password Text (Right-Aligned & White) */
 .forgot-password-text {
   text-align: right;
   font-size: 0.85rem; /* Increased for readability */
@@ -121,7 +119,6 @@
   text-decoration: underline;
 }
 
-/*  Centered Sign-Up Text */
 .signup-section {
   margin-top: 15px;
   text-align: center;
