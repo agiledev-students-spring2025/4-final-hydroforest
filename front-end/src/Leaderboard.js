@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React,  { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Sling as Hamburger } from 'hamburger-react';
@@ -22,7 +22,19 @@ const Leaderboard = () => {
     { id: 8, name: 'Eva', hydration: 23, src: "https://picsum.photos/108" },
     { id: 9, name: 'Frank', hydration: 10, src: "https://picsum.photos/109" },
   ];
+  // Effect to control body overflow
+  useEffect(() => {
+    // Save the original overflow value
+    const originalOverflow = document.body.style.overflow;
 
+    // Set overflow to "auto" for this page
+    document.body.style.overflow = "auto";
+
+    // Cleanup: Reset to the original overflow value on unmount
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, []);
   return (
     <div className="leaderboard-page">
 
