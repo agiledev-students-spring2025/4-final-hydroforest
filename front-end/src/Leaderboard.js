@@ -38,9 +38,7 @@ const Leaderboard = ({ friends }) => {
       {/* Leaderboard Table */}
       <motion.div 
         className="leaderboard-container"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+
       >
         <table className="leaderboard-table">
           <thead>
@@ -62,7 +60,7 @@ const Leaderboard = ({ friends }) => {
         </table>
       </motion.div>
 
-      <button className="back-button" onClick={() => navigate('/social')}>
+      <button className="social-back-button" onClick={() => navigate('/social')}>
         Back to Social
       </button>
 

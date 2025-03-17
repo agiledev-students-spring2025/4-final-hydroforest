@@ -42,12 +42,12 @@ const CalendarPage = () => {
      <h1 className="calendar-title">Hydration Calendar</h1>
         <header className="calendar-header">
           <h1></h1>
-          {/* 🍔 Hamburger Menu Button (Aligned Right) */}
+          {/*  Hamburger Menu Button (Aligned Right) */}
           <div className="hamburger-menu">
             <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
           </div>
 
-          {/* 📌 Sliding Sidebar Menu */}
+          {/*  Sliding Sidebar Menu */}
           <motion.div 
             className="sidebar-menu"
             initial={{ x: "100%" }} 

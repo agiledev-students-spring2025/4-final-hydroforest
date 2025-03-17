@@ -9,20 +9,31 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Inter', sans-serif;
     position: relative;
     overflow: hidden;
     padding-bottom: 80px;
+    margin: 0;
+    padding: 0;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+h1 {
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
-.page-title {
-    font-size: 28px;
-    font-weight: 700;
-    color: white;
-    margin-top: 20px; /* ✅ Ensures title is not cut off */
-    margin-bottom: 20px;
-    text-transform: none;
-    letter-spacing: 1.5px;
+.social-title {
+    font-size: 2rem;
+    font-weight: 900; 
+    color: #f8f8f8;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    text-align: center;
+    margin-top: 10vh;
+    letter-spacing: 1px;
     animation: fadeInUp 1.5s ease-out;
 }
 
@@ -84,7 +95,8 @@
     align-items: center;
     font-size: 16px;
     color: black;
-    width: 100%;
+    width: calc(100% - 20px);
+    max-width: 100%;
 }
 
 .suggestions-list li:hover {
@@ -168,8 +180,10 @@
     padding: 12px 20px;
     background-color: #2E8B57;
     color: white;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
     font-size: 18px;
-    font-weight: 600;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -211,6 +225,17 @@
     padding-bottom: 5px;
 }
 
+.nav-item.active::after {
+    content: " ";
+    position: absolute;
+    top: -15px; /* Position above the nav item */
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 15px solid #5DA271; /* Triangle color */
+  }
+
 /* Sidebar Menu */
 .sidebar-menu {
     position: fixed;
@@ -251,7 +276,6 @@
 /* Logout Button */
 .logout {
     color: red;
-    font-weight: bold;
 }
 
 .logout:hover {

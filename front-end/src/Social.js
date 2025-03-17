@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from "react-router-dom";
 import './Social.css';
 import { Sling as Hamburger } from 'hamburger-react';
@@ -46,7 +46,7 @@ const Social = () => {
 
   return (
     <div className="social-page">
-      <h1 className="page-title">Social</h1>
+      <h1 className="social-title">Social</h1>
       <header>
         <h1></h1>
         <div className="hamburger-menu">
@@ -67,8 +67,12 @@ const Social = () => {
         </motion.div>
       </header>
 
-      {/* Add Friends Section */}
-      <div className="add-friend-section">
+      <motion.div 
+        className="add-friend-section"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+      >
         <h2>Add Friends</h2>
         <div className="search-bar">
           <input 
@@ -77,35 +81,60 @@ const Social = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          {friendSuggestions.length > 0 && (
-            <ul className="suggestions-list">
-              {friendSuggestions.map(user => (
-                <li key={user.id}>
-                  {user.name}
-                  <button onClick={() => handleAddFriend(user)}>Add</button>
-                </li>
-              ))}
-            </ul>
-          )}
+          <AnimatePresence>
+            {friendSuggestions.length > 0 && (
+              <motion.ul 
+                className="suggestions-list"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+              >
+                {friendSuggestions.map(user => (
+                  <motion.li 
+                    key={user.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                  >
+                    {user.name}
+                    <button onClick={() => handleAddFriend(user)}>Add</button>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            )}
+          </AnimatePresence>
         </div>
-      </div>
+      </motion.div>
 
       {/* Friends List Section with Hover-to-Remove */}
-      <div className="friends-list-section">
+      <motion.div 
+        className="friends-list-section"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+      >
         <h2>Your Friends</h2>
-        {friends.length > 0 ? (
-          <ul className="friends-list">
-            {friends.map(friend => (
-              <li key={friend.id} className="friend-item">
-                <span>{friend.name} - {friend.hydration}L</span>
-                <button className="remove-friend-button" onClick={() => handleRemoveFriend(friend.id)}>Remove</button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>You have no friends added yet.</p>
-        )}
-      </div>
+        <AnimatePresence>
+          {friends.length > 0 ? (
+            <ul className="friends-list">
+              {friends.map(friend => (
+                <motion.li 
+                  key={friend.id} 
+                  className="friend-item"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 20 }}
+                >
+                  <span>{friend.name} - {friend.hydration}L</span>
+                  <button className="remove-friend-button" onClick={() => handleRemoveFriend(friend.id)}>Remove</button>
+                </motion.li>
+              ))}
+            </ul>
+          ) : (
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>You have no friends added yet.</motion.p>
+          )}
+        </AnimatePresence>
+      </motion.div>
 
       <button className="leaderboard-button" onClick={() => navigate('/leaderboard')}>
         View Leaderboard
