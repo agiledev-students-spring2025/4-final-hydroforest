@@ -6,7 +6,7 @@ HydroForest is a web app designed to help users track their daily water intake w
 
 ## Product Vision Statement
 
-**HydroForest transforms the habit of drinking water into an engaging and rewarding experience by allowing users to grow a virtual forest as they stay hydrated.**
+HydroForest transforms the habit of drinking water into an engaging and rewarding experience by allowing users to grow a virtual forest as they stay hydrated.
 
 ## Team Members
 
@@ -54,7 +54,10 @@ Follow these steps to run the project on your local machine:
 
    - Fork the repository on GitHub.
    - Clone the forked repository to your local machine:
+
+   ```bash
      git clone https://github.com/agiledev-students-spring2025/4-final-hydroforest
+   ```
 
 2. **Open the Project in VS Code:**
 
