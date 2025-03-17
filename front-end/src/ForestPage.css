@@ -38,9 +38,6 @@
     width: 75px;
     height: 75px;
     background: linear-gradient(to bottom, #a3da8d, #6c9e6a);
-    /* background: linear-gradient(to bottom, #a97c50, #5c4033); */
-    /* background: linear-gradient(to bottom, #c97f4e, #704214); */
-
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -63,8 +60,6 @@
     transform: translateY(-35px) translateX(-35px)  scale(1.1) rotateZ(-45deg);
   }
   
-  
-  /* Full-Screen Pop-Up */
 .fullscreen-popup {
     position: fixed;
     top: 0;
@@ -207,7 +202,6 @@
   border-right: 15px solid transparent;
   border-top: 15px solid #5DA271; /* Triangle color */
 }
-
 
   /* Burger Menu */
   
