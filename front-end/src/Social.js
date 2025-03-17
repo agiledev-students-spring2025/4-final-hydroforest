@@ -113,7 +113,12 @@ const Social = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        <h2>Your Friends</h2>
+        <div className='test'>
+        <h2>Your Friends</h2>       
+        <button className="leaderboard-button" onClick={() => navigate('/leaderboard')}>
+        View Leaderboard
+      </button>
+      </div>
         <AnimatePresence>
           {friends.length > 0 ? (
             <ul className="friends-list">
@@ -136,9 +141,7 @@ const Social = () => {
         </AnimatePresence>
       </motion.div>
 
-      <button className="leaderboard-button" onClick={() => navigate('/leaderboard')}>
-        View Leaderboard
-      </button>
+
 
       <div className="navbar">
         <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>

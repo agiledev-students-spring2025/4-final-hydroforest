@@ -281,3 +281,6 @@ h1 {
 .logout:hover {
     color: darkred;
 }
+.test {
+    display: inline-block;
+}
