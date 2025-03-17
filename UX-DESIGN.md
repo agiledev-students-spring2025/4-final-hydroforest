@@ -89,7 +89,7 @@ Below is a structured representation of the app's navigation flow:
 
 **Purpose:** Allows users to add friends, view their friends' activity, and access the leaderboard.
 
-![Social Page](ux-design/ux-design/images/Social-2-2.png)
+![Social Page](ux-design/images/Social-2-2.png)
 
 ### 9. Leaderboard
 
