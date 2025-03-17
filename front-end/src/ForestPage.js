@@ -44,7 +44,7 @@ const ForestPage = ({ completedDays }) => {
 
   return (
     <div className="forest-page">
-      <header>       {/* 🍔 Hamburger Menu Button (Aligned Right) */}
+      <header>       {/* Hamburger Menu Button (Aligned Right) */}
         <h2> </h2>
        <div className="hamburger-menu">
             <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
@@ -53,7 +53,7 @@ const ForestPage = ({ completedDays }) => {
 
 
 
-          {/* 📌 Sliding Sidebar Menu */}
+          {/*  Sliding Sidebar Menu */}
           <motion.div 
             className="sidebar-menu"
             initial={{ x: "100%" }} 

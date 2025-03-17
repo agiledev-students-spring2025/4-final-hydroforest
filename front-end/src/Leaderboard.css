@@ -154,10 +154,4 @@
     color: darkred;
 }
 
-/* Hamburger Menu */
-.hamburger-menu {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 1100;
-}
+
