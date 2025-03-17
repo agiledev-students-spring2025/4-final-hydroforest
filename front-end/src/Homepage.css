@@ -29,7 +29,7 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    position: fixed;
+    position: absolute;
     top: 0px;
     font-family: "dm-sans-24pt", sans-serif;
     font-weight: 300;
