@@ -98,19 +98,31 @@ const CalendarPage = () => {
 
           {/* Bottom Navigation Bar */}
           <div className="navbar">
-      <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>
-        <span>Home</span>
+        <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>
+          <img
+              className="icon-image" 
+              src="images/icon/home1.png"
+              alt="Home" /> 
+        </div>
+        <div className={`nav-item ${location.pathname === "/Forest" ? "active" : ""}`} onClick={() => navigate("/Forest")}>
+          <img
+              className="icon-image" 
+              src="images/icon/forest.png"
+              alt="Forest" /> 
+        </div>
+        <div className={`nav-item ${location.pathname === "/Calendar" ? "active" : ""}`} onClick={() => navigate("/Calendar")}>
+          <img
+              className="icon-image" 
+              src="images/icon/calendar.png"
+              alt="Calendar" /> 
+        </div>
+        <div className={`nav-item ${location.pathname === "/Social" ? "active" : ""}`} onClick={() => navigate("/Social")}>
+          <img
+              className="icon-image" 
+              src="images/icon/friend.png"
+              alt="Social" /> 
+        </div>
       </div>
-      <div className={`nav-item ${location.pathname === "/Forest" ? "active" : ""}`} onClick={() => navigate("/Forest")}>
-        <span>Forest</span>
-      </div>
-      <div className={`nav-item ${location.pathname === "/Calendar" ? "active" : ""}`} onClick={() => navigate("/Calendar")}>
-        <span>Calendar</span>
-      </div>
-      <div className={`nav-item ${location.pathname === "/Social" ? "active" : ""}`} onClick={() => navigate("/Social")}>
-        <span>Social</span>
-      </div>
-    </div>
     </div>
   );
 };

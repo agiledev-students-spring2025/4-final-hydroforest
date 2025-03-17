@@ -318,3 +318,7 @@ hr {
 .logout:hover {
     color: darkred;
 }
+.icon-image {
+    width: 30px;
+    height: 30px;
+}
