@@ -12,12 +12,25 @@ const ForgotPassword = () => {
     setEmail(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your password reset logic here
-    setMessage("If this email is registered, you will receive a password reset link shortly.");
-    console.log("Password reset request for:", email);
+  
+    try {
+      const response = await fetch("http://localhost:5005/api/auth/forgot-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+  
+      const data = await response.json();
+      setMessage(data.message);
+      console.log("Forgot password request:", data);
+    } catch (error) {
+      console.error("Forgot password error:", error);
+      setMessage("Something went wrong. Please try again.");
+    }
   };
+  
 
   const handleReturnToLogin = () => {
     navigate("/login");

@@ -12,18 +12,28 @@ const LoginPage = () => {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    //  Simulating authentication (replace with real auth logic)
-    if (credentials.username && credentials.password) {
-      console.log("Logging in with:", credentials);
-
-      //  Redirect to Homepage
-      navigate("/");
-    } else {
-      console.log("Invalid credentials");
-      alert("Please enter both username and password!");
+  
+    try {
+      const response = await fetch("http://localhost:5005/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credentials)
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        console.log("Login successful:", data);
+        navigate("/"); // Go to homepage
+      } else {
+        console.error("Login error:", data.message);
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Something went wrong. Please try again.");
     }
   };
 
