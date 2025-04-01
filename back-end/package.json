@@ -1,0 +1,23 @@
+{
+    "name": "hydroforest-backend",
+    "version": "1.0.0",
+    "description": "Backend for HydroForest project",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "test": "c8 mocha"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.7",
+        "express": "^4.21.2"
+    },
+    "devDependencies": {
+        "c8": "^8.0.1",
+        "chai": "^4.5.0",
+        "chai-http": "^4.4.0",
+        "mocha": "^10.8.2"
+    }
+}
