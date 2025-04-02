@@ -30,10 +30,7 @@ app.use('/api/ChangePassword', changePasswordRoutes);
 app.use('/api/ChangeEmail', changeEmailRoutes);
 app.use('/api/MyAccount', myAccountRoutes);
 
-if (process.env.NODE_ENV !== 'test') {
-    const PORT = process.env.PORT || 5005;
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-  }  
+
 
 
 export default app;
