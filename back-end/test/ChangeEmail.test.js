@@ -1,9 +1,10 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
 const app = require("../app"); // Path to your Express app
-const { expect } = chai;
+
 
 chai.use(chaiHttp);
+const expect = chai.expect;
 
 describe("Change Email Route", () => {
   it("should return 400 if required fields are missing", (done) => {
