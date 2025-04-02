@@ -15,20 +15,31 @@ const SignupPage = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    //  Simulating signup logic (replace with actual backend logic)
-    if (formData.username && formData.email && formData.password) {
-      console.log("Sign up data:", formData);
-
-      //  Redirect to Login Page after signup
-      navigate("/login");
-    } else {
-      console.log("Please fill in all fields");
-      alert("Please fill in all fields!");
+  
+    try {
+      const response = await fetch("http://localhost:5005/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+  
+      const data = await response.json();
+  
+      if (response.ok) {
+        console.log("Signup successful:", data);
+        navigate("/login"); // Go to login page
+      } else {
+        console.error("Signup error:", data.message);
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert("Something went wrong. Please try again.");
     }
   };
+  
 
   return (
     <div className="signup-page">

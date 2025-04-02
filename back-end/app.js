@@ -9,10 +9,10 @@ app.use(cors({
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST'],
     credentials: true
-  }));
-
+}));
 app.use(express.json());
 
+// Routes
 const socialRoutes = require('./routes/social');
 const leaderboardRoutes = require('./routes/leaderboard');
 const changeEmailRoutes = require('./routes/ChangeEmail');
@@ -31,5 +31,5 @@ if (process.env.NODE_ENV !== 'test') {
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   }  
 
-module.exports = app;
 
+module.exports = app;

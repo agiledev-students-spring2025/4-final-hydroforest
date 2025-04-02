@@ -3,16 +3,27 @@
     "@mui/base": "^5.0.0-beta.12",
     "@mui/icons-material": "^5.15.0",
     "@mui/material": "^5.15.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "framer-motion": "^12.4.10",
     "hamburger-react": "^2.5.2",
     "lucide-react": "^0.264.0",
     "react": "^18.3.1",
-    "react-router-dom": "^7.3.0",
-    "framer-motion": "^12.4.10",
+    "react-burger-menu": "^3.1.0",
     "react-calendar": "^5.1.0",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.3.0",
-    "react-scripts": "^5.0.1",
-    "hamburger-react":"^2.5.2",
-    "react-burger-menu":"^3.1.0"
-  }
+    "react-scripts": "^5.0.1"
+  },
+  "name": "4-final-hydroforest",
+  "description": "## Project Overview",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
