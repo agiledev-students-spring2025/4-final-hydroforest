@@ -6,7 +6,9 @@
     "type": "module",
     "scripts": {
         "start": "node server.js",
-        "test": "c8 mocha"
+        "coverage": "c8 mocha",
+        "test": "c8 mocha",
+        "dev": "nodemon server.js"
     },
     "author": "",
     "license": "ISC",
@@ -19,6 +21,7 @@
         "c8": "^8.0.1",
         "chai": "^4.5.0",
         "chai-http": "^4.4.0",
-        "mocha": "^10.8.2"
+        "mocha": "^10.8.2",
+        "nodemon": "^3.1.7"
     }
 }

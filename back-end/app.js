@@ -14,6 +14,9 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('Welcome to HydroForest')
+});
 // Routes
 import socialRoutes from './routes/social.js';
 import leaderboardRoutes from './routes/leaderboard.js';
