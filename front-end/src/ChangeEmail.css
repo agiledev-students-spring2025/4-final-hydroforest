@@ -31,7 +31,7 @@
     cursor: pointer;
     background: none; /* Remove button background */
     border: none; /* Remove border */
-    text-align: left; 
+    text-align: left; /* Align text to the left */
     margin-bottom: 20px; /* Add spacing below the back button */
     padding: 0; /* Remove default button padding */
 }
@@ -41,8 +41,8 @@
     font-size: 24px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 30px; 
-    text-align: left; 
+    margin-bottom: 30px; /* Add spacing below the heading */
+    text-align: left; /* Left-align the heading */
 }
 
 /* Input Groups */
@@ -50,7 +50,7 @@
     display: inline;
     flex-direction: column; /* Stack label and input vertically */
     margin-bottom: 20px; /* Add spacing between input groups */
-    width: 100%; /* Make input fields take full width */
+    width: 95%; /* Make input fields take full width */
 }
 
 .input-group-email label {
@@ -106,4 +106,5 @@
 .submit-button:hover:not(:disabled) {
     background-color: #388e3c; /* Darker green on hover */
 }
+
 

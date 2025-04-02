@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const users = [
-  { username: "LiTheLegend", email: "junli123@email.com", password: "1234" }
+  { username: "LiTheLegend", email: "test@example.com", password: "1234" }
 ];
 
 // CHANGE EMAIL
@@ -28,4 +28,3 @@ router.post("/change-email", (req, res) => {
 });
 
 module.exports = router;
-
