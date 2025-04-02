@@ -45,7 +45,7 @@ const MyAccount = () => {
         
       <label>Email:</label>
         <div className="editable-field">
-          <input type="text" value="junli123@email.com" readOnly />
+          <input type="text" value="test@example.com" readOnly />
           <button onClick={() => navigate('/change-email')}>Edit</button>
         </div>
 

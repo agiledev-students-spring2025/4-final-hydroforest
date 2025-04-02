@@ -6,26 +6,30 @@ const app = express();
 
 // CORS Config
 app.use(cors({
-  origin: 'http://localhost:3000',
-  methods: ['GET', 'POST'],
-  credentials: true
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+    credentials: true
 }));
-
 app.use(express.json());
 
 // Routes
 const socialRoutes = require('./routes/social');
 const leaderboardRoutes = require('./routes/leaderboard');
-const authRoutes = require('./routes/auth');
+const changeEmailRoutes = require('./routes/ChangeEmail');
+const changePasswordRoutes = require('./routes/ChangePassword');
+const myAccountRoutes = require('./routes/MyAccount');
+
 
 app.use('/api/social', socialRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
-app.use('/api/auth', authRoutes);
+app.use('/api/ChangePassword', changePasswordRoutes);
+app.use('/api/ChangeEmail', changeEmailRoutes);
+app.use('/api/MyAccount', myAccountRoutes);
 
-// ✅ Only start the server if not in test mode
 if (process.env.NODE_ENV !== 'test') {
-  const PORT = process.env.PORT || 5005;
-  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-}
+    const PORT = process.env.PORT || 5005;
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+  }  
+
 
 module.exports = app;
