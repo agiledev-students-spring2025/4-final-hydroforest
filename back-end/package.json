@@ -2,9 +2,10 @@
     "name": "hydroforest-backend",
     "version": "1.0.0",
     "description": "Backend for HydroForest project",
-    "main": "app.js",
+    "main": "server.js",
+    "type": "module",
     "scripts": {
-        "start": "node app.js",
+        "start": "node server.js",
         "test": "c8 mocha"
     },
     "author": "",

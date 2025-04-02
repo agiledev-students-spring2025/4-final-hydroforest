@@ -69,5 +69,5 @@ router.post("/account/update", (req, res) => {
   });
 });
 
-module.exports = router;
+export default router;
 

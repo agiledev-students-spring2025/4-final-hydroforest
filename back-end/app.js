@@ -1,7 +1,9 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
 
+// Configurations
+dotenv.config();
 const app = express();
 
 // CORS Config
@@ -13,12 +15,11 @@ app.use(cors({
 app.use(express.json());
 
 // Routes
-const socialRoutes = require('./routes/social');
-const leaderboardRoutes = require('./routes/leaderboard');
-const changeEmailRoutes = require('./routes/ChangeEmail');
-const changePasswordRoutes = require('./routes/ChangePassword');
-const myAccountRoutes = require('./routes/MyAccount');
-
+import socialRoutes from './routes/social.js';
+import leaderboardRoutes from './routes/leaderboard.js';
+import changeEmailRoutes from './routes/ChangeEmail.js';
+import changePasswordRoutes from './routes/ChangePassword.js';
+import myAccountRoutes from './routes/MyAccount.js';
 
 app.use('/api/social', socialRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
@@ -32,4 +33,4 @@ if (process.env.NODE_ENV !== 'test') {
   }  
 
 
-module.exports = app;
+export default app;

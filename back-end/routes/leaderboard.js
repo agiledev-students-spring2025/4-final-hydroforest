@@ -16,4 +16,4 @@ const leaderboard = [
 
 router.get('/', (req, res) => res.json(leaderboard));
 
-module.exports = router;
+export default router;

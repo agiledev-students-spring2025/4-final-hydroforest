@@ -35,6 +35,6 @@ router.post("/change-password", (req, res) => {
   });
 });
 
-module.exports = router;
+export default router;
 
 

@@ -38,4 +38,4 @@ router.post('/remove', (req, res) => {
   res.json({ message: 'Friend removed' });
 });
 
-module.exports = router;
+export default router;
