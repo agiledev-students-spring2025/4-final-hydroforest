@@ -1,31 +1,86 @@
-const express = require("express");
-const router = express.Router();
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './ChangeEmail.css';
 
-const users = [
-  { username: "LiTheLegend", email: "junli123@email.com", password: "1234" }
-];
+const ChangeEmail = () => {
+  const navigate = useNavigate();
+  const [currentEmail, setCurrentEmail] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+  const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
 
-// CHANGE EMAIL
-router.post("/change-email", (req, res) => {
-  const { currentEmail, newEmail } = req.body;
-  console.log("Change email request received:", req.body); 
+  const handleInputChange = () => {
+    setIsSubmitEnabled(currentEmail.trim() && newEmail.trim());
+  };
 
-  if (!currentEmail || !newEmail) {
-    return res.status(400).json({ success: false, message: "Missing fields" });
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Verification email sent to: ${newEmail}`);
+  };
 
-  const user = users.find(u => u.email === currentEmail);
-  if (!user) {
-    return res.status(404).json({ success: false, message: "Current email not found" });
-  }
+  return (
+    <div className= "entire-changeEmail-page">
+    <div className="change-email-container">
+      {/* Back Button */}
+      <button className="back-button" onClick={() => navigate('/Account')}>
+        Back
+      </button>
 
-  // Simulate updating the email
-  user.email = newEmail;
-  res.json({
-    success: true,
-    message: `Verification email has been sent to: ${newEmail}`
-  });
-});
+      {/* Heading */}
+      <h1 className="form-heading">Change Your Email</h1>
 
-module.exports = router;
+      <form onSubmit={handleSubmit}>
+        {/* Current Email Field */}
+        <div className="input-group-email">
+          <label htmlFor="current-email" style={{ display: 'block', height: '20px' }}>
+            {/* Empty label for spacing */}
+          </label>
+          <input
+            type="email"
+            id="current-email"
+            value={currentEmail}
+            onChange={(e) => {
+              setCurrentEmail(e.target.value);
+              handleInputChange();
+            }}
+            placeholder="Enter your current email"
+          />
+        </div>
+
+        {/* New Email Field */}
+        <div className="input-group-email">
+          <label htmlFor="new-email" style={{ display: 'block', height: '20px' }}>
+            {/* Empty label for spacing */}
+          </label>
+          <input
+            type="email"
+            id="new-email"
+            value={newEmail}
+            onChange={(e) => {
+              setNewEmail(e.target.value);
+              handleInputChange();
+            }}
+            placeholder="Enter your new email"
+          />
+        </div>
+
+        {/* Confirmation Message */}
+        <p className="confirmation-message">
+          A confirmation will be sent to your new email. Click the link inside to complete the update!
+        </p>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="submit-button"
+          disabled={!isSubmitEnabled}
+        >
+          Send Verification
+        </button>
+      </form>
+    </div>
+    </div>
+  );
+};
+
+export default ChangeEmail;
 
