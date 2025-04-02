@@ -1,85 +1,161 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
+/*  Full-Page Styling */
 .login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(to bottom, #5DA271 20%, #5C4033 90%);
-  font-family: 'Inter', sans-serif;
   margin: 0;
+  padding: 20px;  /* Ensures padding to prevent cut-off */
+  box-sizing: border-box;
+  width: 100vw;  /* Ensures it takes full width */
+  overflow-x: hidden;  /* Prevents horizontal scroll */
+  font-family: "dm-sans-24pt", sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
+/* Centered Login Container */
 .login-container {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.115);
   padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   width: 90%;
   max-width: 400px;
   text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-sizing: border-box;
 }
 
+/*  Title */
 .login-title {
-  font-size: 2rem;
-  font-weight: 700;
+  font-family: "dm-sans-24pt", sans-serif;
+  font-weight: 300;
+  font-style: normal;
   margin-bottom: 20px;
-  color: #1b5e20;
+  color: white;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
 }
 
+/* 📌 Form Styling */
 .login-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
+/* ✏️ Input Fields */
 .login-input {
-  padding: 10px 15px;
+  width: 100%;
+  padding: 12px;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-family: "dm-sans-24pt", sans-serif;
+  font-weight: 300;
+  font-style: normal;
   outline: none;
-  transition: border-color 0.3s ease;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
 }
 
+.login-input::placeholder {
+  color: #666;
+}
+
+/*  Input Focus Effect */
 .login-input:focus {
-  border-color: #4caf50;
+  background: white;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.5);
+  border: 1px solid #4caf50;
 }
 
+/*  Login Button */
 .login-btn {
-  padding: 10px 15px;
-  background: #4caf50;
+  width: 100%;
+  padding: 12px;
+  background: #5DA271; /* Matched background green */
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  font-family: "dm-sans-24pt", sans-serif;
+  font-weight: 400;
+  font-style: normal;  
+  margin-top: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .login-btn:hover {
-  background: #388e3c;
+  background: #4a8a5a;
+  transform: scale(1.02);
 }
 
-/* Extra options styling */
-.login-extra {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 15px;
+.login-btn:active {
+  transform: scale(0.98);
 }
 
-.forgot-password-btn,
-.signup-btn {
-  background: none;
-  border: none;
-  color: #4caf50;
+.forgot-password-text {
+  text-align: right;
+  font-size: 0.85rem; /* Increased for readability */
+  color: rgb(250, 250, 250); /* Changed to white */
   cursor: pointer;
-  font-size: 0.9rem;
-  text-decoration: underline;
-  padding: 0;
+  margin-top: -5px; /* Reduced margin to bring it closer */
+  margin-bottom: 15px;
+  width: 100%;
 }
 
-.forgot-password-btn:hover,
-.signup-btn:hover {
-  color: #388e3c;
+.forgot-password-text:hover {
+  color: #f1f1f1; 
+  text-decoration: underline;
+}
+
+.signup-section {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.signup-text {
+  font-size: 0.9rem;
+  color: white;
+  cursor: pointer;
+  
+}
+
+.signup-link {
+  color: #4caf50;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 30px;
+  }
+
+  .login-title {
+    font-size: 1.8rem;
+  }
+
+  .login-btn {
+    padding: 10px;
+    
+  }
+
+  .login-extra {
+    flex-direction: column;
+    gap: 10px;
+  }
 }

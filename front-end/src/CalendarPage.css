@@ -1,119 +1,145 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=DM+Sans:wght@400;500;700;900&display=swap');
 
-/* 🌿 General Layout */
+/*  General Layout */
 .calendar-page {
+  text-align: center;
+  padding: 20px;
+  background-color: #5DA271;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Moves content higher */
+  font-family: 'Poppins', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+/*  Animated Background Vines */
+.plant-vine {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0.7;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Left Vine */
+.vine-left {
+  left: 1%;
+  top: 6%;
+  transform: rotate(-50deg);
+}
+
+/*  Calendar Styling */
+.calendar-container {
+  background: white;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.3);
+  max-width: 330px;
+  overflow: hidden;
+  margin-top: 30px;
+  font-family: "dm-sans-24pt", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+/*  Make Calendar Responsive */
+.custom-calendar {
+  width: 100%;
+  border: none;
+  font-family: "dm-sans-24pt", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+/*  Title & Caption */
+.calendar-title {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #f8f8f8; /* Ensuring it's white */
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
     text-align: center;
-    padding: 40px;
-    background: #f0fdf4; /* Soft pastel green */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Poppins'; 
-    position: relative;
-    overflow: hidden;
-    font-family: 'Inter', sans-serif; 
+    letter-spacing: 1px;
+    animation: fadeInUp 1.5s ease-out;
+    margin-top: 45px;
+    margin-bottom: 5px;
+}
 
-    
-  }
-  
-  /* Animated Background Vines */
-  .plant-vine {
-    position: absolute;
-    font-size: 3rem;
-    opacity: 0.7;
-    user-select: none;
-    pointer-events: none;
-  }
-  
-  /* Left Vine */
-  .vine-left {
-    left: 2%;
-    top: 10%;
-    transform: rotate(-50deg);
-  }
-  
-  /* Right Vine */
-  .vine-right {
-    right: 2%;
-    top: 15%;
-    transform: rotate(-100deg);
-  }
- 
-  .page-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #1b5e20; 
-    margin-bottom: 20px;
-    font-family: 'Inter', sans-serif;
 
-  }
-  
+/*  Water Intake Section */
+.intake-overview {
+  margin-top: 15px;
+  padding: 15px;
+  width: 85%;
+  max-width: 330px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: "dm-sans-24pt", sans-serif;
+  font-weight: 550;
+  font-style: normal;
+  color: #1b5e20;
+  transition: all 0.3s ease-in-out;
+}
 
-  .calendar-container {
-    background: white;
-    border-radius: 12px;
-    padding: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 350px;
-  }
-  
-  .custom-calendar {
-    width: 100%;
-    border: none;
-    font-family: 'Inter', sans-serif; 
-  }
-  
-  /* Disable Future Dates */
-  .react-calendar__tile--now {
-    background: #a5d6a7 !important;
-    border-radius: 50%;
-  }
-  
-  .react-calendar__tile--disabled {
-    color: #ccc !important; /* Grey out future dates */
-    pointer-events: none; /* Prevent clicking */
-  }
-  
-  /*  Selected Day Effect */
-  .react-calendar__tile--active {
-    background: #4caf50 !important;
-    color: white !important;
-    border-radius: 50%;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .react-calendar__tile:hover {
-    background: rgba(76, 175, 80, 0.1) !important;
-    border-radius: 50%;
-    transition: 0.2s ease-in-out;
-  }
-  
-  .react-calendar__navigation button {
-    color: #4caf50;
-    font-weight: bold;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .react-calendar__navigation button:hover {
-    color: #388e3c;
-  }
-  
-  /* Water Intake Section */
-  .intake-overview {
-    margin-top: 20px;
-    padding: 20px;
-    width: 80%;
-    max-width: 400px;
-    border-radius: 12px;
-    background: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    font-size: 1.2rem;
-    font-weight: bold;
-    font-family: 'Inter';
-    color: #1b5e20;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  
+  /* Navbar Styles */
+.navbar {
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  background: rgba(46, 139, 87, 0.8); 
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px 0 30px 0;
+  z-index: 1000;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+  font-family: "dm-sans-24pt", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+.nav-item span {
+  margin-top: 5px;
+}
+
+.nav-item:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/*  Active Item */
+.nav-item.active {
+  font-weight: bold;
+}
+
+/* Triangular Pop-up Indicator */
+.nav-item.active::after {
+  content: " ";
+  position: absolute;
+  top: -30px; /* Position above the nav item */
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid #5DA271; /* Triangle color */
+}

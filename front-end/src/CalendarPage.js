@@ -1,48 +1,102 @@
 import React, { useState } from "react";
 import Calendar from "react-calendar";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Sling as Hamburger } from 'hamburger-react';
+
+
 import "react-calendar/dist/Calendar.css"; 
 import "./CalendarPage.css"; 
 
 const CalendarPage = () => {
+  //adding this for navigation
+  const navigate = useNavigate();
+  const location = useLocation(); // Get current URL path
+
+  const [showHelp, setShowHelp] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
-  // Mock past water intake log
-  const waterIntakeLog = {
-    "2024-03-01": 2.5, 
-    "2024-03-02": 3.0,
-    "2024-03-03": 1.8,
-    "2024-03-04": 2.2,
-    "2024-03-05": 2.9
-  };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
-  const formattedDate = selectedDate.toISOString().split("T")[0]; // Format date as YYYY-MM-DD
-  const intakeAmount = waterIntakeLog[formattedDate] || "No data available";
+  const intakeAmount = "No data available";
+
+  //adding for hamburger
+  const [isOpen, setOpen] = useState(false);
 
   return (
     <div className="calendar-page">
+      
       {/* Animated Background Vines */}
       <motion.div 
         className="plant-vine vine-left"
-        animate={{ x: [0, 7, 0], rotate: [0, 6, 0] }}
+        animate={{ x: [0, 10, 0], rotate: [0, 6, 0] }}
         transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
       >
         🌿
       </motion.div>
 
-      <motion.div 
-        className="plant-vine vine-right"
-        animate={{ x: [0, -7, 0], rotate: [0, -2, 0] }}
-        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 2 }}
-      >
-        🌱
-      </motion.div>
+     
+     <h1 className="calendar-title">Hydration Calendar</h1>
+        <header className="calendar-header">
+          <h1></h1>
+          {/*  Hamburger Menu Button (Aligned Right) */}
+          <div className="hamburger-menu">
+            <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
+          </div>
 
-      <h1 className="page-title">Hydration Calendar </h1>
+          {/*  Sliding Sidebar Menu */}
+          <motion.div 
+            className="sidebar-menu"
+            initial={{ x: "100%" }} 
+            animate={{ x: isOpen ? 0 : "100%" }} 
+            transition={{ type: "tween", duration: 0.4 }}
+          >
+            <ul>
+              <li onClick={() => { navigate("/Account"); setOpen(false); }}>My Account</li>
+              <li onClick={() => { navigate("/AboutUs"); setOpen(false); }}>About Us</li>
+              <li onClick={() => { setShowHelp(true); setOpen(false); }}>Help</li>
+              <li className="logout" onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
+            </ul>
+          </motion.div>
+        </header>
+              {/* this is for help */}
+              {showHelp && (
+            <motion.div 
+              className="help-popup"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="help-message">
+                <h2>HydroForest</h2>
+                <p>
+                  This app is designed to help you stay hydrated while growing a virtual forest. Here's how it works:
+                </p>
+        
+                <h3>Daily 8 Cups Goal</h3>
+                <p>
+                  Your daily goal is to drink <strong>8 cups (2 liters)</strong> of water. Each time you log a cup of water, you help a plant in your virtual forest grow!
+                </p>
+        
+                <h3>Unlocking Plants</h3>
+                <p>
+                  When you reach your daily goal of 8 cups, you unlock a new plant in your forest. These plants are unique and can be found in your forest collection. Keep hydrating to grow a lush and vibrant forest!
+                </p>
+        
+                <h3> Forest Collection</h3>
+                <p>
+                  Visit your forest to see all the plants you've unlocked. Each plant represents a day you successfully met your hydration goal. The more consistent you are, the more diverse and beautiful your forest will become!
+                </p>
+        
+                <button onClick={() => setShowHelp(false)}>Close</button>
+              </div>
+                </motion.div>
+              )}
+        
 
       {/* Animated Calendar */}
       <motion.div 
@@ -66,7 +120,7 @@ const CalendarPage = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        <h3>Water Intake for {selectedDate.toDateString()}</h3>
+        <p>Water Intake for {selectedDate.toDateString()}</p>
         <motion.p 
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -75,6 +129,34 @@ const CalendarPage = () => {
           {typeof intakeAmount === "number" ? `${intakeAmount} Liters` : intakeAmount}
         </motion.p>
       </motion.div>
+
+          {/* Bottom Navigation Bar */}
+          <div className="navbar">
+        <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>
+          <img
+              className="icon-image" 
+              src="images/icon/home1.png"
+              alt="Home" /> 
+        </div>
+        <div className={`nav-item ${location.pathname === "/Forest" ? "active" : ""}`} onClick={() => navigate("/Forest")}>
+          <img
+              className="icon-image" 
+              src="images/icon/forest.png"
+              alt="Forest" /> 
+        </div>
+        <div className={`nav-item ${location.pathname === "/Calendar" ? "active" : ""}`} onClick={() => navigate("/Calendar")}>
+          <img
+              className="icon-image" 
+              src="images/icon/calendar.png"
+              alt="Calendar" /> 
+        </div>
+        <div className={`nav-item ${location.pathname === "/Social" ? "active" : ""}`} onClick={() => navigate("/Social")}>
+          <img
+              className="icon-image" 
+              src="images/icon/friend.png"
+              alt="Social" /> 
+        </div>
+      </div>
     </div>
   );
 };

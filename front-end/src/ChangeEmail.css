@@ -1,8 +1,20 @@
+/*used to be body*/
+.entire-changeEmail-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #5DA271; /* Subtle green background */
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
 /* Overall Container */
 .change-email-container {
     font-family: 'Arial', sans-serif;
     max-width: 400px;
-    margin: 50px auto; /* Center container horizontally with vertical margin */
+    margin: 30px ; /* Center container horizontally with vertical margin */
     padding: 20px;
     background-color: #ffffff;
     border: 1px solid #ddd;
@@ -34,14 +46,14 @@
 }
 
 /* Input Groups */
-.input-group {
-    display: flex;
+.input-group-email {
+    display: inline;
     flex-direction: column; /* Stack label and input vertically */
-    margin-bottom: 20px; 
+    margin-bottom: 20px; /* Add spacing between input groups */
     width: 100%; /* Make input fields take full width */
 }
 
-.input-group label {
+.input-group-email label {
     margin-bottom: 5px;
     font-size: 14px;
     color: #555;
@@ -49,8 +61,8 @@
 }
 
 /* Input Fields */
-.input-group input {
-    width: 100%; /* Full width of container */
+.input-group-email input {
+    width: 95%; /* Full width of container */
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
@@ -59,7 +71,7 @@
     transition: border-color 0.3s ease;
 }
 
-.input-group input:focus {
+.input-group-email input:focus {
     border-color: #4caf50; /* Green border when focused */
 }
 

@@ -3,7 +3,6 @@ body {
     background-color: #5DA271;
     /* 
     background-color: rgb(81,	163,135	); */
-    font-family: 'Arial', sans-serif;
     color: white;
     text-align: center;
     margin: 0;
@@ -11,9 +10,12 @@ body {
     overflow: hidden;
     height: 100%;
     -webkit-overflow-scrolling: none; 
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
   }
   
-  .container {
+  .home-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,7 +30,10 @@ body {
     justify-content: space-between;
     width: 100%;
     position: absolute;
-    top: 40px;
+    top: 0px;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
   }
   .username{
     
@@ -40,17 +45,24 @@ body {
     margin-right: 30px; /* Adjust right spacing */
     padding-top: 10px;
     cursor: pointer;
+    z-index: 1200;
   }
 
   .topCaption {
     font-size: 25px;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  .howFarFromGoal{
+    font-style: italic;
   }
   /* Tree Container with Animation */
   .tree-container {
     width: 200px;
     height: 200px;
-    background-color: #ffffc2;
-    /* background-color: rgb(229,	229,163	);  */
+    /* background-color: #ffffc2; */
+    background: linear-gradient(to bottom, #ccffcc 0%, #ffffc2 100%);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -58,6 +70,8 @@ body {
     margin: 10px auto;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     animation: float 3.5s ease-in-out infinite;
+    /* Outer ring */
+    /* position: relative; */
   }
   
   @keyframes float {
@@ -68,7 +82,16 @@ body {
       transform: translateY(-8px);
     }
   }
-  
+
+  /* .tree-container::before {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 10px solid rgb(182, 251, 255); /* Green ring color
+    } */
+
   .tree-image {
     height: 200px;
     transition: transform 0.3s ease;
@@ -77,11 +100,11 @@ body {
   /*watering*/
   .water-bottle {
     position: absolute;
-
-    left: 39%;
+    z-index: 1000;
+    left: 41%;
 
     transform: translateX(-50%) rotate(50deg);
-    width: 70px;
+    width: 80px;
     opacity: 1;
     animation: pourWater 1.5s ease-in-out;
   }
@@ -100,7 +123,7 @@ body {
     100% {
       top: 290px;
       opacity: 0;
-      transform: translateX(-50%) rotate(150deg);
+      transform: translateX(-50%) rotate(140deg);
     }
   }
   
@@ -115,6 +138,9 @@ body {
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
   }
   
   .btn:hover {
@@ -178,12 +204,12 @@ body {
     background-color: #E6F2E6;
     padding: 20px;
     text-align: center;
-    width: 90%;
-    max-width: 350px;
+    width: 100%;
+    max-width: 500px;
     border-radius: 15px;
     margin-top: 20px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    animation: slideIn 0.5s ease-out;
+    animation: slideIn 1s ease-out;
   }
   
   @keyframes slideIn {
@@ -198,8 +224,8 @@ body {
   }
   
   /* Input Group with Fancy Styling */
-  .input-group {
-    display: inline;
+  .input-group-water {
+    display: inline-block;
     gap: 10px;
     align-items: center;
     justify-content: center;
@@ -209,7 +235,7 @@ body {
   .waterAmount {
     margin-right: 20px;
     padding: 8px;
-    width: 150px;
+    width: 100px;
     height: 40px;
     text-align: center;
     border-radius: 10px;
@@ -226,6 +252,7 @@ body {
   
   .unit {
     padding: 5px;
+    margin-right: 20px;
     border-radius: 10px;
     background-color: white;
     height: 40px;
@@ -302,46 +329,45 @@ body {
     transform: scale(1.1);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   }
-  
 /* Navbar Styles */
 .navbar {
-    position: fixed;
-    bottom: 0px;
-    left: 0;
-    width: 100%;
-    background-color: #2E8B57; /* Deep green color */
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 30px 0 30px 0;
-    z-index: 1000;
-  }
-  
-  .nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    font-size: 14px;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .nav-item span {
-    margin-top: 5px;
-  }
-  
+  position: fixed;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  background-color: #37885a; /* Deep green color */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 30px 0 30px 0;
+  z-index: 1000;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+}
+
+.nav-item span {
+  margin-top: 5px;
+}
+
 /* Triangular Pop-up Indicator */
 .nav-item.active::after {
-    content: " ";
-    position: absolute;
-    top: -30px; /* Position above the nav item */
-    left: 50%;
-    transform: translateX(-50%);
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
-    border-top: 15px solid #5DA271; /* Triangle color */
-  }
+  content: " ";
+  position: absolute;
+  top: -30px; /* Position above the nav item */
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-top: 15px solid #5DA271; /* Triangle color */
+}
 
   /* Burger Menu */
 
@@ -353,4 +379,42 @@ body {
   .logout:hover {
     color: darkred;
   }
+
+  .sidebar-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+    z-index:1100;
+  }
+  
+  .sidebar-menu ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+  
+  .sidebar-menu li {
+    padding: 15px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .sidebar-menu li:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+  }
+  
   

@@ -1,7 +1,23 @@
+/*used to be body*/
+.entire-account-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #5DA271; /* Subtle green background */
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+
+}
 /* Container and Layout */
 .account-container {
-    font-family: 'Arial', sans-serif;
-    max-width: 600px; /* Increased width for a more spacious layout */
+    flex-grow: 0.5;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    max-width: 300px; /* Increased width for a more spacious layout */
     margin: 30px auto; /* Center container horizontally with vertical spacing */
     padding: 20px;
     background-color: #ffffff;
@@ -10,16 +26,17 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Title */
 .title {
     text-align: center;
     font-size: 24px;
     font-weight: bold;
     color: #333;
     margin-bottom: 20px;
+    font-family: "dm-sans-24pt", sans-serif;
+    font-weight: 300;
+    font-style: normal;
 }
 
-/* Profile Section */
 .profile-section {
     display: flex;
     flex-direction: column;
@@ -42,6 +59,7 @@
     color: #333; /* Ensure visibility */
     text-align: center; 
     margin: 0; 
+
 }
 
 /* Stats Section */
@@ -72,6 +90,7 @@
 
 .account-info label {
     display: block;
+    text-align: left;
     font-size: 14px;
     color: #333;
     margin-bottom: 8px;
