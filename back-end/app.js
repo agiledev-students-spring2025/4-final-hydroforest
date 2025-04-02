@@ -18,13 +18,16 @@ const leaderboardRoutes = require('./routes/leaderboard');
 const changeEmailRoutes = require('./routes/ChangeEmail');
 const changePasswordRoutes = require('./routes/ChangePassword');
 const myAccountRoutes = require('./routes/MyAccount');
-
+const HomeRoute = require('./routes/home');
+const ForestRoute = require('./routes/forest');
 
 app.use('/api/social', socialRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/ChangePassword', changePasswordRoutes);
 app.use('/api/ChangeEmail', changeEmailRoutes);
 app.use('/api/MyAccount', myAccountRoutes);
+app.use('/api/Home', HomeRoute);
+app.use('/api/forest', ForestRoute);
 
 if (process.env.NODE_ENV !== 'test') {
     const PORT = process.env.PORT || 5005;
