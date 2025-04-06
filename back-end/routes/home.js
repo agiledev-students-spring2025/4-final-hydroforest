@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 // This variable will hold the current water intake (mock data for now)
-let waterIntake = 0;
+const waterIntake = 0;
+const hasUnlockedTree = false;
 
 // Define the tree images data (same as what you had on the front-end)
 const trees = {
@@ -59,10 +60,15 @@ router.post('/log-water', (req, res) => {
   }
   
   waterIntake += waterAmount;
-  
+
+  // Set the flag if water intake is at least 8 and not already unlocked
+  if (waterIntake >= 8 && !hasUnlockedTree) {
+    hasUnlockedTree = true;
+  }
   res.json({
     totalIntake: waterIntake,
-    currentStage: getTreeStage(waterIntake)
+    currentStage: getTreeStage(waterIntake),
+    hasUnlockedTree
   });
 });
 

@@ -11,7 +11,7 @@ const HomePage = () => {
   const [inputAmount, setInputAmount] = useState(0);
   const [isWatering, setIsWatering] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTree, setSelectedTree] = useState("Misty Bonsai");
+  const [selectedTree, setSelectedTree] = useState("");
   const [treeData, setTreeData] = useState({}); // Fetched tree data from backend
   const [showWaterPouring, setShowWaterPouring] = useState(false);
   const [showUnlockPopup, setShowUnlockPopup] = useState(false);
