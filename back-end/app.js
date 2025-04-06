@@ -21,7 +21,8 @@ const changePasswordRoutes = require('./routes/ChangePassword');
 const myAccountRoutes = require('./routes/MyAccount');
 const homeRoutes = require('./routes/home');
 const forestRoutes = require('./routes/forest');
-const authRoutes = require('./routes/auth'); // ✅ Don't forget this!
+const authRoutes = require('./routes/auth'); 
+const calendarRoutes = require('./routes/calendar');
 
 app.use('/images', express.static('images'));
 
@@ -34,6 +35,7 @@ app.use('/api/MyAccount', myAccountRoutes);
 app.use('/api/Home', homeRoutes);
 app.use('/api/forest', forestRoutes);
 app.use('/api/auth', authRoutes); // ✅ This fixes the signup/login issue
+app.use('/api/calendar', calendarRoutes);
 
 // ✅ Start server if not in test mode
 if (process.env.NODE_ENV !== 'test') {

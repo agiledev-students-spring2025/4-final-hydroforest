@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Calendar from "react-calendar";
 import { useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -21,23 +21,41 @@ const CalendarPage = () => {
     setSelectedDate(date);
   };
 
-  const intakeAmount = "No data available";
+  const [intakeAmount, setIntakeAmount] = useState("Loading...");
+
+ // Fetch hydration data when the component mounts or the selected date changes
+ useEffect(() => {
+  const fetchHydrationData = async () => {
+    try {
+      const response = await fetch('http://localhost:5005/api/calendar');
+      const data = await response.json();
+      
+      // Format selected date to 'YYYY-MM-DD' and match it with the data
+      const selectedDateStr = selectedDate.toISOString().split('T')[0];
+      const entry = data.find(item => item.date === selectedDateStr);
+      
+      if (entry) {
+        // Convert the intake amount from milliliters to cups (1 cup = 240 ml)
+        const intakeInCups = Math.ceil(entry.amount / 240); // Convert to cups and round to 2 decimal places
+        setIntakeAmount(intakeInCups);
+      } else {
+        setIntakeAmount("No data for this date");
+      }
+    } catch (error) {
+      console.error("Error fetching hydration data:", error);
+      setIntakeAmount("Error loading data");
+    }
+  };
+
+  fetchHydrationData();
+}, [selectedDate]); 
+  
 
   //adding for hamburger
   const [isOpen, setOpen] = useState(false);
 
   return (
     <div className="calendar-page">
-      
-      {/* Animated Background Vines */}
-      <motion.div 
-        className="plant-vine vine-left"
-        animate={{ x: [0, 10, 0], rotate: [0, 6, 0] }}
-        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-      >
-        🌿
-      </motion.div>
-
      
      <h1 className="calendar-title">Hydration Calendar</h1>
         <header className="calendar-header">
@@ -126,7 +144,7 @@ const CalendarPage = () => {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.3 }}
         >
-          {typeof intakeAmount === "number" ? `${intakeAmount} Liters` : intakeAmount}
+          {typeof intakeAmount === "number" ? `${intakeAmount} cups of water!` : intakeAmount}
         </motion.p>
       </motion.div>
 
