@@ -5,6 +5,8 @@
     "main": "app.js",
     "scripts": {
         "start": "node app.js",
+        "dev": "nodemon server.js",
+        "coverage": "c8 mocha",
         "test": "c8 mocha"
     },
     "author": "",
