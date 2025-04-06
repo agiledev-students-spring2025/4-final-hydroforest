@@ -67,7 +67,9 @@ const HomePage = () => {
         .then(res => res.json())
         .then(data => {
           setTotalIntake(data.totalIntake);
-          setTreeStage(data.currentStage);
+          setTimeout(() => {
+            setTreeStage(data.currentStage);
+          }, 1300);
         })
         .catch(err => console.error("Error logging water:", err))
         .finally(() => {
