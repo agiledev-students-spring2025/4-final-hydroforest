@@ -46,7 +46,8 @@ router.get('/data', (req, res) => {
     trees,
     selectedTree,
     totalIntake: waterIntake,
-    currentStage: getTreeStage(waterIntake)
+    currentStage: getTreeStage(waterIntake),
+    hasUnlockedTree
   });
 });
 
