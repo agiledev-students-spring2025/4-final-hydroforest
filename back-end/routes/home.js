@@ -38,6 +38,10 @@ function getTreeStage(total) {
   else if (total < 8) return "sapling";
   else return "adult tree";
 }
+// Set the flag if water intake is at least 8 and not already unlocked
+if (waterIntake >= 8 && !hasUnlockedTree) {
+  hasUnlockedTree = true;
+}
 
 // GET route to send the tree images and current water intake data
 router.get('/data', (req, res) => {
