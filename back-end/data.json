@@ -1,10 +1,15 @@
 {
-    "hydrationData": [
-      { "date": "2025-04-01", "amount": 2000, "unlockedPlant": "Oak" }
-    ],
-    "unlockedTrees": ["Oak", "Pine"],
-    "fullyGrownTrees": [],
-    "selectedTree": "Oak",
-    "growingTree": { "name": "Maple", "progress": 0 },
-    "unlockableTrees": ["Maple", "Cherry Blossom", "Baobab"]
-  }
+  "hydrationData": [
+    { "date": "2025-04-01", "amount": 2000, "unlockedPlant": "Oak" },
+    { "date": "2025-04-02", "amount": 1500, "unlockedPlant": "Pine" },
+    { "date": "2025-04-03", "amount": 1800, "unlockedPlant": "Maple" },
+    { "date": "2025-04-04", "amount": 2200, "unlockedPlant": "Cherry Blossom" },
+    { "date": "2025-04-05", "amount": 1700, "unlockedPlant": "Baobab" },
+    { "date": "2025-04-06", "amount": 2100, "unlockedPlant": "Oak" }
+  ],
+  "unlockedTrees": ["Oak", "Pine", "Maple", "Cherry Blossom", "Baobab"],
+  "fullyGrownTrees": ["Oak", "Pine"],
+  "selectedTree": "Oak",
+  "growingTree": { "name": "Maple", "progress": 0 },
+  "unlockableTrees": ["Maple", "Cherry Blossom", "Baobab"]
+}
