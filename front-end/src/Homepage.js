@@ -33,6 +33,7 @@ const HomePage = () => {
         setSelectedTree(firstTree);
         setTotalIntake(data.totalIntake);
         setTreeStage(data.currentStage);
+        setHasUnlockedTree(data.hasUnlockedTree);
       })
       .catch(err => console.error("Error fetching home data:", err));
   }, []);

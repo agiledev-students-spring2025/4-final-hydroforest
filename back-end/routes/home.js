@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 // This variable will hold the current water intake (mock data for now)
-const waterIntake = 0;
-const hasUnlockedTree = false;
+let waterIntake = 0;
+let hasUnlockedTree = false;
 
 // Define the tree images data (same as what you had on the front-end)
 const trees = {
