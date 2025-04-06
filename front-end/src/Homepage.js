@@ -28,7 +28,9 @@ const HomePage = () => {
       .then(res => res.json())
       .then(data => {
         setTreeData(data.trees);
-        setSelectedTree(data.selectedTree);
+        const treeKeys = Object.keys(data.trees);
+        const firstTree = treeKeys.length > 0 ? treeKeys[0] : "";
+        setSelectedTree(firstTree);
         setTotalIntake(data.totalIntake);
         setTreeStage(data.currentStage);
       })
