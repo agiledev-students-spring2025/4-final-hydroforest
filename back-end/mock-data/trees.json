@@ -6,14 +6,14 @@
       "sapling": "/images/tree1/sapling.png",
       "adult tree": "/images/tree1/adult_tree.png"
     },
-    "tree2": {
+    "Sunflower": {
       "seed": "/images/tree2/seed.png",
       "sprout": "/images/tree2/sprout.png",
       "seedling": "/images/tree2/seedling.png",
       "sapling": "/images/tree2/sapling.png",
       "adult tree": "/images/tree2/adult_tree.png"
     },
-    "tree3": {
+    "Golden Sun": {
       "seed": "/images/tree3/seed.png",
       "sprout": "/images/tree3/sprout.png",
       "seedling": "/images/tree3/seedling.png",

@@ -63,13 +63,11 @@ const CalendarPage = () => {
         const { hydrationData } = await response.json();
 
         const selectedDateStr = getEasternDateStringFromDate(selectedDate);
-        console.log("🗓️ Selected:", selectedDateStr);
-        console.log("📅 Hydration Dates:", hydrationData.map((d) => d.date));
 
         const entry = hydrationData.find((item) => item.date === selectedDateStr);
 
         if (entry) {
-          const intakeInCups = Math.ceil(entry.amount / 240);
+          const intakeInCups = Math.round(entry.amount / 240);
           setIntakeAmount(`${intakeInCups} cups of water!`);
         } else {
           setIntakeAmount("No data for this date");
@@ -85,10 +83,13 @@ const CalendarPage = () => {
 
   return (
     <div className="calendar-page">
-      <header className="calendar-header">
-        <div className="hamburger-menu">
-          <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
-        </div>
+     <h1 className="calendar-title">Hydration Calendar</h1>
+        <header className="calendar-header">
+          <h1></h1>
+          {/*  Hamburger Menu Button (Aligned Right) */}
+          <div className="hamburger-menu">
+            <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
+          </div>
         <motion.div
           className="sidebar-menu"
           initial={{ x: "100%" }}

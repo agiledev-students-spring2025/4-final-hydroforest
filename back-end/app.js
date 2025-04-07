@@ -32,7 +32,7 @@ app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/ChangePassword', changePasswordRoutes);
 app.use('/api/ChangeEmail', changeEmailRoutes);
 app.use('/api/MyAccount', myAccountRoutes);
-app.use('/api/Home', homeRoutes);
+app.use('/api/Home', homeRoutes.router);
 app.use('/api/forest', forestRoutes);
 app.use('/api/auth', authRoutes); // ✅ This fixes the signup/login issue
 app.use('/api/calendar', calendarRoutes);

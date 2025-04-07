@@ -5,32 +5,28 @@ const router = express.Router();
 const userData = require('../mock-data/data.json');
 const trees = require('../mock-data/trees.json');
 
-// Helper function to determine tree stage based on water intake
-function getTreeStage(total) {
-  if (total < 2) return "seed";
-  else if (total < 4) return "sprout";
-  else if (total < 6) return "seedling";
-  else if (total < 8) return "sapling";
+// Helper function to determine tree stage based on water intake (in ml)
+function getTreeStage(totalMl) {
+  if (totalMl < 480) return "seed";         // less than 2 cups
+  else if (totalMl < 960) return "sprout";    // less than 4 cups
+  else if (totalMl < 1440) return "seedling"; // less than 6 cups
+  else if (totalMl < 1920) return "sapling";  // less than 8 cups
   else return "adult tree";
 }
 
-// Helper to get today's date in YYYY-MM-DD format
+// Helper to get today's date in YYYY-MM-DD format (Eastern Time)
 function getTodayDate() {
   const date = new Date();
-
-  // Convert to Eastern Timezone string
   const easternDate = new Intl.DateTimeFormat("en-US", {
     timeZone: "America/New_York",
     year: "numeric",
     month: "2-digit",
     day: "2-digit"
   }).formatToParts(date);
-
   const year = easternDate.find(p => p.type === "year").value;
   const month = easternDate.find(p => p.type === "month").value;
   const day = easternDate.find(p => p.type === "day").value;
-
-  return `${year}-${month}-${day}`; //  "2025-04-06"
+  return `${year}-${month}-${day}`; // e.g., "2025-04-06"
 }
 
 // Get today's hydration record from hydrationData array
@@ -45,11 +41,10 @@ function getTodayTotal() {
   return record ? record.amount : 0;
 }
 
-// Update today's hydration record by adding waterAmount.
+// Update today's hydration record by adding waterAmount (in ml).
 // If no record exists, create one with unlockedPlant initialized as null.
 function updateHydrationRecord(waterAmount) {
   const today = getTodayDate();
-  console.log(today);
   let record = userData.hydrationData.find(rec => rec.date === today);
   if (record) {
     record.amount += waterAmount;
@@ -61,9 +56,8 @@ function updateHydrationRecord(waterAmount) {
 }
 
 // GET route: Respond with combined user and tree data.
-// Also, if total water for today is >= 8 and no unlockedPlant is set, update it.
 router.get('/data', (req, res) => {
-  let todayRecord = getTodayRecord();
+  const todayRecord = getTodayRecord();
   const totalIntake = getTodayTotal();
 
   // Use the user's selected tree if available; otherwise default to the first unlockable tree.
@@ -72,23 +66,7 @@ router.get('/data', (req, res) => {
     selectedTree = todayRecord.unlockedPlant;
   }
 
-  // If total intake is 8 or more and today's record hasn't been marked with an unlocked plant, update it.
-  if (totalIntake >= 8) {
-    if (!todayRecord) {
-      todayRecord = { date: getTodayDate(), amount: 0, unlockedPlant: selectedTree };
-      userData.hydrationData.push(todayRecord);
-    } else if (!todayRecord.unlockedPlant) {
-      todayRecord.unlockedPlant = selectedTree;
-    }
-    // Also update the user's selectedTree so it persists on refresh.
-    userData.selectedTree = selectedTree;
-
-    // Ensure the unlocked tree is in the unlockedTrees list.
-    if (!userData.unlockedTrees.includes(selectedTree)) {
-      userData.unlockedTrees.push(selectedTree);
-    }
-  }
-
+  // Unlocking is handled in POST /log-water.
   res.json({
     user: {
       username: userData.username,
@@ -114,27 +92,32 @@ router.post('/log-water', (req, res) => {
     return res.status(400).json({ error: "Invalid water amount provided" });
   }
   
-  // Update today's hydration record.
+  // Update today's hydration record (waterAmount is in ml)
   const todayRecord = updateHydrationRecord(waterAmount);
   const totalIntake = getTodayTotal();
+  const currentStage = getTreeStage(totalIntake);
   
-  // Determine current selected tree (from userData or default).
+  // Determine current selected tree (from userData or default)
   const currentSelectedTree = userData.selectedTree || userData.unlockableTrees[0];
   
-  // If total intake reaches/exceeds 8 cups and unlockedPlant is not set, update it.
-  if (totalIntake >= 8 && !todayRecord.unlockedPlant) {
+  // Flag to indicate if unlock happened in this POST
+  let justUnlocked = false;
+  
+  // If total intake reaches/exceeds 1920 ml (8 cups) and unlockedPlant is not set, update it.
+  if (totalIntake >= 1920 && !todayRecord.unlockedPlant) {
     todayRecord.unlockedPlant = currentSelectedTree;
-    // Also update the user's selectedTree so it persists.
     userData.selectedTree = currentSelectedTree;
-    if (!userData.unlockedTrees.includes(currentSelectedTree)) {
-      userData.unlockedTrees.push(currentSelectedTree);
-    }
+    // if (!userData.unlockedTrees.includes(currentSelectedTree)) {
+    //   userData.unlockedTrees.push(currentSelectedTree);
+    // }
+    justUnlocked = true;
   }
   
   res.json({
     totalIntake: totalIntake,
-    currentStage: getTreeStage(totalIntake),
+    currentStage: currentStage,
     hasUnlockedTree: todayRecord.unlockedPlant ? true : false,
+    justUnlocked, // new flag to signal a fresh unlock
     unlockedTrees: userData.unlockedTrees,
     unlockableTrees: userData.unlockableTrees,
     hydrationData: userData.hydrationData,
@@ -143,22 +126,19 @@ router.post('/log-water', (req, res) => {
 });
 
 // POST route to update the selected tree based on user input.
-// If water intake is already 8 or more (tree unlocked), this route will refuse to update.
+// If water intake is already 1920 ml (tree unlocked), this route will refuse to update.
 router.post('/select-tree', (req, res) => {
   const { selectedTree } = req.body;
   
-  // Validate: Ensure selectedTree is among the unlockable trees.
   if (!selectedTree || !userData.unlockableTrees.includes(selectedTree)) {
     return res.status(400).json({ error: "Invalid tree selection" });
   }
   
-  // Check if today's hydration qualifies and the tree is already unlocked.
   const todayRecord = getTodayRecord();
-  if (todayRecord && todayRecord.amount >= 8 && todayRecord.unlockedPlant) {
+  if (todayRecord && todayRecord.amount >= 1920 && todayRecord.unlockedPlant) {
     return res.status(400).json({ error: "Tree already unlocked. Cannot change selection." });
   }
   
-  // Otherwise, update the user's selected tree.
   userData.selectedTree = selectedTree;
   
   res.json({
@@ -168,7 +148,14 @@ router.post('/select-tree', (req, res) => {
   });
 });
 
-module.exports = router;
+module.exports = {
+  router,
+  getTreeStage,
+  getTodayDate,
+  getTodayRecord,
+  getTodayTotal,
+  updateHydrationRecord
+};
 
 
 

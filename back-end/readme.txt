@@ -1,3 +1,29 @@
-The back-end of your project will live in this directory.
+*To Run this project's back-end*
+**Navigate to the Back-End Folder:**
 
-You will most likely initiate the back-end Node.js/Express.js server by running the "npm init" command from within this directory.
+   - Open the integrated terminal in VS Code.
+   - Change directory to the `back-end` folder:
+
+   ```bash
+   cd back-end
+   ```
+
+**Install Dependencies and Launch the Application:**
+
+   - Install the necessary packages:
+
+   ```bash
+   npm install
+   ```
+
+   - Start the application:
+
+   ```bash
+   npm start
+   ```
+
+**For testing:**
+
+   ```bash
+   npm test
+   ```

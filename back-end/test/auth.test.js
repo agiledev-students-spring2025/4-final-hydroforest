@@ -1,9 +1,67 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
+const fs = require("fs");
+const path = require("path");
 const app = require("../app");
 
 chai.use(chaiHttp);
 const expect = chai.expect;
+
+// Define file paths
+const newUserFilePath = path.join(__dirname, "../mock-data/newUser.json");
+const dataFilePath = path.join(__dirname, "../mock-data/data.json");
+
+// Fixture for the initial data in data.json.
+// This fixture must match what your login route expects.
+const initialData = {
+  "username": "testuser",
+  "password": "1234",
+  "email": "testuser1234@gmail.com",
+  "hydrationData": [
+    {
+      "date": "2025-04-01",
+      "amount": 2000,
+      "unlockedPlant": "Sunleaf"
+    },
+    {
+      "date": "2025-04-02",
+      "amount": 1500,
+      "unlockedPlant": "Aqua Fern"
+    },
+    {
+      "date": "2025-04-03",
+      "amount": 1800,
+      "unlockedPlant": "Hydro Cactus"
+    },
+    {
+      "date": "2025-04-04",
+      "amount": 2200,
+      "unlockedPlant": "Blooming Berry"
+    },
+    {
+      "date": "2025-04-05",
+      "amount": 1800,
+      "unlockedPlant": "Misty Bonsai"
+    }
+  ],
+  "hasUnlockedTree": false,
+  "unlockableTrees": ["Misty Bonsai", "Sunflower", "Golden Sun"],
+  "plantLevel": 5,
+  "longestStreak": 27,
+  "currentStreak": 19,
+  "totalWaterLogged": 190,
+  "notificationsEnabled": "Turn On Notifications"
+};
+
+// Reset shared data before each test to ensure isolation.
+beforeEach(() => {
+  // Write the fixture data to data.json.
+  fs.writeFileSync(dataFilePath, JSON.stringify(initialData, null, 2), "utf8");
+  // Remove newUser.json if it exists.
+  if (fs.existsSync(newUserFilePath)) {
+    fs.unlinkSync(newUserFilePath);
+  }
+});
 
 describe("Auth API", () => {
   it("should sign up a new user", done => {
@@ -35,17 +93,44 @@ describe("Auth API", () => {
       });
   });
 
-  it("should log in an existing user", done => {
+  it("should log in an existing user (from data.json)", done => {
+    // The fixture data now contains a user "testuser" with password "1234".
     chai.request(app)
       .post("/api/auth/login")
       .send({
-        username: "testuser123",
-        password: "securepassword"
+        username: "testuser",
+        password: "1234"
       })
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res.body.success).to.be.true;
         done();
+      });
+  });
+
+  it("should log in a newly signed up user", done => {
+    // First, sign up a new user (this writes to newUser.json).
+    chai.request(app)
+      .post("/api/auth/signup")
+      .send({
+        username: "newuser",
+        email: "newuser@example.com",
+        password: "newpass"
+      })
+      .end((err, signupRes) => {
+        expect(signupRes).to.have.status(200);
+        // Then attempt to log in with that user.
+        chai.request(app)
+          .post("/api/auth/login")
+          .send({
+            username: "newuser",
+            password: "newpass"
+          })
+          .end((err, loginRes) => {
+            expect(loginRes).to.have.status(200);
+            expect(loginRes.body.success).to.be.true;
+            done();
+          });
       });
   });
 
@@ -74,3 +159,4 @@ describe("Auth API", () => {
       });
   });
 });
+

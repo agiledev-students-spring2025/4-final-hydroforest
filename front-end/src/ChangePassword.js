@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import './ChangePassword.css';
 
@@ -9,13 +9,13 @@ const ChangePassword = () => {
   const [reEnterNewPassword, setReEnterNewPassword] = useState('');
   const [isSubmitEnabled, setIsSubmitEnabled] = useState(false);
 
-  const handleInputChange = () => {
+  useEffect(() => {
     setIsSubmitEnabled(
-      currentPassword.trim() &&
-      newPassword.trim() &&
+      currentPassword.trim() !== "" &&
+      newPassword.trim() !== "" &&
       newPassword === reEnterNewPassword
     );
-  };
+  }, [currentPassword, newPassword, reEnterNewPassword]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +46,6 @@ const ChangePassword = () => {
             value={currentPassword}
             onChange={(e) => {
               setCurrentPassword(e.target.value);
-              handleInputChange();
             }}
           />
         </div>
@@ -63,7 +62,6 @@ const ChangePassword = () => {
             value={newPassword}
             onChange={(e) => {
               setNewPassword(e.target.value);
-              handleInputChange();
             }}
           />
         </div>
@@ -80,7 +78,6 @@ const ChangePassword = () => {
             value={reEnterNewPassword}
             onChange={(e) => {
               setReEnterNewPassword(e.target.value);
-              handleInputChange();
             }}
           />
         </div>

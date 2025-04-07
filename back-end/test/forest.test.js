@@ -1,37 +1,29 @@
-const chai = require("chai");
-const chaiHttp = require("chai-http");
-const fs = require("fs");
-const app = require("../app");
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const router = express.Router();
 
-chai.use(chaiHttp);
-const expect = chai.expect;
+const dataFilePath = path.join(__dirname, '../mock-data/data.json');
 
-describe("GET /api/forest", function () {
-  it("should return the data from the JSON file", done => {
-    const mockData = { key: "value" };
-
-    fs.writeFileSync("./data.json", JSON.stringify(mockData));
-
-    chai.request(app)
-      .get("/api/forest")  
-      .end((err, res) => {
-        expect(res).to.have.status(200); 
-        expect(res.body).to.deep.equal(mockData); 
-        done();
-      });
-  });
-
-  it("should handle errors when reading the file", done => {
-    fs.renameSync("./data.json", "./data.json.bak");
-
-    chai.request(app)
-      .get("/api/forest")  
-      .end((err, res) => {
-        expect(res).to.have.status(500);  
-        expect(res.body).to.have.property("error", "Failed to read file"); // Expected error message
-
-        fs.renameSync("./data.json.bak", "./data.json");
-        done();
-      });
-  });
+// GET hydration data for the entire month (or all hydrationData)
+router.get('/', (req, res) => {
+  try {
+    const data = fs.readFileSync(dataFilePath, 'utf8');
+    const jsonData = JSON.parse(data);
+    res.json({ hydrationData: jsonData.hydrationData });
+  } catch (err) {
+    console.error("Error reading file:", err);
+    res.status(500).json({ error: "Failed to read file" });
+  }
 });
+
+// POST new hydration log (mock endpoint)
+router.post('/', (req, res) => {
+  const { date, cups } = req.body;
+  console.log(`Received hydration data: ${date}, ${cups}`);
+  res.json({ success: true, message: "Mock hydration data received." });
+});
+
+module.exports = router;
+
+

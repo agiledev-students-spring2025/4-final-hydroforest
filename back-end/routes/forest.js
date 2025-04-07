@@ -1,21 +1,20 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const fs = require("fs");
-const path = require("path");
 
-const DATA_PATH = path.join(__dirname, "../data.json");
+// Use the shared in-memory data from data.json
+const userData = require('../mock-data/data.json');
 
-// Function to read the data from the file
-const readData = () => JSON.parse(fs.readFileSync(DATA_PATH, "utf8"));
+// GET hydration data for the entire month (or all hydrationData)
+router.get('/', (req, res) => {
+  res.json({ hydrationData: userData.hydrationData });
+});
 
-// Endpoint to get the data from the file
-router.get("/", (req, res) => {
-  try {
-    const data = readData();
-    res.json(data); // Send the data object as a response
-  } catch (error) {
-    res.status(500).json({ error: "Failed to read file" }); // Handle errors (e.g., file not found)
-  }
+// POST new hydration log (mock endpoint)
+router.post('/', (req, res) => {
+  const { date, cups } = req.body;
+  console.log(`Received hydration data: ${date}, ${cups}`);
+  res.json({ success: true, message: "Mock hydration data received." });
+
 });
 
 module.exports = router;
