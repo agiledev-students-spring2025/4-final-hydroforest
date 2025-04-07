@@ -41,10 +41,12 @@ const HomePage = () => {
   // Unlock tree popup logic (unchanged)
   useEffect(() => {
     if (totalIntake >= 1920 && !hasUnlockedTree && !showUnlockPopup) {
-      setShowUnlockPopup(true); // trigger popup first
+      setShowUnlockPopup(true); // 👈 trigger the popup now
+  
+      // Mark the tree as unlocked after popup appears
       setTimeout(() => {
-        setHasUnlockedTree(true); // lock it in after popup shows
-      }, 3000); // delay marking it unlocked until after popup
+        setHasUnlockedTree(true);
+      }, 2500);
     }
   }, [totalIntake, hasUnlockedTree, showUnlockPopup]);
   
