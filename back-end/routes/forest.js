@@ -7,10 +7,9 @@ const DATA_PATH = path.join(__dirname, "../data.json");
 
 const readData = () => JSON.parse(fs.readFileSync(DATA_PATH, "utf8"));
 
-// GET Forest Data
 router.get("/", (req, res) => {
   const data = readData();
-  res.json({ success: true, unlockedTrees: data.unlockedTrees, fullyGrownTrees: data.fullyGrownTrees });
+  res.json(data); // ✅ send entire data object
 });
 
 module.exports = router;
