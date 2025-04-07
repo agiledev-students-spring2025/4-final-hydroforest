@@ -11,10 +11,11 @@ describe('Leaderboard API', () => {
       .get('/api/leaderboard')
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an('array');
-        expect(res.body.length).to.be.greaterThan(0);
-        expect(res.body[0]).to.have.property('name');
-        expect(res.body[0]).to.have.property('hydration');
+        expect(res.body).to.be.an('object');
+        expect(res.body.leaderboard).to.be.an('array');
+        expect(res.body.leaderboard.length).to.be.greaterThan(0);
+        expect(res.body.leaderboard[0]).to.have.property('name');
+        expect(res.body.leaderboard[0]).to.have.property('hydration');
         done();
       });
   });
