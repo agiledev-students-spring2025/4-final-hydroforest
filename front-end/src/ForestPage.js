@@ -47,19 +47,19 @@ const ForestPage = () => {
 
         // Extract the unlockedPlant values from hydrationData
         // Filter out entries where unlockedPlant is null or empty.
-        const unlockedPlantsNames = sortedData
-          .filter(entry => entry.unlockedPlant)
-          .map(entry => entry.unlockedPlant);
+        const unlockedPlantsWithDates = sortedData
+        .filter(record => record.unlockedPlant)
+        .map(record => ({ name: record.unlockedPlant, unlockedOn: record.date }));
 
-        console.log("Unlocked plant names:", unlockedPlantsNames);
+        console.log("Unlocked plant names:", unlockedPlantsWithDates);
 
         // Map these names to the plantImages array
-        const unlockedPlantsWithImages = unlockedPlantsNames
-          .map(name => {
-            const plant = plantImages.find(plant => plant.name === name);
-            return plant ? { name, src: plant.src } : null;
-          })
-          .filter(Boolean);
+        const unlockedPlantsWithImages = unlockedPlantsWithDates
+        .map(({ name, unlockedOn }) => {
+          const plantObj = plantImages.find(p => p.name === name);
+          return plantObj ? { name, src: plantObj.src, unlockedOn } : null;
+        })
+        .filter(Boolean);
 
         console.log("Unlocked Plants with Images:", unlockedPlantsWithImages);
         setForestPlants(unlockedPlantsWithImages);
@@ -148,7 +148,9 @@ const ForestPage = () => {
           <div className="popup-content">
             <img src={selectedPlant.src} alt={selectedPlant.name} className="popup-plant-image" />
             <h3>{selectedPlant.name}</h3>
-            {/* If you want to display the unlocked date, you could add that info here if available */}
+            {selectedPlant.unlockedOn && (
+              <p>Unlocked on: {selectedPlant.unlockedOn}</p>
+            )}
             <button className="close-btn" onClick={() => setSelectedPlant(null)}>Close</button>
           </div>
         </motion.div>
