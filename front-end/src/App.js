@@ -42,7 +42,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
         <Route path="/social" element={<Social />} />
-        <Route path="/leaderboard" element={<Leaderboard friends={friends} handleRemoveFriend={handleRemoveFriend} />} />
+        <Route path="/leaderboard" element={<Leaderboard />} />
+
       </Routes>
     </Router>
   );
