@@ -39,6 +39,8 @@ Using an **Agile** approach, we focused on building core functionality first and
 
 - **Sprint 1**:
   We completed the front-end development, bringing the app’s design to life. This included building the user interface for the hydration tracker, forest visualization, calendar page, social page and navigation system.
+- **Sprint 2**:
+  WWe completed the back-end development by building a Express.js server. Our team implemented dynamic API routes to handle user authentication, hydration logging, and tree selection functionality. We integrated mock JSON data to simulate database operations, ensuring that the front-end could retrieve and update hydration progress, unlock new trees, and manage user profiles.
 
 Our goal is to deliver a polished, engaging product by the end of the semester that not only helps you stay hydrated but also makes the process enjoyable.
 
