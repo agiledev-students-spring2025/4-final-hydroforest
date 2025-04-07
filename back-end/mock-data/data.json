@@ -3,7 +3,11 @@
     "password": "1234",
     "email": "testuser1234@gmail.com",
     "hydrationData": [
-      { "date": "2025-04-01", "amount": 2000, "unlockedPlant": "Oak" }
+      { "date": "2025-04-01", "amount": 2000, "unlockedPlant": "Oak" },
+      { "date": "2025-04-02", "amount": 1500, "unlockedPlant": "Pine" },
+      { "date": "2025-04-03", "amount": 1800, "unlockedPlant": "Maple" },
+      { "date": "2025-04-04", "amount": 2200, "unlockedPlant": "Cherry Blossom" },
+      { "date": "2025-04-05", "amount": 1700, "unlockedPlant": "Baobab" }
     ],
     "todayHydration": 0,
     "hasUnlockedTree": false,

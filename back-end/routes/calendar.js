@@ -4,7 +4,7 @@ const fs = require('fs');
 
 // GET hydration data for the entire month of April
 router.get('/', (req, res) => {
-    const data = JSON.parse(fs.readFileSync('./data.json'));
+    const data = JSON.parse(fs.readFileSync('./mock-data/data.json'));
     res.json(data.hydrationData); // Send all hydration data for April
 });
 
