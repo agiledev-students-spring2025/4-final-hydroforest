@@ -15,7 +15,9 @@ const plantImages = [
   { name: "Crystal Orchid", src: "/images/plants6.png" },
   { name: "Verdant Vine", src: "/images/plants7.png" },
   { name: "Ethereal Sprout", src: "/images/plants8.png" },
-  { name: "Golden Growth", src: "/images/plants9.png" }
+  { name: "Golden Growth", src: "/images/plants9.png" },
+  { name: "Sunflower", src: "/images/tree2.png" },
+  { name: "Golden Sun", src: "/images/tree3.png" }
 ];
 
 const ForestPage = () => {
