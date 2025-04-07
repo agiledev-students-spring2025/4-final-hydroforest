@@ -13,7 +13,7 @@ beforeEach(() => {
   // Remove any hydration record for today.
   userData.hydrationData = userData.hydrationData.filter(record => record.date !== today);
   // Reset the selected tree so that it doesn’t conflict with the test.
-  delete userData.selectedTree;
+  userData.selectedTree;
 });
 
 describe("Home Routes & Helper Functions", function() {
