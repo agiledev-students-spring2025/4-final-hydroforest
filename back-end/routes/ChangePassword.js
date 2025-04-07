@@ -1,14 +1,13 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
 
-const users = [
-  { username: "LiTheLegend", email: "test@example.com", password: "1234" }
-];
+// Load the user data from the mock-data folder
+const userData = require('../mock-data/data.json');
 
 // CHANGE PASSWORD
-router.post("/change-password", (req, res) => {
+router.post('/change-password', (req, res) => {
   const { currentPassword, newPassword, reEnterNewPassword } = req.body;
-  console.log("Password change request received:", req.body); 
+  console.log("Password change request received:", req.body);
 
   if (!currentPassword || !newPassword || !reEnterNewPassword) {
     return res.status(400).json({ success: false, message: "Missing fields" });
@@ -21,13 +20,13 @@ router.post("/change-password", (req, res) => {
     });
   }
 
-  const user = users.find(u => u.password === currentPassword);
-  if (!user) {
+  // Check if current password matches
+  if (userData.password !== currentPassword) {
     return res.status(401).json({ success: false, message: "Current password is incorrect" });
   }
 
-  // Simulate password update
-  user.password = newPassword;
+  // Update the password
+  userData.password = newPassword;
 
   res.json({
     success: true,
@@ -36,5 +35,3 @@ router.post("/change-password", (req, res) => {
 });
 
 module.exports = router;
-
-

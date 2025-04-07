@@ -1,31 +1,30 @@
 const express = require("express");
 const router = express.Router();
 
-const users = [
-  {
-    username: "LiTheLegend",
-    email: "test@example.com",
-    plantLevel: 10,
-    longestStreak: "20 days",
-    currentStreak: "5 days",
-    totalWaterLogged: "75L",
-    notificationsEnabled: true
-  }
-];
+// Load the user data from the mock-data folder
+const userData = require("../mock-data/data.json");
 
 // GET ACCOUNT DETAILS
 router.get("/account", (req, res) => {
-  console.log("Account details request received"); 
+  console.log("Account details request received");
   res.json({
     success: true,
-    data: users[0] // For simplicity, return the first user
+    data: {
+      username: userData.username,
+      email: userData.email,
+      plantLevel: userData.plantLevel || 0, // Defaulting plantLevel if not provided
+      longestStreak: userData.longestStreak || "0 days", // Defaulting if not provided
+      currentStreak: userData.currentStreak || "0 days", // Defaulting if not provided
+      totalWaterLogged: userData.totalWaterLogged || "0L", // Defaulting if not provided
+      notificationsEnabled: userData.notificationsEnabled || false // Defaulting if not provided
+    }
   });
 });
 
 // TOGGLE NOTIFICATIONS
 router.post("/account/notifications", (req, res) => {
   const { notificationsEnabled } = req.body;
-  console.log("Notification toggle request received:", req.body); 
+  console.log("Notification toggle request received:", req.body);
 
   if (notificationsEnabled === undefined) {
     return res.status(400).json({
@@ -34,7 +33,8 @@ router.post("/account/notifications", (req, res) => {
     });
   }
 
-  users[0].notificationsEnabled = notificationsEnabled;
+  userData.notificationsEnabled = notificationsEnabled;
+
   res.json({
     success: true,
     message: `Notifications ${notificationsEnabled ? "enabled" : "disabled"} successfully!`
@@ -54,12 +54,12 @@ router.post("/account/update", (req, res) => {
   }
 
   if (email) {
-    users[0].email = email; // Update email in mock data
+    userData.email = email; // Update email
     console.log(`Email updated to: ${email}`);
   }
 
   if (password) {
-    users[0].password = password; // Update password in mock data
+    userData.password = password; // Update password
     console.log("Password updated successfully!");
   }
 
