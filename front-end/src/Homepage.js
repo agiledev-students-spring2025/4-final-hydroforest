@@ -6,7 +6,6 @@ import "./Homepage.css";
 
 const HomePage = () => {
   const [totalIntake, setTotalIntake] = useState(0);
-  const [displayAmount, setDisplayAmount] = useState(0);
   const [unit, setUnit] = useState("cups");
   const [treeStage, setTreeStage] = useState("seed");
   const [inputAmount, setInputAmount] = useState(0);
@@ -34,25 +33,19 @@ const HomePage = () => {
         setTotalIntake(data.totalIntake);
         setTreeStage(data.currentStage);
         setHasUnlockedTree(data.hasUnlockedTree);
-        console.log(hasUnlockedTree);
       })
       .catch(err => console.error("Error fetching home data:", err));
   }, []);
 
   // Unlock tree popup logic (unchanged)
   useEffect(() => {
-    console.log("💧 totalIntake (ml):", totalIntake);
-    console.log("🌲 hasUnlockedTree:", hasUnlockedTree);
-    console.log("🔔 showUnlockPopup:", showUnlockPopup);
-    if (totalIntake >= 1920  && !hasUnlockedTree) {
-      console.log("🎉 Unlock triggered!");
+    if (totalIntake >= 8 && !hasUnlockedTree) {
+      setHasUnlockedTree(true);
       setTimeout(() => {
         setShowUnlockPopup(true);
       }, 2000);
     }
-      setHasUnlockedTree(true);
   }, [totalIntake, hasUnlockedTree]);
-  
 
   // Modified handleLogWater function to use POST request
   const handleLogWater = () => {
@@ -60,33 +53,25 @@ const HomePage = () => {
     if (amount > 0) {
       setIsWatering(true);
       setShowWaterPouring(true);
-  
+
       setTimeout(() => {
         setShowWaterPouring(false);
       }, 1000);
-  
-      //  Convert input to milliliters before sending to backend
-      let amountInMl = amount;
-      if (unit === "cups") amountInMl = amount * 240;
-      else if (unit === "oz") amountInMl = amount * 30;
-  
+
+      // POST water intake to backend
       fetch("http://localhost:5005/api/Home/log-water", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: amountInMl }) //  Always in ml
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ amount })
       })
         .then(res => res.json())
         .then(data => {
-          //  Convert back to display in selected unit
-          let displayAmount = data.totalIntake;
-          if (unit === "cups") displayAmount = (data.totalIntake / 240).toFixed(1);
-          else if (unit === "oz") displayAmount = (data.totalIntake / 30).toFixed(1);
-          setDisplayAmount(displayAmount);
           setTotalIntake(data.totalIntake);
           setTimeout(() => {
             setTreeStage(data.currentStage);
           }, 1300);
-          setHasUnlockedTree(data.hasUnlockedTree);
         })
         .catch(err => console.error("Error logging water:", err))
         .finally(() => {
@@ -96,7 +81,6 @@ const HomePage = () => {
         });
     }
   };
-  
    // Handler for selecting a tree.
   // This route will reject the change if the tree is already unlocked.
   const handleSelectTree = (treeKey) => {
@@ -123,42 +107,16 @@ const HomePage = () => {
         alert(err.message);
       });
   };
-  const formatNumber = (num) => {
-    const fixed = Number(num).toFixed(1);
-    return fixed.endsWith('.0') ? fixed.slice(0, -2) : fixed;
-  };
+  
 
   // Function to calculate water needed for the next stage
   const getWaterNeededForNextStage = () => {
-    const totalInCups = totalIntake / 240;
-  
-    let neededCups = 0;
-    let nextStage = "";
-  
-    if (treeStage === "seed") {
-      neededCups = Math.max(2 - totalInCups, 0);
-      nextStage = "Sprout";
-    } else if (treeStage === "sprout") {
-      neededCups = Math.max(4 - totalInCups, 0);
-      nextStage = "Seedling";
-    } else if (treeStage === "seedling") {
-      neededCups = Math.max(6 - totalInCups, 0);
-      nextStage = "Sapling";
-    } else if (treeStage === "sapling") {
-      neededCups = Math.max(8 - totalInCups, 0);
-      nextStage = "Adult Tree";
-    }
-  
-    let amountInSelectedUnit = neededCups * 240; // default in ml
-    if (unit === "cups") amountInSelectedUnit = neededCups;
-    else if (unit === "oz") amountInSelectedUnit = neededCups * 8;
-  
-    return {
-      amount: Math.max(amountInSelectedUnit, 0).toFixed(1),
-      nextStage
-    };
+    if (treeStage === "seed") return { amount: Math.max(2 - totalIntake, 0), nextStage: "Sprout" };
+    if (treeStage === "sprout") return { amount: Math.max(4 - totalIntake, 0), nextStage: "Seedling" };
+    if (treeStage === "seedling") return { amount: Math.max(6 - totalIntake, 0), nextStage: "Sapling" };
+    if (treeStage === "sapling") return { amount: Math.max(8 - totalIntake, 0), nextStage: "Adult Tree" };
+    return { amount: 0, nextStage: "" };
   };
-  
 
   return (
     <div className="home-container">
@@ -209,15 +167,7 @@ const HomePage = () => {
         </motion.div>
       )}
 
-      <p className="topCaption">
-        Today you drank {
-        unit === "cups"
-        ? formatNumber(totalIntake / 240)
-        : unit === "oz"
-        ? formatNumber(totalIntake / 30)
-        : formatNumber(totalIntake)
-        } {unit}
-      </p>
+      <p className="topCaption">Today you drank {totalIntake} {unit}</p>
       <p className="howFarFromGoal">
         {treeStage !== "adult tree"
           ? `Only ${getWaterNeededForNextStage().amount} more ${unit} to reach the ${getWaterNeededForNextStage().nextStage}`
