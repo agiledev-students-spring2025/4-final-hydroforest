@@ -9,7 +9,6 @@
       { "date": "2025-04-04", "amount": 2200, "unlockedPlant": "Cherry Blossom" },
       { "date": "2025-04-05", "amount": 1700, "unlockedPlant": "Baobab" }
     ],
-    "todayHydration": 0,
     "hasUnlockedTree": false,
     "unlockedTrees": ["Oak", "Pine"],
     "unlockableTrees": ["Misty Bonsai", "tree2", "tree3"]

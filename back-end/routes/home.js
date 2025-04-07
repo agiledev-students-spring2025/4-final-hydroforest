@@ -51,8 +51,7 @@ router.get('/data', (req, res) => {
   let todayRecord = getTodayRecord();
   const totalIntake = getTodayTotal();
 
-  // Use the user's selected tree if available; if not, default to the first unlockable tree.
-  // If the tree is already unlocked, we force selectedTree to that tree.
+  // Use the user's selected tree if available; otherwise default to the first unlockable tree.
   let selectedTree = userData.selectedTree || userData.unlockableTrees[0];
   if (todayRecord && todayRecord.unlockedPlant) {
     selectedTree = todayRecord.unlockedPlant;
@@ -66,7 +65,10 @@ router.get('/data', (req, res) => {
     } else if (!todayRecord.unlockedPlant) {
       todayRecord.unlockedPlant = selectedTree;
     }
-    // Ensure the unlocked tree is in the user's unlockedTrees list.
+    // Also update the user's selectedTree so it persists on refresh.
+    userData.selectedTree = selectedTree;
+
+    // Ensure the unlocked tree is in the unlockedTrees list.
     if (!userData.unlockedTrees.includes(selectedTree)) {
       userData.unlockedTrees.push(selectedTree);
     }
@@ -101,10 +103,14 @@ router.post('/log-water', (req, res) => {
   const todayRecord = updateHydrationRecord(waterAmount);
   const totalIntake = getTodayTotal();
   
-  // If total intake reaches/exceeds 8 cups and unlockedPlant is not set, update it using the current selected tree.
+  // Determine current selected tree (from userData or default).
   const currentSelectedTree = userData.selectedTree || userData.unlockableTrees[0];
+  
+  // If total intake reaches/exceeds 8 cups and unlockedPlant is not set, update it.
   if (totalIntake >= 8 && !todayRecord.unlockedPlant) {
     todayRecord.unlockedPlant = currentSelectedTree;
+    // Also update the user's selectedTree so it persists.
+    userData.selectedTree = currentSelectedTree;
     if (!userData.unlockedTrees.includes(currentSelectedTree)) {
       userData.unlockedTrees.push(currentSelectedTree);
     }
@@ -116,7 +122,8 @@ router.post('/log-water', (req, res) => {
     hasUnlockedTree: todayRecord.unlockedPlant ? true : false,
     unlockedTrees: userData.unlockedTrees,
     unlockableTrees: userData.unlockableTrees,
-    hydrationData: userData.hydrationData
+    hydrationData: userData.hydrationData,
+    selectedTree: userData.selectedTree
   });
 });
 
@@ -147,6 +154,7 @@ router.post('/select-tree', (req, res) => {
 });
 
 module.exports = router;
+
 
 
 

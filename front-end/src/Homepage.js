@@ -29,8 +29,7 @@ const HomePage = () => {
       .then(data => {
         setTreeData(data.trees);
         const treeKeys = Object.keys(data.trees);
-        const firstTree = treeKeys.length > 0 ? treeKeys[0] : "";
-        setSelectedTree(firstTree);
+        setSelectedTree(data.selectedTree);
         setTotalIntake(data.totalIntake);
         setTreeStage(data.currentStage);
         setHasUnlockedTree(data.hasUnlockedTree);
