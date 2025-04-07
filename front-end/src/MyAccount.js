@@ -57,10 +57,6 @@ const MyAccount = () => {
   return (
     <div className="entire-account-page">
       <div className="account-container">
-        {/* Back Button */}
-        <button className="back-button" onClick={() => navigate('/Account')}>
-          Back
-        </button>
 
         {/* Heading */}
         <h1 className="title">My Account</h1>
