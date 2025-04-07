@@ -1,0 +1,12 @@
+{
+    "username": "testuser",
+    "password": "1234",
+    "email": "testuser1234@gmail.com",
+    "hydrationData": [
+      { "date": "2025-04-01", "amount": 2000, "unlockedPlant": "Oak" }
+    ],
+    "todayHydration": 0,
+    "hasUnlockedTree": false,
+    "unlockedTrees": ["Oak", "Pine"],
+    "unlockableTrees": ["Misty Bonsai", "tree2", "tree3"]
+  }

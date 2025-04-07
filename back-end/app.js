@@ -24,6 +24,8 @@ const forestRoutes = require('./routes/forest');
 const authRoutes = require('./routes/auth'); 
 const calendarRoutes = require('./routes/calendar');
 
+app.use('/images', express.static('images'));
+
 // ✅ Mount routes
 app.use('/api/social', socialRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);

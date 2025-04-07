@@ -2,32 +2,7 @@ import React, { useState, useEffect } from "react";
 import Hamburger from 'hamburger-react';
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
-
 import "./Homepage.css";
-
-const trees = {
-  "Misty Bonsai": {
-    seed: "/images/tree1/seed.png",
-    sprout: "/images/tree1/sprout.png",
-    seedling: "/images/tree1/seedling.png",
-    sapling: "/images/tree1/sapling.png",
-    "adult tree": "/images/tree1/adult_tree.png",
-  },
-  tree2: {
-    seed: "/images/tree2/seed.png",
-    sprout: "/images/tree2/sprout.png",
-    seedling: "/images/tree2/seedling.png",
-    sapling: "/images/tree2/sapling.png",
-    "adult tree": "/images/tree2/adult_tree.png",
-  },
-  tree3: {
-    seed: "/images/tree3/seed.png",
-    sprout: "/images/tree3/sprout.png",
-    seedling: "/images/tree3/seedling.png",
-    sapling: "/images/tree3/sapling.png",
-    "adult tree": "/images/tree3/adult_tree.png",
-  },
-};
 
 const HomePage = () => {
   const [totalIntake, setTotalIntake] = useState(0);
@@ -36,34 +11,44 @@ const HomePage = () => {
   const [inputAmount, setInputAmount] = useState(0);
   const [isWatering, setIsWatering] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTree, setSelectedTree] = useState("Misty Bonsai");
+  const [selectedTree, setSelectedTree] = useState("");
+  const [treeData, setTreeData] = useState({}); // Fetched tree data from backend
   const [showWaterPouring, setShowWaterPouring] = useState(false);
-  const [showUnlockPopup, setShowUnlockPopup] = useState(false); //  state for pop-up
-  const [hasUnlockedTree, setHasUnlockedTree] = useState(false); // Track if popup was shown
+  const [showUnlockPopup, setShowUnlockPopup] = useState(false);
+  const [hasUnlockedTree, setHasUnlockedTree] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
-
   const [isOpen, setOpen] = useState(false);
 
+  // Fetch initial data from backend when component mounts
+  useEffect(() => {
+    fetch("http://localhost:5005/api/Home/data")
+      .then(res => res.json())
+      .then(data => {
+        setTreeData(data.trees);
+        const treeKeys = Object.keys(data.trees);
+        const firstTree = treeKeys.length > 0 ? treeKeys[0] : "";
+        setSelectedTree(firstTree);
+        setTotalIntake(data.totalIntake);
+        setTreeStage(data.currentStage);
+        setHasUnlockedTree(data.hasUnlockedTree);
+      })
+      .catch(err => console.error("Error fetching home data:", err));
+  }, []);
+
+  // Unlock tree popup logic (unchanged)
   useEffect(() => {
     if (totalIntake >= 8 && !hasUnlockedTree) {
-      setHasUnlockedTree(true); // Prevent re-triggering
+      setHasUnlockedTree(true);
       setTimeout(() => {
-        setShowUnlockPopup(true); // Delay popup
+        setShowUnlockPopup(true);
       }, 2000);
     }
-  }, [totalIntake]);
+  }, [totalIntake, hasUnlockedTree]);
 
-  const getWaterNeededForNextStage = () => {
-    if (treeStage === "seed") return { amount: Math.max(2 - totalIntake, 0), nextStage: "Sprout" };
-    if (treeStage === "sprout") return { amount: Math.max(4 - totalIntake, 0), nextStage: "Seedling" };
-    if (treeStage === "seedling") return { amount: Math.max(6 - totalIntake, 0), nextStage: "Sapling" };
-    if (treeStage === "sapling") return { amount: Math.max(8 - totalIntake, 0), nextStage: "Adult Tree" };
-    return { amount: 0, nextStage: "" };
-  };
-
+  // Modified handleLogWater function to use POST request
   const handleLogWater = () => {
     const amount = Number(inputAmount);
     if (amount > 0) {
@@ -74,24 +59,37 @@ const HomePage = () => {
         setShowWaterPouring(false);
       }, 1000);
 
-      setTimeout(() => {
-        setIsWatering(false);
-      }, 1300);
-
-      const newTotalIntake = totalIntake + amount;
-      setTotalIntake(newTotalIntake);
-
-      let nextTreeStage = treeStage;
-
-      if (newTotalIntake >= 2 && newTotalIntake < 4) nextTreeStage = "sprout";
-      else if (newTotalIntake >= 4 && newTotalIntake < 6) nextTreeStage = "seedling";
-      else if (newTotalIntake >= 6 && newTotalIntake < 8) nextTreeStage = "sapling";
-      else if (newTotalIntake >= 8) nextTreeStage = "adult tree";
-
-      setTimeout(() => {
-        setTreeStage(nextTreeStage);
-      }, 1200);
+      // POST water intake to backend
+      fetch("http://localhost:5005/api/Home/log-water", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ amount })
+      })
+        .then(res => res.json())
+        .then(data => {
+          setTotalIntake(data.totalIntake);
+          setTimeout(() => {
+            setTreeStage(data.currentStage);
+          }, 1300);
+        })
+        .catch(err => console.error("Error logging water:", err))
+        .finally(() => {
+          setTimeout(() => {
+            setIsWatering(false);
+          }, 1300);
+        });
     }
+  };
+
+  // Function to calculate water needed for the next stage
+  const getWaterNeededForNextStage = () => {
+    if (treeStage === "seed") return { amount: Math.max(2 - totalIntake, 0), nextStage: "Sprout" };
+    if (treeStage === "sprout") return { amount: Math.max(4 - totalIntake, 0), nextStage: "Seedling" };
+    if (treeStage === "seedling") return { amount: Math.max(6 - totalIntake, 0), nextStage: "Sapling" };
+    if (treeStage === "sapling") return { amount: Math.max(8 - totalIntake, 0), nextStage: "Adult Tree" };
+    return { amount: 0, nextStage: "" };
   };
 
   return (
@@ -116,9 +114,8 @@ const HomePage = () => {
           <li className="logout" onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
         </ul>
       </motion.div>
-      
-          {/* this is for help pop up */}
-          {showHelp && (
+
+      {showHelp && (
         <motion.div 
           className="help-popup"
           initial={{ opacity: 0, scale: 0.9 }}
@@ -129,34 +126,26 @@ const HomePage = () => {
           <div className="help-message">
             <h2>HydroForest</h2>
             <p>
-              This app is designed to help you stay hydrated while growing a virtual forest. Here's how it works:
+              This app helps you stay hydrated while growing a virtual forest. Each water log helps a plant grow!
             </p>
-    
             <h3>Daily 8 Cups Goal</h3>
             <p>
-              Your daily goal is to drink <strong>8 cups (2 liters)</strong> of water. Each time you log a cup of water, you help a plant in your virtual forest grow!
+              Your goal is to drink <strong>8 cups (2 liters)</strong> of water. Log each cup to help your tree evolve.
             </p>
-    
             <h3>Unlocking Plants</h3>
             <p>
-              When you reach your daily goal of 8 cups, you unlock a new plant in your forest. These plants are unique and can be found in your forest collection. Keep hydrating to grow a lush and vibrant forest!
+              Once you hit 8 cups, you unlock a new tree in your forest.
             </p>
-    
-            <h3> Forest Collection</h3>
-            <p>
-              Visit your forest to see all the plants you've unlocked. Each plant represents a day you successfully met your hydration goal. The more consistent you are, the more diverse and beautiful your forest will become!
-            </p>
-    
             <button onClick={() => setShowHelp(false)}>Close</button>
           </div>
-            </motion.div>
-          )}
+        </motion.div>
+      )}
 
       <p className="topCaption">Today you drank {totalIntake} {unit}</p>
-      
-      <p className="howFarFromGoal">{treeStage !== "adult tree"
-    ? `Only ${getWaterNeededForNextStage().amount} more ${unit} to reach the ${getWaterNeededForNextStage().nextStage}`
-    : "Congrats! Your tree is fully grown"}
+      <p className="howFarFromGoal">
+        {treeStage !== "adult tree"
+          ? `Only ${getWaterNeededForNextStage().amount} more ${unit} to reach the ${getWaterNeededForNextStage().nextStage}`
+          : "Congrats! Your tree is fully grown"}
       </p>
 
       {showWaterPouring && <img src="/images/water-bottle2.png" alt="Water Pouring" className="water-bottle" />}
@@ -170,7 +159,7 @@ const HomePage = () => {
         <div className="tree-container">
           <motion.img
             key={treeStage}
-            src={trees[selectedTree][treeStage]}
+            src={treeData[selectedTree] ? treeData[selectedTree][treeStage] : ""}
             alt="Tree Icon"
             className="tree-image"
             initial={{ opacity: 0 }}
@@ -184,7 +173,13 @@ const HomePage = () => {
 
       <div className="card">
         <div className="input-group-water">
-          <input className="waterAmount" type="number" value={inputAmount} onChange={(e) => setInputAmount(e.target.value)} placeholder="Enter amount" />
+          <input
+            className="waterAmount"
+            type="number"
+            value={inputAmount}
+            onChange={(e) => setInputAmount(e.target.value)}
+            placeholder="Enter amount"
+          />
           <select className="unit" value={unit} onChange={(e) => setUnit(e.target.value)}>
             <option value="cups">Cups</option>
             <option value="oz">OZ</option>
@@ -199,8 +194,14 @@ const HomePage = () => {
           <div className="modal">
             <h3>Select a Tree</h3>
             <div className="tree-selection">
-              {Object.keys(trees).map((treeKey) => (
-                <img key={treeKey} src={trees[treeKey]["adult tree"]} alt={treeKey} className="tree-option" onClick={() => { setSelectedTree(treeKey); setIsModalOpen(false); }} />
+              {treeData && Object.keys(treeData).map((treeKey) => (
+                <img
+                  key={treeKey}
+                  src={treeData[treeKey]["adult tree"]}
+                  alt={treeKey}
+                  className="tree-option"
+                  onClick={() => { setSelectedTree(treeKey); setIsModalOpen(false); }}
+                />
               ))}
             </div>
             <button className="btn" onClick={() => setIsModalOpen(false)}>Close</button>
@@ -208,7 +209,6 @@ const HomePage = () => {
         </div>
       )}
 
-      {/* Full-Screen Pop-up for Unlocking the Tree */}
       {showUnlockPopup && (
         <motion.div
           className="fullscreen-popup"
@@ -216,42 +216,27 @@ const HomePage = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          // onClick={() => setShowUnlockPopup(false)}
         >
           <div className="popup-content">
-            <img src={trees[selectedTree]["adult tree"]} alt="Unlocked Tree" className="popup-plant-image" />
-            <h3></h3>
-            <p>You unlocked the <strong>{selectedTree}</strong> by staying hydrated! </p>
+            <img src={treeData[selectedTree] ? treeData[selectedTree]["adult tree"] : ""} alt="Unlocked Tree" className="popup-plant-image" />
+            <p>You unlocked the <strong>{selectedTree}</strong> by staying hydrated!</p>
             <button className="close-btn" onClick={() => setShowUnlockPopup(false)}>Close</button>
           </div>
         </motion.div>
       )}
 
-      {/* Bottom Navigation Bar */}
       <div className="navbar">
         <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>
-          <img
-              className="icon-image" 
-              src="images/icon/home1.png"
-              alt="Home" /> 
+          <img className="icon-image" src="images/icon/home1.png" alt="Home" />
         </div>
         <div className={`nav-item ${location.pathname === "/Forest" ? "active" : ""}`} onClick={() => navigate("/Forest")}>
-          <img
-              className="icon-image" 
-              src="images/icon/forest.png"
-              alt="Forest" /> 
+          <img className="icon-image" src="images/icon/forest.png" alt="Forest" />
         </div>
         <div className={`nav-item ${location.pathname === "/Calendar" ? "active" : ""}`} onClick={() => navigate("/Calendar")}>
-          <img
-              className="icon-image" 
-              src="images/icon/calendar.png"
-              alt="Calendar" /> 
+          <img className="icon-image" src="images/icon/calendar.png" alt="Calendar" />
         </div>
         <div className={`nav-item ${location.pathname === "/Social" ? "active" : ""}`} onClick={() => navigate("/Social")}>
-          <img
-              className="icon-image" 
-              src="images/icon/friend.png"
-              alt="Social" /> 
+          <img className="icon-image" src="images/icon/friend.png" alt="Social" />
         </div>
       </div>
     </div>
