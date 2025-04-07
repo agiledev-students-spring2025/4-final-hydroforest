@@ -9,7 +9,7 @@
       { "date": "2025-04-04", "amount": 2200, "unlockedPlant": "Blooming Berry" }
     ],
     "hasUnlockedTree": false,
-    "unlockableTrees": ["Misty Bonsai", "tree2", "tree3"],
+    "unlockableTrees": ["Misty Bonsai", "Sunflower", "Golden Sun"],
     "plantLevel": 5,
     "longestStreak": 27 ,
     "currentStreak": 19 ,
