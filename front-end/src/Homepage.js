@@ -40,13 +40,16 @@ const HomePage = () => {
 
   // Unlock tree popup logic (unchanged)
   useEffect(() => {
-    if (totalIntake >= 1920 && !hasUnlockedTree && !showUnlockPopup) {
+    console.log("💧 totalIntake (ml):", totalIntake);
+    console.log("🌲 hasUnlockedTree:", hasUnlockedTree);
+    console.log("🔔 showUnlockPopup:", showUnlockPopup);
+    if (totalIntake >= 1920  && !showUnlockPopup) {
       console.log("🎉 Unlock triggered!");
-      setShowUnlockPopup(true);
-  
+      setHasUnlockedTree(true);
       setTimeout(() => {
         setHasUnlockedTree(true);
-      }, 2500);
+        setShowUnlockPopup(true);
+      }, 2000);
     }
   }, [totalIntake, hasUnlockedTree, showUnlockPopup]);
   
