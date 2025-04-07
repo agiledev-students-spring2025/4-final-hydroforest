@@ -6,6 +6,16 @@ const home = require("../routes/home"); // Now contains { router, getTreeStage, 
 
 chai.use(chaiHttp);
 
+const today = require("../routes/home").getTodayDate();
+
+beforeEach(() => {
+ const userData = require("../mock-data/data.json");
+  // Remove any hydration record for today.
+  userData.hydrationData = userData.hydrationData.filter(record => record.date !== today);
+  // Reset the selected tree so that it doesn’t conflict with the test.
+  delete userData.selectedTree;
+});
+
 describe("Home Routes & Helper Functions", function() {
   // ---------------------------
   // Helper Function Tests

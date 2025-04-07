@@ -6,8 +6,8 @@
     "scripts": {
         "start": "node app.js",
         "dev": "nodemon app.js",
-        "coverage": "c8 mocha",
-        "test": "c8 mocha"
+        "coverage": "NODE_ENV=test c8 mocha",
+        "test": "NODE_ENV=test c8 mocha"
     },
     "author": "",
     "license": "ISC",

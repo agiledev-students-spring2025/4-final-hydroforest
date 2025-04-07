@@ -39,8 +39,8 @@ describe("Auth API", () => {
     chai.request(app)
       .post("/api/auth/login")
       .send({
-        username: "testuser123",
-        password: "securepassword"
+        username: "testuser",
+        password: "1234"
       })
       .end((err, res) => {
         expect(res).to.have.status(200);

@@ -2,8 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Load the user data from the mock-data folder
-const usersData = require("../mock-data/data.json");
-const userData = Array.isArray(usersData) ? usersData[0] : usersData;
+const userData = require("../mock-data/data.json");
 // GET ACCOUNT DETAILS
 router.get("/account", (req, res) => {
   console.log("Account details request received");

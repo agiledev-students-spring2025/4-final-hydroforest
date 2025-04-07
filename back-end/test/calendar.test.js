@@ -12,7 +12,9 @@ describe("Calendar API", () => {
       .get("/api/calendar")
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.be.an("array");
+        expect(res.body).to.be.an("object");
+        expect(res.body).to.have.property("hydrationData");
+        expect(res.body.hydrationData).to.be.an("array");
         done();
       });
   });

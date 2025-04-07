@@ -40,7 +40,7 @@ describe("Change Email Route", () => {
 
   it("should return 200 and update the email successfully", (done) => {
     const validBody = {
-      currentEmail: "test@example.com",
+      currentEmail: "testuser1234@gmail.com",
       newEmail: "newemail@example.com",
     };
 

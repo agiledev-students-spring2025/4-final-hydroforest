@@ -79,10 +79,10 @@ router.post('/signup', (req, res) => {
     unlockableTrees: ["Misty Bonsai", "tree2", "tree3"] 
   };
 
-  users.push(newUser);
+  // users.push(newUser);
 
-  // Persist the updated users array to the file
-  saveUsers(users);
+  // // Persist the updated users array to the file
+  // saveUsers(users);
 
   res.json({ success: true, message: 'Signup successful!' });
 });
