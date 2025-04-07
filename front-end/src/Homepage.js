@@ -201,7 +201,15 @@ const HomePage = () => {
         </motion.div>
       )}
 
-      <p className="topCaption">Today you drank {totalIntake} {unit}</p>
+      <p className="topCaption">
+        Today you drank {
+        unit === "cups"
+        ? Math.round(totalIntake / 240)
+        : unit === "oz"
+        ? Math.round(totalIntake / 29.5735)
+        : Math.round(totalIntake)
+        } {unit}
+      </p>
       <p className="howFarFromGoal">
         {treeStage !== "adult tree"
           ? `Only ${getWaterNeededForNextStage().amount} more ${unit} to reach the ${getWaterNeededForNextStage().nextStage}`
