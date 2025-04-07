@@ -33,7 +33,7 @@ function saveUsers(users) {
   }
 }
 
-// Utility function to load new users from newuser.json
+// Utility function to load new users from newUser.json
 function loadNewUsers() {
   try {
     // If the file doesn't exist, return an empty array.
@@ -47,21 +47,21 @@ function loadNewUsers() {
     }
     return newUsers;
   } catch (err) {
-    console.error("Error reading newuser file:", err);
+    console.error("Error reading newUser file:", err);
     return [];
   }
 }
 
-// Utility function to save new users to newuser.json
+// Utility function to save new users to newUser.json
 function saveNewUsers(newUsers) {
   try {
     fs.writeFileSync(newUserFilePath, JSON.stringify(newUsers, null, 2), 'utf8');
   } catch (err) {
-    console.error("Error writing to newuser file:", err);
+    console.error("Error writing to newUser file:", err);
   }
 }
 
-// Helper function to load all users (from data.json and newuser.json)
+// Helper function to load all users (from data.json and newUser.json)
 function loadAllUsers() {
   const usersFromData = loadUsers();
   const usersFromNew = loadNewUsers();
@@ -78,7 +78,7 @@ router.post('/login', (req, res) => {
 
   // Combine users from both files
   const allUsers = loadAllUsers();
-
+  console.log("All users:", allUsers);
   // Find the matching user
   const user = allUsers.find(u => u.username === username && u.password === password);
 
@@ -97,45 +97,39 @@ router.post('/signup', (req, res) => {
   if (!username || !email || !password) {
     return res.status(400).json({ success: false, message: 'Missing fields' });
   }
-  
-  // Reload the primary users list from data.json for existence check
-  users = loadUsers();
-  const exists = users.find(u => u.username === username || u.email === email);
-  if (exists) {
-    return res.status(409).json({ success: false, message: 'User already exists' });
-  }
 
+  // Create the new user object
   const newUser = {
-    "username": username,
-    "password": password,
-    "email": email,
-    hydrationData: [],                  
-    todayHydration: 0,                  
-    hasUnlockedTree: false,            
-    "unlockableTrees": [
-      "Misty Bonsai",
-      "Sunflower",
-      "Golden Sun"
-    ],
-    "plantLevel": 0,
-    "longestStreak": 0,
-    "currentStreak": 0,
-    "totalWaterLogged": 0,
-    "notificationsEnabled": "Turn On Notifications"
+    username: username.trim(),
+    password: password.trim(),
+    email: email.trim(),
+    hydrationData: [],
+    hasUnlockedTree: false,
+    unlockableTrees: ["Misty Bonsai", "Sunflower", "Golden Sun"],
+    plantLevel: 0,
+    longestStreak: 0,
+    currentStreak: 0,
+    totalWaterLogged: 0,
+    notificationsEnabled: "Turn On Notifications"
   };
 
-  // Instead of pushing newUser to data.json, add it to newuser.json
-  const newUsers = loadNewUsers();
-  newUsers.push(newUser);
-  saveNewUsers(newUsers);
+  // Directly overwrite newUser.json
+  try {
+    fs.writeFileSync(newUserFilePath, JSON.stringify(newUser, null, 2), 'utf8');
+    console.log("New user successfully written to file.");
+  } catch (err) {
+    console.error("Error writing to newUser file:", err);
+    return res.status(500).json({ success: false, message: "Internal server error" });
+  }
 
+  console.log("New users after signup:", loadNewUsers());
   res.json({ success: true, message: 'Signup successful!' });
 });
+
 
 // FORGOT PASSWORD
 router.post('/forgot-password', (req, res) => {
   const { email } = req.body;
-
   // For security, always respond with success without confirming email existence
   res.json({
     success: true,
@@ -144,4 +138,5 @@ router.post('/forgot-password', (req, res) => {
 });
 
 module.exports = router;
+
 
