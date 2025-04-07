@@ -118,7 +118,10 @@ const HomePage = () => {
         alert(err.message);
       });
   };
-  
+  const formatNumber = (num) => {
+    const fixed = Number(num).toFixed(1);
+    return fixed.endsWith('.0') ? fixed.slice(0, -2) : fixed;
+  };
 
   // Function to calculate water needed for the next stage
   const getWaterNeededForNextStage = () => {
@@ -204,10 +207,10 @@ const HomePage = () => {
       <p className="topCaption">
         Today you drank {
         unit === "cups"
-        ? Math.round(totalIntake / 240)
+        ? formatNumber(totalIntake / 240)
         : unit === "oz"
-        ? Math.round(totalIntake / 30)
-        : Math.round(totalIntake)
+        ? formatNumber(totalIntake / 30)
+        : formatNumber(totalIntake)
         } {unit}
       </p>
       <p className="howFarFromGoal">
