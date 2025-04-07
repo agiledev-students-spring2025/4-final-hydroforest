@@ -43,7 +43,7 @@ const HomePage = () => {
     console.log("💧 totalIntake (ml):", totalIntake);
     console.log("🌲 hasUnlockedTree:", hasUnlockedTree);
     console.log("🔔 showUnlockPopup:", showUnlockPopup);
-    if (totalIntake >= 1920  && !showUnlockPopup) {
+    if (totalIntake >= 1920  && !hasUnlockedTree) {
       console.log("🎉 Unlock triggered!");
       setHasUnlockedTree(true);
       setTimeout(() => {
