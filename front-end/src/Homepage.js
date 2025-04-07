@@ -34,6 +34,7 @@ const HomePage = () => {
         setTotalIntake(data.totalIntake);
         setTreeStage(data.currentStage);
         setHasUnlockedTree(data.hasUnlockedTree);
+        console.log(hasUnlockedTree);
       })
       .catch(err => console.error("Error fetching home data:", err));
   }, []);
