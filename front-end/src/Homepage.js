@@ -77,7 +77,9 @@ const HomePage = () => {
           setTreeStage(data.currentStage);
           // Use the justUnlocked flag from backend to trigger popup.
           if (data.justUnlocked) {
-            setShowUnlockPopup(true);
+            setTimeout(() => {
+              setShowUnlockPopup(true);
+            }, 1800);
           }
           setHasUnlockedTree(data.hasUnlockedTree);
         })
