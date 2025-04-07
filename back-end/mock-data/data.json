@@ -10,6 +10,10 @@
       { "date": "2025-04-05", "amount": 1700, "unlockedPlant": "Baobab" }
     ],
     "hasUnlockedTree": false,
-    "unlockedTrees": ["Oak", "Pine"],
-    "unlockableTrees": ["Misty Bonsai", "tree2", "tree3"]
+    "unlockableTrees": ["Misty Bonsai", "tree2", "tree3"],
+    "plantLevel": 5,
+    "longestStreak": 27 ,
+    "currentStreak": 19 ,
+    "totalWaterLogged": 190 ,
+    "notificationsEnabled": "True"
   }
