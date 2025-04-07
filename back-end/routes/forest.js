@@ -14,6 +14,7 @@ router.post('/', (req, res) => {
   const { date, cups } = req.body;
   console.log(`Received hydration data: ${date}, ${cups}`);
   res.json({ success: true, message: "Mock hydration data received." });
+
 });
 
 module.exports = router;
