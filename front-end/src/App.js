@@ -12,6 +12,8 @@ import ForgotPassword from './ForgotPassword';
 import Social from './Social';
 import Leaderboard from './Leaderboard';
 import AboutUs from './AboutUs';
+import Challenges from "./Challenges";
+
 
 function App() {
   const completedDays = 5;
@@ -43,6 +45,8 @@ function App() {
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
         <Route path="/social" element={<Social />} />
         <Route path="/leaderboard" element={<Leaderboard friends={friends} handleRemoveFriend={handleRemoveFriend} />} />
+        <Route path="/challenges" element={<Challenges />} />
+
       </Routes>
     </Router>
   );

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Homepage.css";
 
+
 const HomePage = () => {
   const [totalIntake, setTotalIntake] = useState(0); // stored in ml
   const [unit, setUnit] = useState("cups");
@@ -169,6 +170,18 @@ const HomePage = () => {
           <li className="logout" onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
         </ul>
       </motion.div>
+      <motion.button
+        className="btn"
+        style={{ position: "absolute", right: "30px", top: "60px", zIndex: 1100 }}
+        onClick={() => navigate("/challenges")}
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.6 }}
+      >
+        Daily Challenges
+      </motion.button>
+
+
 
       {showHelp && (
         <motion.div 
@@ -211,7 +224,7 @@ const HomePage = () => {
 
       {showWaterPouring && <img src="/images/water-bottle2.png" alt="Water Pouring" className="water-bottle" />}
       {showWaterPouring && <div className="water"></div>}
-
+        
       <motion.div
         animate={{ scale: isWatering ? [1, 1.08, 1] : 1 }}
         transition={{ duration: 1.1, delay: 0.7 }}
