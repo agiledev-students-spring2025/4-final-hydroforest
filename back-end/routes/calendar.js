@@ -1,14 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs');
 
-// GET hydration data for the entire month of April
+// Use the shared in-memory data from dataStore.js
+const userData = require('../mock-data/data.json');
+
+// GET hydration data for the entire month (or all hydrationData)
 router.get('/', (req, res) => {
-    const data = JSON.parse(fs.readFileSync('./mock-data/data.json'));
-    res.json(data.hydrationData); // Send all hydration data for April
+  res.json(userData.hydrationData);
 });
 
-// POST new hydration log (just logs to console or updates file if you want)
+// POST new hydration log (mock endpoint)
 router.post('/', (req, res) => {
   const { date, cups } = req.body;
   console.log(`Received hydration data: ${date}, ${cups}`);
@@ -16,3 +17,4 @@ router.post('/', (req, res) => {
 });
 
 module.exports = router;
+
