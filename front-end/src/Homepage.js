@@ -206,7 +206,7 @@ const HomePage = () => {
         unit === "cups"
         ? Math.round(totalIntake / 240)
         : unit === "oz"
-        ? Math.round(totalIntake / 29.5735)
+        ? Math.round(totalIntake / 30)
         : Math.round(totalIntake)
         } {unit}
       </p>
