@@ -1,29 +1,17 @@
 {
-  "hydrationData": [
-    {
-      "date": "2025-04-01",
-      "amount": 2000,
-      "unlockedPlant": "Sunleaf"
-    },
-    {
-      "date": "2025-04-02",
-      "amount": 1500,
-      "unlockedPlant": "Aqua Fern"
-    },
-    {
-      "date": "2025-04-03",
-      "amount": 1800,
-      "unlockedPlant": "Hydro Cactus"
-    },
-    {
-      "date": "2025-04-04",
-      "amount": 2200,
-      "unlockedPlant": "Blooming Berry"
-    },
-    {
-      "date": "2025-04-05",
-      "amount": 1800,
-      "unlockedPlant": "Misty Bonsai"
-    }
-  ]
+  "username": "testuser",
+  "password": "1234",
+  "email": "testuser1234@gmail.com",
+  "hydrationData": [],
+  "hasUnlockedTree": false,
+  "unlockableTrees": [
+    "Misty Bonsai",
+    "Sunflower",
+    "Golden Sun"
+  ],
+  "plantLevel": 5,
+  "longestStreak": 27,
+  "currentStreak": 19,
+  "totalWaterLogged": 190,
+  "notificationsEnabled": "Turn On Notifications"
 }

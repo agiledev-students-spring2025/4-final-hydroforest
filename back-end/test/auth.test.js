@@ -7,12 +7,31 @@ const app = require("../app");
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-// Path to the newUser.json file (make sure the filename matches exactly)
-const newUserFilePath = path.join(__dirname, '../mock-data/newUser.json');
+// Define file paths
+const newUserFilePath = path.join(__dirname, "../mock-data/newUser.json");
+const dataFilePath = path.join(__dirname, "../mock-data/data.json");
 
-// Clear newUser.json before each test
+// Fixture for the initial data in data.json.
+// This fixture must match what your login route expects.
+const initialData = {
+  "username": "testuser",
+  "password": "1234",
+  "email": "testuser1234@gmail.com",
+  "hydrationData": [],
+  "hasUnlockedTree": false,
+  "unlockableTrees": ["Misty Bonsai", "Sunflower", "Golden Sun"],
+  "plantLevel": 5,
+  "longestStreak": 27,
+  "currentStreak": 19,
+  "totalWaterLogged": 190,
+  "notificationsEnabled": "Turn On Notifications"
+};
+
+// Reset shared data before each test to ensure isolation.
 beforeEach(() => {
-  // Remove newUser.json if it exists, so that login doesn't pick up stale data.
+  // Write the fixture data to data.json.
+  fs.writeFileSync(dataFilePath, JSON.stringify(initialData, null, 2), "utf8");
+  // Remove newUser.json if it exists.
   if (fs.existsSync(newUserFilePath)) {
     fs.unlinkSync(newUserFilePath);
   }
@@ -49,6 +68,7 @@ describe("Auth API", () => {
   });
 
   it("should log in an existing user (from data.json)", done => {
+    // The fixture data now contains a user "testuser" with password "1234".
     chai.request(app)
       .post("/api/auth/login")
       .send({
@@ -63,7 +83,7 @@ describe("Auth API", () => {
   });
 
   it("should log in a newly signed up user", done => {
-    // First sign up a new user
+    // First, sign up a new user (this writes to newUser.json).
     chai.request(app)
       .post("/api/auth/signup")
       .send({
@@ -73,7 +93,7 @@ describe("Auth API", () => {
       })
       .end((err, signupRes) => {
         expect(signupRes).to.have.status(200);
-        // Now attempt to log in using the same credentials.
+        // Then attempt to log in with that user.
         chai.request(app)
           .post("/api/auth/login")
           .send({
@@ -113,3 +133,4 @@ describe("Auth API", () => {
       });
   });
 });
+
