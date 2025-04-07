@@ -40,18 +40,4 @@
     "currentStreak": 19,
     "totalWaterLogged": 190,
     "notificationsEnabled": "Turn On Notifications"
-  },
-  {
-    "username": "testuser123",
-    "email": "testuser123@example.com",
-    "password": "securepassword",
-    "hydrationData": [],
-    "todayHydration": 0,
-    "hasUnlockedTree": false,
-    "unlockedTrees": [],
-    "unlockableTrees": [
-      "Misty Bonsai",
-      "tree2",
-      "tree3"
-    ]
-}
+  }
