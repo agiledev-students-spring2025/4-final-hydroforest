@@ -41,9 +41,9 @@ const HomePage = () => {
   // Unlock tree popup logic (unchanged)
   useEffect(() => {
     if (totalIntake >= 1920 && !hasUnlockedTree && !showUnlockPopup) {
-      setShowUnlockPopup(true); // 👈 trigger the popup now
+      console.log("🎉 Unlock triggered!");
+      setShowUnlockPopup(true);
   
-      // Mark the tree as unlocked after popup appears
       setTimeout(() => {
         setHasUnlockedTree(true);
       }, 2500);
