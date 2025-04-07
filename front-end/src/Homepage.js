@@ -45,12 +45,12 @@ const HomePage = () => {
     console.log("🔔 showUnlockPopup:", showUnlockPopup);
     if (totalIntake >= 1920  && !hasUnlockedTree) {
       console.log("🎉 Unlock triggered!");
-      setHasUnlockedTree(true);
       setTimeout(() => {
         setShowUnlockPopup(true);
       }, 2000);
     }
-  }, [totalIntake, hasUnlockedTree, showUnlockPopup]);
+      setHasUnlockedTree(true);
+  }, [totalIntake, hasUnlockedTree]);
   
 
   // Modified handleLogWater function to use POST request
