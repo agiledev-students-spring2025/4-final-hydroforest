@@ -115,3 +115,6 @@ Follow these steps to run the project on your local machine:
    ```bash
    npm test
    ```
+
+8. **Sensitive Information:**
+   - You can find default username and password info on discord
