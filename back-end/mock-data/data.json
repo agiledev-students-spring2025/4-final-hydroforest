@@ -2,7 +2,33 @@
   "username": "testuser",
   "password": "1234",
   "email": "testuser1234@gmail.com",
-  "hydrationData": [],
+  "hydrationData": [
+    {
+      "date": "2025-04-01",
+      "amount": 2000,
+      "unlockedPlant": "Sunleaf"
+    },
+    {
+      "date": "2025-04-02",
+      "amount": 1500,
+      "unlockedPlant": "Aqua Fern"
+    },
+    {
+      "date": "2025-04-03",
+      "amount": 1800,
+      "unlockedPlant": "Hydro Cactus"
+    },
+    {
+      "date": "2025-04-04",
+      "amount": 2200,
+      "unlockedPlant": "Blooming Berry"
+    },
+    {
+      "date": "2025-04-05",
+      "amount": 1800,
+      "unlockedPlant": "Misty Bonsai"
+    }
+  ],
   "hasUnlockedTree": false,
   "unlockableTrees": [
     "Misty Bonsai",
