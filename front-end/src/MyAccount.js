@@ -68,7 +68,7 @@ const MyAccount = () => {
             alt="Profile"
             className="profile-picture"
           />
-          <h2 className="username" style={{ color: '#333' }}>
+          <h2 className="accountUsername" style={{ color: '#333' }}>
             {accountData.username}
           </h2>
         </div>

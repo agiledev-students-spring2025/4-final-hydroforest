@@ -53,12 +53,13 @@
     margin-bottom: 10px;
 }
 
-.username {
+.accountUsername {
     font-size: 20px;
     font-weight: bold;
     color: #333; /* Ensure visibility */
     text-align: center; 
     margin: 0; 
+    padding: 0;
 
 }
 
