@@ -6,7 +6,7 @@ const userData = require('../mock-data/data.json');
 
 // GET hydration data for the entire month (or all hydrationData)
 router.get('/', (req, res) => {
-  res.json(userData.hydrationData);
+  res.json({hydrationData: userData.hydrationData});
 });
 
 // POST new hydration log (mock endpoint)
