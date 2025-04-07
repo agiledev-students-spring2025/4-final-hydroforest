@@ -82,6 +82,33 @@ const HomePage = () => {
         });
     }
   };
+   // Handler for selecting a tree.
+  // This route will reject the change if the tree is already unlocked.
+  const handleSelectTree = (treeKey) => {
+    fetch("http://localhost:5005/api/Home/select-tree", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ selectedTree: treeKey })
+    })
+      .then(res => {
+        if (!res.ok) {
+          return res.json().then(err => { throw new Error(err.error); });
+        }
+        return res.json();
+      })
+      .then(data => {
+        // Update selectedTree only if successfully updated
+        setSelectedTree(data.selectedTree);
+        setIsModalOpen(false);
+      })
+      .catch(err => {
+        console.error("Error selecting tree:", err);
+        alert(err.message);
+      });
+  };
+  
 
   // Function to calculate water needed for the next stage
   const getWaterNeededForNextStage = () => {
@@ -200,7 +227,8 @@ const HomePage = () => {
                   src={treeData[treeKey]["adult tree"]}
                   alt={treeKey}
                   className="tree-option"
-                  onClick={() => { setSelectedTree(treeKey); setIsModalOpen(false); }}
+                  onClick={() => { handleSelectTree(treeKey); setIsModalOpen(false); }}
+
                 />
               ))}
             </div>
