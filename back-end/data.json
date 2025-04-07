@@ -1,15 +1,14 @@
 {
   "hydrationData": [
-    { "date": "2025-04-01", "amount": 2000, "unlockedPlant": "Oak" },
-    { "date": "2025-04-02", "amount": 1500, "unlockedPlant": "Pine" },
-    { "date": "2025-04-03", "amount": 1800, "unlockedPlant": "Maple" },
-    { "date": "2025-04-04", "amount": 2200, "unlockedPlant": "Cherry Blossom" },
-    { "date": "2025-04-05", "amount": 1700, "unlockedPlant": "Baobab" },
-    { "date": "2025-04-06", "amount": 2100, "unlockedPlant": "Oak" }
+    { "date": "2025-04-01", "amount": 2000, "unlockedPlant": "Sunleaf" },
+    { "date": "2025-04-02", "amount": 1500, "unlockedPlant": "Aqua Fern" },
+    { "date": "2025-04-03", "amount": 1800, "unlockedPlant": "Hydro Cactus" },
+    { "date": "2025-04-04", "amount": 2200, "unlockedPlant": "Blooming Berry" },
+    { "date": "2025-04-05", "amount": 1700, "unlockedPlant": "Misty Bonsai" }
   ],
-  "unlockedTrees": ["Oak", "Pine", "Maple", "Cherry Blossom", "Baobab"],
-  "fullyGrownTrees": ["Oak", "Pine"],
-  "selectedTree": "Oak",
-  "growingTree": { "name": "Maple", "progress": 0 },
-  "unlockableTrees": ["Maple", "Cherry Blossom", "Baobab"]
+  "unlockedTrees": ["Sunleaf", "Aqua Fern", "Hydro Cactus", "Blooming Berry", "Misty Bonsai"],
+  "fullyGrownTrees": ["Sunleaf", "Aqua Fern"],
+  "selectedTree": "Sunleaf",
+  "growingTree": { "name": "Hydro Cactus", "progress": 0 },
+  "unlockableTrees": ["Hydro Cactus", "Blooming Berry", "Misty Bonsai"]
 }
