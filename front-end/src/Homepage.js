@@ -47,7 +47,6 @@ const HomePage = () => {
       console.log("🎉 Unlock triggered!");
       setHasUnlockedTree(true);
       setTimeout(() => {
-        setHasUnlockedTree(true);
         setShowUnlockPopup(true);
       }, 2000);
     }
