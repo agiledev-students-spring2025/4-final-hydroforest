@@ -107,9 +107,9 @@ router.post('/log-water', (req, res) => {
   if (totalIntake >= 1920 && !todayRecord.unlockedPlant) {
     todayRecord.unlockedPlant = currentSelectedTree;
     userData.selectedTree = currentSelectedTree;
-    if (!userData.unlockedTrees.includes(currentSelectedTree)) {
-      userData.unlockedTrees.push(currentSelectedTree);
-    }
+    // if (!userData.unlockedTrees.includes(currentSelectedTree)) {
+    //   userData.unlockedTrees.push(currentSelectedTree);
+    // }
     justUnlocked = true;
   }
   
