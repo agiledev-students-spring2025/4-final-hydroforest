@@ -16,7 +16,21 @@ function getTreeStage(total) {
 
 // Helper to get today's date in YYYY-MM-DD format
 function getTodayDate() {
-  return new Date().toISOString().slice(0, 10);
+  const date = new Date();
+
+  // Convert to Eastern Timezone string
+  const easternDate = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/New_York",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }).formatToParts(date);
+
+  const year = easternDate.find(p => p.type === "year").value;
+  const month = easternDate.find(p => p.type === "month").value;
+  const day = easternDate.find(p => p.type === "day").value;
+
+  return `${year}-${month}-${day}`; //  "2025-04-06"
 }
 
 // Get today's hydration record from hydrationData array
@@ -35,6 +49,7 @@ function getTodayTotal() {
 // If no record exists, create one with unlockedPlant initialized as null.
 function updateHydrationRecord(waterAmount) {
   const today = getTodayDate();
+  console.log(today);
   let record = userData.hydrationData.find(rec => rec.date === today);
   if (record) {
     record.amount += waterAmount;
