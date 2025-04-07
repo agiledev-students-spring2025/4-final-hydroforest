@@ -74,7 +74,9 @@ const HomePage = () => {
         .then(res => res.json())
         .then(data => {
           setTotalIntake(data.totalIntake); // stays in ml
-          setTreeStage(data.currentStage);
+          setTimeout(() => {
+            setTreeStage(data.currentStage);
+          }, 1300);
           // Use the justUnlocked flag from backend to trigger popup.
           if (data.justUnlocked) {
             setTimeout(() => {
