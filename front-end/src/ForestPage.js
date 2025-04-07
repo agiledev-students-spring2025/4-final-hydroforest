@@ -78,12 +78,11 @@ const ForestPage = () => {
 
   return (
     <div className="forest-page">
-      <header>
-        
-        <div className="hamburger-menu">
-          <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
-        </div>
-      </header>
+      <header>       {/* Hamburger Menu Button (Aligned Right) */}
+        <h2> </h2>
+       <div className="hamburger-menu">
+            <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
+          </div></header>
       <h1 className="forest-title">Welcome to Your Forest</h1>
 
       {/* Sidebar Menu */}
