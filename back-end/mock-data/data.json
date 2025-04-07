@@ -1,5 +1,4 @@
-[
-  {
+{
     "username": "testuser",
     "password": "1234",
     "email": "testuser1234@gmail.com",
@@ -55,5 +54,4 @@
       "tree2",
       "tree3"
     ]
-  }
-]
+}

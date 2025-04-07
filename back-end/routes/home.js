@@ -148,7 +148,14 @@ router.post('/select-tree', (req, res) => {
   });
 });
 
-module.exports = router;
+module.exports = {
+  router,
+  getTreeStage,
+  getTodayDate,
+  getTodayRecord,
+  getTodayTotal,
+  updateHydrationRecord
+};
 
 
 
