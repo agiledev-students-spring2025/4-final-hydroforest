@@ -73,7 +73,7 @@ Follow these steps to run the project on your local machine:
    cd front-end
    ```
 
-4. **Install Dependencies and Launch the Application:**
+4. **Install Dependencies of Front-End and Launch the Front-End:**
 
    - Install the necessary packages:
 
@@ -86,3 +86,32 @@ Follow these steps to run the project on your local machine:
    ```bash
    npm start
    ```
+
+   5.**Navigate to the Back-End Folder:**
+
+   - in a different shell
+   - Change directory to the `back-end` folder:
+
+   ```bash
+   cd back-end
+   ```
+
+6.**Install Dependencies of Back-end and Launch the Application:**
+
+- Install the necessary packages:
+
+```bash
+npm install
+```
+
+- Start the application:
+
+```bash
+npm start
+```
+
+7.**For testing:**
+
+```bash
+npm test
+```
