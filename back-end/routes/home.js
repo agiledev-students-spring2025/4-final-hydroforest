@@ -72,21 +72,21 @@ router.get('/data', (req, res) => {
   }
 
   // If total intake is 1920 or more and today's record hasn't been marked with an unlocked plant, update it.
-  if (totalIntake >= 1920) {
-    if (!todayRecord) {
-      todayRecord = { date: getTodayDate(), amount: 0, unlockedPlant: selectedTree };
-      userData.hydrationData.push(todayRecord);
-    } else if (!todayRecord.unlockedPlant) {
-      todayRecord.unlockedPlant = selectedTree;
-    }
-    // Also update the user's selectedTree so it persists on refresh.
-    userData.selectedTree = selectedTree;
+  // if (totalIntake >= 1920) {
+  //   if (!todayRecord) {
+  //     todayRecord = { date: getTodayDate(), amount: 0, unlockedPlant: selectedTree };
+  //     userData.hydrationData.push(todayRecord);
+  //   } else if (!todayRecord.unlockedPlant) {
+  //     todayRecord.unlockedPlant = selectedTree;
+  //   }
+  //   // Also update the user's selectedTree so it persists on refresh.
+  //   userData.selectedTree = selectedTree;
 
-    // Ensure the unlocked tree is in the unlockedTrees list.
-    if (!userData.unlockedTrees.includes(selectedTree)) {
-      userData.unlockedTrees.push(selectedTree);
-    }
-  }
+  //   // Ensure the unlocked tree is in the unlockedTrees list.
+  //   if (!userData.unlockedTrees.includes(selectedTree)) {
+  //     userData.unlockedTrees.push(selectedTree);
+  //   }
+  // }
 
   res.json({
     user: {
