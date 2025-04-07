@@ -4,7 +4,6 @@ require('dotenv').config();
 
 const app = express();
 
-// ✅ CORS Config
 app.use(cors({
     origin: 'http://localhost:3000',
     methods: ['GET', 'POST'],
@@ -13,7 +12,6 @@ app.use(cors({
 
 app.use(express.json());
 
-// ✅ Routes
 const socialRoutes = require('./routes/social');
 const leaderboardRoutes = require('./routes/leaderboard');
 const changeEmailRoutes = require('./routes/ChangeEmail');
@@ -26,7 +24,7 @@ const calendarRoutes = require('./routes/calendar');
 
 app.use('/images', express.static('images'));
 
-// ✅ Mount routes
+
 app.use('/api/social', socialRoutes);
 app.use('/api/leaderboard', leaderboardRoutes);
 app.use('/api/ChangePassword', changePasswordRoutes);
@@ -34,7 +32,7 @@ app.use('/api/ChangeEmail', changeEmailRoutes);
 app.use('/api/MyAccount', myAccountRoutes);
 app.use('/api/Home', homeRoutes.router);
 app.use('/api/forest', forestRoutes);
-app.use('/api/auth', authRoutes); // ✅ This fixes the signup/login issue
+app.use('/api/auth', authRoutes); // 
 app.use('/api/calendar', calendarRoutes);
 
 // ✅ Start server if not in test mode
