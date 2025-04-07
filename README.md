@@ -111,12 +111,14 @@ Follow these steps to run the project on your local machine:
    ```bash
    npm start
    ```
+7. **Access the app**
+   Once both the back-end and front-end are running, open your browser and go to
+   ```bash
+   http://localhost:3000
+   ```
 
-7. **For testing:**
+8. **For testing:**
 
    ```bash
    npm test
    ```
-
-8. **Sensitive Information:**
-   - You can find default username and password info on discord

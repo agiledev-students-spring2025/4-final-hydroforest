@@ -99,14 +99,11 @@
 
 .forest-title {
     font-size: 2rem;
-    font-weight: 900; 
     color: #f8f8f8;
     font-family: "dm-sans-24pt", sans-serif;
-    font-weight: 300;
     font-style: normal;
-    text-align: center;
     margin-top: 10vh;
-    margin-left: 60px;
+    margin-left: 40px;
     letter-spacing: 1px;
     animation: fadeInUp 1.5s ease-out;
 }
