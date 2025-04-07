@@ -87,31 +87,31 @@ Follow these steps to run the project on your local machine:
    npm start
    ```
 
-5.**Navigate to the Back-End Folder:**
+5. **Navigate to the Back-End Folder:**
 
-- in a different shell
-- Change directory to the `back-end` folder:
+   - in a different shell
+   - Change directory to the `back-end` folder:
 
-```bash
-cd back-end
-```
+   ```bash
+   cd back-end
+   ```
 
-6.**Install Dependencies of Back-end and Launch the Application:**
+6. **Install Dependencies of Back-end and Launch the Application:**
 
-- Install the necessary packages:
+   - Install the necessary packages:
 
-```bash
-npm install
-```
+   ```bash
+   npm install
+   ```
 
-- Start the application:
+   - Start the application:
 
-```bash
-npm start
-```
+   ```bash
+   npm start
+   ```
 
-7.**For testing:**
+7. **For testing:**
 
-```bash
-npm test
-```
+   ```bash
+   npm test
+   ```
