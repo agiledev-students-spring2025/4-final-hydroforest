@@ -67,7 +67,7 @@ const CalendarPage = () => {
         const entry = hydrationData.find((item) => item.date === selectedDateStr);
 
         if (entry) {
-          const intakeInCups = Math.ceil(entry.amount / 240);
+          const intakeInCups = Math.round(entry.amount / 240);
           setIntakeAmount(`${intakeInCups} cups of water!`);
         } else {
           setIntakeAmount("No data for this date");
