@@ -1,5 +1,22 @@
 const express = require('express');
 const router = express.Router();
+const User = require('../models/User');
+
+// GET leaderboard (top 10 users by hydration)
+router.get('/', async (req, res) => {
+  try {
+    const leaderboard = await User.find().sort({ hydration: -1 }).limit(10);
+    res.json({ leaderboard });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch leaderboard.' });
+  }
+});
+
+module.exports = router;
+
+/*
+const express = require('express');
+const router = express.Router();
 
 // Dummy leaderboard data
 const leaderboard = [
@@ -20,3 +37,4 @@ router.get('/', (req, res) => {
 });
 
 module.exports = router;
+*/
