@@ -22,6 +22,7 @@ app.use(cors({
     credentials: true
 }));
 
+
 app.use(express.json());
 
 const socialRoutes = require('./routes/social');

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Homepage.css";
 
+
 const HomePage = () => {
   const [totalIntake, setTotalIntake] = useState(0); // stored in ml
   const [unit, setUnit] = useState("cups");
@@ -17,6 +18,7 @@ const HomePage = () => {
   const [showUnlockPopup, setShowUnlockPopup] = useState(false);
   const [hasUnlockedTree, setHasUnlockedTree] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
+  const [treeImage, setTreeImage] = useState("");
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,17 +26,27 @@ const HomePage = () => {
 
   // Fetch initial data from backend when component mounts
   useEffect(() => {
-    fetch("http://localhost:5005/api/Home/data")
+    const token = localStorage.getItem("token");
+  
+    fetch("http://localhost:5005/api/Home/data", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then(res => res.json())
       .then(data => {
-        setTreeData(data.trees);
+        setTreeData(data.trees || {});
         setSelectedTree(data.selectedTree);
-        setTotalIntake(data.totalIntake); // remains in ml
+        setTotalIntake(data.totalIntake);
         setTreeStage(data.currentStage);
         setHasUnlockedTree(data.hasUnlockedTree);
+        setTreeImage(data.treeImage);
+        console.log("🌲 API response:", data);
+        console.log("🌲 treeImage from backend:", data.treeImage)
       })
       .catch(err => console.error("Error fetching home data:", err));
   }, []);
+  
 
   // Unlock tree popup logic: trigger popup if totalIntake reaches/exceeds 1920 ml and not yet unlocked.
   useEffect(() => {
@@ -53,58 +65,55 @@ const HomePage = () => {
 
   // Modified handleLogWater function: converts input to ml before sending.
   const handleLogWater = () => {
+    const token = localStorage.getItem("token");
     const amount = Number(inputAmount);
     if (amount > 0) {
       setIsWatering(true);
       setShowWaterPouring(true);
-      setTimeout(() => {
-        setShowWaterPouring(false);
-      }, 1000);
-
-      // Convert user input to ml based on selected unit.
+      setTimeout(() => setShowWaterPouring(false), 1000);
+  
       let amountInMl = amount;
       if (unit === "cups") amountInMl = amount * 240;
       else if (unit === "oz") amountInMl = amount * 30;
-
+  
       fetch("http://localhost:5005/api/Home/log-water", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`
+        },
         body: JSON.stringify({ amount: amountInMl })
       })
         .then(res => res.json())
         .then(data => {
-          setTotalIntake(data.totalIntake); // stays in ml
-          setTimeout(() => {
-            setTreeStage(data.currentStage);
-          }, 1300);
-          // Use the justUnlocked flag from backend to trigger popup.
+          setTotalIntake(data.totalIntake);
+          setTimeout(() => setTreeStage(data.currentStage), 1300);
+          setTimeout(() => setTreeImage(data.treeImage),1300);
           if (data.justUnlocked) {
-            setTimeout(() => {
-              setShowUnlockPopup(true);
-            }, 1800);
+            setTimeout(() => setShowUnlockPopup(true), 1800);
           }
           setHasUnlockedTree(data.hasUnlockedTree);
         })
         .catch(err => console.error("Error logging water:", err))
-        .finally(() => {
-          setTimeout(() => {
-            setIsWatering(false);
-          }, 1300);
-        });
+        .finally(() => setTimeout(() => setIsWatering(false), 1300));
     }
   };
+  
 
   // Handler for selecting a tree (rejects change if already unlocked).
   const handleSelectTree = (treeKey) => {
+    const token = localStorage.getItem("token");
+  
     fetch("http://localhost:5005/api/Home/select-tree", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
       body: JSON.stringify({ selectedTree: treeKey })
     })
       .then(res => {
-        if (!res.ok) {
-          return res.json().then(err => { throw new Error(err.error); });
-        }
+        if (!res.ok) return res.json().then(err => { throw new Error(err.error); });
         return res.json();
       })
       .then(data => {
@@ -116,7 +125,7 @@ const HomePage = () => {
         alert(err.message);
       });
   };
-
+  
   // Function to calculate water needed for the next stage.
   // Thresholds are in ml: 480 ml (2 cups), 960 ml (4 cups), 1440 ml (6 cups), 1920 ml (8 cups).
   const getWaterNeededForNextStage = () => {
@@ -204,7 +213,7 @@ const HomePage = () => {
         } {unit}
       </p>
       <p className="howFarFromGoal">
-        {treeStage !== "adult tree"
+        {treeStage !== "adultTree"
           ? `Only ${getWaterNeededForNextStage().amount} more ${unit} to reach the ${getWaterNeededForNextStage().nextStage}`
           : "Congrats! Your tree is fully grown"}
       </p>
@@ -220,7 +229,7 @@ const HomePage = () => {
         <div className="tree-container">
           <motion.img
             key={treeStage}
-            src={treeData[selectedTree] ? treeData[selectedTree][treeStage] : ""}
+            src={`${process.env.REACT_APP_API_BASE}${treeImage}`}
             alt="Tree Icon"
             className="tree-image"
             initial={{ opacity: 0 }}
@@ -259,15 +268,18 @@ const HomePage = () => {
           <div className="modal">
             <h3>Select a Tree</h3>
             <div className="tree-selection">
-              {treeData && Object.keys(treeData).map((treeKey) => (
-                <img
-                  key={treeKey}
-                  src={treeData[treeKey]["adult tree"]}
-                  alt={treeKey}
-                  className="tree-option"
-                  onClick={() => { handleSelectTree(treeKey); setIsModalOpen(false); }}
-                />
-              ))}
+            {treeData.map((tree) => (
+              <img
+                key={tree.name}
+                src={`${process.env.REACT_APP_API_BASE}${tree.stages.adultTree}`}
+                alt={tree.name}
+                className="tree-option"
+                onClick={() => {
+                  handleSelectTree(tree.name);
+                  setIsModalOpen(false);
+                }}
+              />
+            ))}
             </div>
             <button className="btn" onClick={() => setIsModalOpen(false)}>
               Close
@@ -285,11 +297,15 @@ const HomePage = () => {
           transition={{ duration: 0.5 }}
         >
           <div className="popup-content">
-            <img
-              src={treeData[selectedTree] ? treeData[selectedTree]["adult tree"] : ""}
-              alt="Unlocked Tree"
-              className="popup-plant-image"
-            />
+          <img
+            src={
+              treeData.find(tree => tree.name === selectedTree)
+                ? `${process.env.REACT_APP_API_BASE}${treeData.find(tree => tree.name === selectedTree).stages.adultTree}`
+                : ""
+            }
+            alt="Unlocked Tree"
+            className="popup-plant-image"
+          />
             <p>
               You unlocked the <strong>{selectedTree}</strong> by staying hydrated!
             </p>
