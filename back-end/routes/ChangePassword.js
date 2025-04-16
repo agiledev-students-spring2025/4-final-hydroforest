@@ -1,37 +1,53 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const bcrypt = require("bcryptjs");
+const { check, validationResult } = require("express-validator");
+const passport = require("passport");
+const User = require("../database/User"); 
 
-// Load the user data from the mock-data folder
-const userData = require('../mock-data/data.json');
+// CHANGE PASSWORD (Authenticated)
+router.post("/change-password", [
+  check("currentPassword").notEmpty().withMessage("Current password required"),
+  check("newPassword").isLength({ min: 6 }).withMessage("Password must be at least 6 characters"),
+  check("reEnterNewPassword").custom((value, { req }) => {
+    if (value !== req.body.newPassword) throw new Error("Passwords do not match");
+    return true;
+  })
+], passport.authenticate("jwt", { session: false }), async (req, res) => {
+  try {
+    // Validate input
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ success: false, errors: errors.array() });
+    }
 
-// CHANGE PASSWORD
-router.post('/change-password', (req, res) => {
-  const { currentPassword, newPassword, reEnterNewPassword } = req.body;
-  console.log("Password change request received:", req.body);
+    const { currentPassword, newPassword } = req.body;
 
-  if (!currentPassword || !newPassword || !reEnterNewPassword) {
-    return res.status(400).json({ success: false, message: "Missing fields" });
+    // Fetch user
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
+    }
+
+    // Verify current password
+    const isMatch = await bcrypt.compare(currentPassword, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ success: false, message: "Incorrect current password" });
+    }
+
+    // Hash new password before storing
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update password in database
+    await User.findByIdAndUpdate(req.user.id, { $set: { password: hashedPassword } });
+
+    res.json({ success: true, message: "Password changed successfully!" });
+
+  } catch (error) {
+    console.error("Error changing password:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
-
-  if (newPassword !== reEnterNewPassword) {
-    return res.status(400).json({
-      success: false,
-      message: "New password and re-entered password do not match"
-    });
-  }
-
-  // Check if current password matches
-  if (userData.password !== currentPassword) {
-    return res.status(401).json({ success: false, message: "Current password is incorrect" });
-  }
-
-  // Update the password
-  userData.password = newPassword;
-
-  res.json({
-    success: true,
-    message: "Password changed successfully!"
-  });
 });
 
 module.exports = router;
+
