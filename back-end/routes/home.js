@@ -6,6 +6,14 @@ const Tree = require('../database/Tree');
 
 const router = express.Router();
 
+//test token
+const jwt = require('jsonwebtoken');
+
+const userId = '67ff39e04d4948ffd9ffdc37'; // your MongoDB ObjectId as a string
+const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '2h' });
+
+console.log(token);
+
 // Utility: Get today’s date in YYYY-MM-DD (Eastern Time)
 function getTodayDate() {
   const date = new Date();
@@ -24,7 +32,7 @@ function getTreeStage(totalMl) {
   else return "adultTree";
 }
 
-// 🔐 GET /api/home/data — Protected
+// GET /api/home/data — Protected
 router.get(
   '/data',
   passport.authenticate('jwt', { session: false }),

@@ -1,23 +1,23 @@
-// {
-//     "Misty Bonsai": {
-//       "seed": "/images/tree1/seed.png",
-//       "sprout": "/images/tree1/sprout.png",
-//       "seedling": "/images/tree1/seedling.png",
-//       "sapling": "/images/tree1/sapling.png",
-//       "adult tree": "/images/tree1/adult_tree.png"
-//     },
-//     "Sunflower": {
-//       "seed": "/images/tree2/seed.png",
-//       "sprout": "/images/tree2/sprout.png",
-//       "seedling": "/images/tree2/seedling.png",
-//       "sapling": "/images/tree2/sapling.png",
-//       "adult tree": "/images/tree2/adult_tree.png"
-//     },
-//     "Golden Sun": {
-//       "seed": "/images/tree3/seed.png",
-//       "sprout": "/images/tree3/sprout.png",
-//       "seedling": "/images/tree3/seedling.png",
-//       "sapling": "/images/tree3/sapling.png",
-//       "adult tree": "/images/tree3/adult_tree.png"
-//     }
-//   }
+{
+    "Misty Bonsai": {
+      "seed": "/images/tree1/seed.png",
+      "sprout": "/images/tree1/sprout.png",
+      "seedling": "/images/tree1/seedling.png",
+      "sapling": "/images/tree1/sapling.png",
+      "adult tree": "/images/tree1/adult_tree.png"
+    },
+    "Sunflower": {
+      "seed": "/images/tree2/seed.png",
+      "sprout": "/images/tree2/sprout.png",
+      "seedling": "/images/tree2/seedling.png",
+      "sapling": "/images/tree2/sapling.png",
+      "adult tree": "/images/tree2/adult_tree.png"
+    },
+    "Golden Sun": {
+      "seed": "/images/tree3/seed.png",
+      "sprout": "/images/tree3/sprout.png",
+      "seedling": "/images/tree3/seedling.png",
+      "sapling": "/images/tree3/sapling.png",
+      "adult tree": "/images/tree3/adult_tree.png"
+    }
+  }

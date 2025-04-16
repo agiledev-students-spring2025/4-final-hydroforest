@@ -1,10 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const passport = require('passport');
 require('dotenv').config();
 
 const app = express();
 
+require('./config/passport')(passport);
+app.use(passport.initialize());
 
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,

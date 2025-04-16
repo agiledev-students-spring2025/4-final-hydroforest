@@ -8,7 +8,7 @@ const Social = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const userId = 'replace_with_real_user_id'; // TODO: set this from auth or context
+  const userId = '67ff39e04d4948ffd9ffdc37';
 
   const [isOpen, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
