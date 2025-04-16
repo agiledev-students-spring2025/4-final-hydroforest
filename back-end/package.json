@@ -31,3 +31,41 @@
         "nyc": "^17.1.0"
     }
 }
+{
+    "name": "hydroforest-backend",
+    "version": "1.0.0",
+    "description": "Backend for HydroForest project",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "dev": "nodemon app.js",
+        "coverage": "NODE_ENV=test c8 mocha",
+        "test": "NODE_ENV=test c8 mocha"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "dotenv": "^16.5.0",
+        "express": "^4.21.2",
+        "express-validator": "^7.2.1",
+        "mongoose": "^8.13.2",
+        "passport": "^0.7.0",
+        "passport-jwt": "^4.0.1",
+        "bcryptjs": "^2.4.3",
+        "jsonwebtoken": "^9.0.2"
+    },
+    "devDependencies": {
+        "c8": "^8.0.1",
+        "chai": "^4.5.0",
+        "chai-http": "^4.4.0",
+        "mocha": "^10.8.2",
+        "nodemon": "^3.1.9",
+        "express-validator": "^7.2.1",
+        "nyc": "^17.1.0",
+        "passport": "^0.7.0",
+        "passport-jwt": "^4.0.1",
+        "bcryptjs": "^2.4.3",
+        "jsonwebtoken": "^9.0.2"
+    }
+}
