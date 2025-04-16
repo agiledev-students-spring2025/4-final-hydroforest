@@ -12,8 +12,8 @@ async function seedDatabase() {
   await User.deleteMany();
   await Tree.deleteMany();
 
-  // Insert trees using your mock data
-  const trees = await Tree.insertMany([
+  // Insert trees
+  await Tree.insertMany([
     {
       name: 'Misty Bonsai',
       stages: {
@@ -47,8 +47,8 @@ async function seedDatabase() {
   ]);
   console.log('🌱 Trees seeded');
 
-  // Insert test users
-  await User.insertMany([
+  // Insert users and store their references
+  const [alice, bob, charlie, mark] = await User.insertMany([
     {
       username: 'alice',
       password: 'test123',
@@ -94,22 +94,34 @@ async function seedDatabase() {
       friends: []
     },
     {
-        username: 'mark',
-        password: 'test153',
-        email: 'mark@example.com',
-        hydrationData: [],
-        hasUnlockedTree: false,
-        unlockableTrees: [],
-        plantLevel: 1,
-        longestStreak: 3,
-        currentStreak: 1,
-        totalWaterLogged: 1400,
-        notificationsEnabled: true,
-        friends: []
-      }
+      username: 'mark',
+      password: 'test153',
+      email: 'mark@example.com',
+      hydrationData: [],
+      hasUnlockedTree: false,
+      unlockableTrees: [],
+      plantLevel: 1,
+      longestStreak: 3,
+      currentStreak: 1,
+      totalWaterLogged: 1400,
+      notificationsEnabled: true,
+      friends: []
+    }
   ]);
   console.log('👤 Users seeded');
 
+  // Add friendships (by ID)
+  alice.friends = [bob._id, charlie._id];
+  bob.friends = [alice._id, mark._id];
+  charlie.friends = [alice._id];
+  mark.friends = [bob._id];
+
+  await alice.save();
+  await bob.save();
+  await charlie.save();
+  await mark.save();
+
+  console.log('👥 Friendships established');
   mongoose.connection.close();
   console.log('✅ Database seed complete!');
 }
