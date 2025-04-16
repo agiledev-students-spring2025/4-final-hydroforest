@@ -8,6 +8,8 @@ const Social = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const userId = 'replace_with_real_user_id'; // TODO: set this from auth or context
+
   const [isOpen, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [friendSuggestions, setFriendSuggestions] = useState([]);
@@ -18,16 +20,16 @@ const Social = () => {
   useEffect(() => {
     const fetchFriends = async () => {
       try {
-        const response = await fetch('http://localhost:5005/api/social');
+        const response = await fetch(`/api/social/${userId}`);
         const { friends } = await response.json();
-        setFriends(friends);
+        setFriends(friends || []);
       } catch (error) {
         console.error('Error loading friends:', error);
       }
     };
 
     fetchFriends();
-  }, []);
+  }, [userId]);
 
   // Load suggestions when typing
   useEffect(() => {
@@ -38,25 +40,26 @@ const Social = () => {
 
     const fetchSuggestions = async () => {
       try {
-        const response = await fetch(`http://localhost:5005/api/social/suggestions?q=${searchQuery}`);
-        const { suggestions } = await response.json();
-        setFriendSuggestions(suggestions);
+        const response = await fetch(`/api/social/suggestions/${userId}?q=${searchQuery}`);
+        const data = await response.json();
+        setFriendSuggestions(data.suggestions || []);
       } catch (error) {
         console.error('Error loading suggestions:', error);
+        setFriendSuggestions([]);
       }
     };
 
     fetchSuggestions();
-  }, [searchQuery]);
+  }, [searchQuery, userId]);
 
-  const handleAddFriend = async (user) => {
+  const handleAddFriend = async (friendId) => {
     try {
-      await fetch('http://localhost:5005/api/social/add', {
+      await fetch('/api/social/add', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user),
+        body: JSON.stringify({ userId, friendId }),
       });
-      setFriends(prev => [...prev, user]);
+      setFriends(prev => [...prev, friendSuggestions.find(f => f._id === friendId)]);
       setSearchQuery('');
       setFriendSuggestions([]);
     } catch (error) {
@@ -64,14 +67,14 @@ const Social = () => {
     }
   };
 
-  const handleRemoveFriend = async (id) => {
+  const handleRemoveFriend = async (friendId) => {
     try {
-      await fetch('http://localhost:5005/api/social/remove', {
+      await fetch('/api/social/remove', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ userId, friendId }),
       });
-      setFriends(prev => prev.filter(friend => friend.id !== id));
+      setFriends(prev => prev.filter(friend => friend._id !== friendId));
     } catch (error) {
       console.error('Error removing friend:', error);
     }
@@ -113,9 +116,9 @@ const Social = () => {
             {friendSuggestions.length > 0 && (
               <motion.ul className="suggestions-list" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}>
                 {friendSuggestions.map(user => (
-                  <motion.li key={user.id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
-                    {user.name}
-                    <button onClick={() => handleAddFriend(user)}>Add</button>
+                  <motion.li key={user._id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+                    {user.username}
+                    <button onClick={() => handleAddFriend(user._id)}>Add</button>
                   </motion.li>
                 ))}
               </motion.ul>
@@ -140,13 +143,13 @@ const Social = () => {
           {friends.length > 0 ? (
             <ul className="friends-list">
               {friends.map(friend => (
-                <motion.li key={friend.id} className="friend-item" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
-                  <img className="profile-image" src={friend.src} alt={friend.name} />
+                <motion.li key={friend._id} className="friend-item" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
+                  <img className="profile-image" src={friend.src || 'https://picsum.photos/100'} alt={friend.username} />
                   <div className="text">
-                    <h6>{friend.name}</h6>
-                    <p className="text-muted">{friend.hydration}L Hydrated</p>
+                    <h6>{friend.username}</h6>
+                    <p className="text-muted">{friend.totalWaterLogged || 0} mL Hydrated</p>
                   </div>
-                  <button className="remove-friend-button" onClick={() => handleRemoveFriend(friend.id)}>Remove</button>
+                  <button className="remove-friend-button" onClick={() => handleRemoveFriend(friend._id)}>Remove</button>
                 </motion.li>
               ))}
               <hr />

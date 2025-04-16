@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const User = require('../database/User');
 
 // GET top users by total water logged (leaderboard)
 router.get('/', async (req, res) => {
