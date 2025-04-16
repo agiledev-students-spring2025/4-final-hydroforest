@@ -28,55 +28,106 @@ const ForestPage = () => {
   const [selectedPlant, setSelectedPlant] = useState(null);
   const [isOpen, setOpen] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
+  const [treeImages, setTreeImages] = useState([]);
+  const [grid, setGrid] = useState(
+    Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(null))
+  );
+  
 
   // Create an empty grid based on GRID_SIZE
-  const grid = Array(GRID_SIZE)
-    .fill(null)
-    .map(() => Array(GRID_SIZE).fill(null));
+  // const grid = Array(GRID_SIZE)
+  //   .fill(null)
+  //   .map(() => Array(GRID_SIZE).fill(null));
 
-  // Fetch hydration data from backend
+
+  // Fetch tree images from database
+  useEffect(() => {
+    fetch('http://localhost:5005/api/trees')
+      .then(res => res.json())
+      .then(data => {
+        const formatted = data.map(tree => ({
+          name: tree.name,
+          src: tree.stages.adultTree
+        }));
+        setTreeImages(formatted);
+        
+        console.log(formatted)
+        
+      })
+      .catch(err => console.error("Error fetching tree images:", err));
+  }, []);
+  
+
+  // Fetch hydration data from database
   useEffect(() => {
     fetch("http://localhost:5005/api/forest")
       .then((res) => res.json())
       .then((data) => {
-        console.log("Fetched Data:", data);
-        // Assume hydrationData is an array in the fetched data.
-        // Sort hydrationData by date (if needed)
         const sortedData = data.hydrationData.sort(
           (a, b) => new Date(a.date) - new Date(b.date)
         );
         setHydrationData(sortedData);
+        console.log("Hydration data fetched:", hydrationData);
+        console.log("Forest plants after processing:", forestPlants);
 
-        // Extract the unlockedPlant values from hydrationData
-        // Filter out entries where unlockedPlant is null or empty.
         const unlockedPlantsWithDates = sortedData
-        .filter(record => record.unlockedPlant)
-        .map(record => ({ name: record.unlockedPlant, unlockedOn: record.date }));
+          .filter(record => record.unlockedPlant)
+          .map(record => ({ name: record.unlockedPlant, unlockedOn: record.date }));
 
-        console.log("Unlocked plant names:", unlockedPlantsWithDates);
+            
+        // Map names to DB-sourced image paths
+        const unlockedPlantsWithImages = unlockedPlantsWithDates.map(({ name, unlockedOn }) => {
+          const plantObj = treeImages.find(p => p.name.trim().toLowerCase() === name.trim().toLowerCase());
+          if (!plantObj) {
+            console.warn(`Couldn't match:`, name, "against:", treeImages.map(p => p.name));
+          }
 
-        // Map these names to the plantImages array
-        const unlockedPlantsWithImages = unlockedPlantsWithDates
-        .map(({ name, unlockedOn }) => {
-          const plantObj = plantImages.find(p => p.name === name);
+          
           return plantObj ? { name, src: plantObj.src, unlockedOn } : null;
-        })
-        .filter(Boolean);
+        }).filter(Boolean);
 
-        console.log("Unlocked Plants with Images:", unlockedPlantsWithImages);
+        console.log("Mapped unlocked plants with images:", unlockedPlantsWithImages);
         setForestPlants(unlockedPlantsWithImages);
+        
+
       })
       .catch(err => console.error("Error fetching forest data:", err));
-  }, []);
+  }, [treeImages]); // depend on treeImages
 
-  // Place unlocked plants into grid positions (if any)
-  forestPlants.forEach((plant, index) => {
-    const x = index % GRID_SIZE;
-    const y = Math.floor(index / GRID_SIZE);
-    if (x < GRID_SIZE && y < GRID_SIZE) {
-      grid[y][x] = plant;
-    }
-  });
+
+  // // Place unlocked plants into grid positions (if any)
+  // forestPlants.forEach((plant, index) => {
+  //   const x = index % GRID_SIZE;
+  //   const y = Math.floor(index / GRID_SIZE);
+  //   if (x < GRID_SIZE && y < GRID_SIZE) {
+  //     grid[y][x] = plant;
+  //   }
+  // });
+
+  useEffect(() => {
+    console.log("🌿 forestPlants:", forestPlants); // See what plants made it in
+  
+    const newGrid = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(null));
+  
+    forestPlants.forEach((plant, index) => {
+      const x = index % GRID_SIZE;
+      const y = Math.floor(index / GRID_SIZE);
+  
+      // Log details about placement and image source
+      console.log(`🪴 Placing plant:`, {
+        name: plant.name,
+        src: plant.src,
+        gridPosition: `[${y}][${x}]`
+      });
+  
+      if (x < GRID_SIZE && y < GRID_SIZE) {
+        newGrid[y][x] = plant;
+      }
+    });
+  
+    setGrid(newGrid);
+  }, [forestPlants]);
+  
 
   return (
     <div className="forest-page">

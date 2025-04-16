@@ -12,15 +12,20 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "bcryptjs": "^3.0.2",
         "cors": "^2.8.5",
         "dotenv": "^16.5.0",
         "express": "^4.21.2",
         "express-validator": "^7.2.1",
         "mongoose": "^8.13.2",
+<<<<<<< HEAD
+        "passport": "^0.7.0"
+=======
         "passport": "^0.7.0",
         "passport-jwt": "^4.0.1",
         "bcryptjs": "^2.4.3",
         "jsonwebtoken": "^9.0.2"
+>>>>>>> 4cd1944901f575ed80b357e105b95f277304a861
     },
     "devDependencies": {
         "c8": "^8.0.1",

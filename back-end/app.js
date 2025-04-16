@@ -46,7 +46,7 @@ app.use('/api/ChangeEmail', changeEmailRoutes);
 app.use('/api/MyAccount', myAccountRoutes);
 app.use('/api/Home', homeRoutes.router);
 app.use('/api/forest', forestRoutes);
-app.use('/api/auth', authRoutes); // 
+app.use('/api/auth', authRoutes); 
 app.use('/api/calendar', calendarRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/trees', treeRoutes);

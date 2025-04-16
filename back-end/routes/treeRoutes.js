@@ -4,9 +4,13 @@ const Tree = require('../database/Tree');
 
 // GET all trees
 router.get('/', async (req, res) => {
-  const trees = await Tree.find();
-  res.json(trees);
+  try {
+    const trees = await Tree.find();
+    res.json(trees);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Error fetching trees');
+  }
 });
 
-// Add route to add a new tree (if needed)
-module.exports = router;
+module.exports = router;  // Ensure this line is correctly exporting the router
