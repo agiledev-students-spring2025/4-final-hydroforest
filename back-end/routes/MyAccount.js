@@ -1,71 +1,58 @@
 const express = require("express");
 const router = express.Router();
+const User = require("../database/User"); 
+const { check, validationResult } = require("express-validator");
+const passport = require("passport");
 
-// Load the user data from the mock-data folder
-const userData = require("../mock-data/data.json");
-// GET ACCOUNT DETAILS
-router.get("/account", (req, res) => {
-  console.log("Account details request received");
-  res.json({
-    success: true,
-    data: {
-      username: userData.username,
-      email: userData.email,
-      plantLevel: userData.plantLevel || 0, // Defaulting plantLevel if not provided
-      longestStreak: userData.longestStreak || "0 days", // Defaulting if not provided
-      currentStreak: userData.currentStreak || "0 days", // Defaulting if not provided
-      totalWaterLogged: userData.totalWaterLogged || "0L", // Defaulting if not provided
-      notificationsEnabled: userData.notificationsEnabled || false // Defaulting if not provided
+// GET ACCOUNT DETAILS (Authenticated route)
+router.get("/account", passport.authenticate("jwt", { session: false }), async (req, res) => {
+  try {
+    // Fetch user & populate friends list
+    const user = await User.findById(req.user.id).populate("friends"); 
+
+    if (!user) {
+      return res.status(404).json({ success: false, message: "User not found" });
     }
-  });
+
+    res.json({
+      success: true,
+      data: {
+        username: user.username,
+        email: user.email,
+        plantLevel: user.plantLevel || 1,
+        longestStreak: user.longestStreak || 0,
+        currentStreak: user.currentStreak || 0,
+        totalWaterLogged: user.totalWaterLogged || 0,
+        notificationsEnabled: user.notificationsEnabled || false,
+        hydrationData: user.hydrationData || [], // Added hydration history
+        friends: user.friends.map(friend => ({
+          username: friend.username,
+          plantLevel: friend.plantLevel
+        })) // Populating friend data
+      }
+    });
+  } catch (error) {
+    console.error("Error fetching account details:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
+  }
 });
 
 // TOGGLE NOTIFICATIONS
-router.post("/account/notifications", (req, res) => {
-  const { notificationsEnabled } = req.body;
-  console.log("Notification toggle request received:", req.body);
+router.post("/account/notifications", passport.authenticate("jwt", { session: false }), async (req, res) => {
+  try {
+    const { notificationsEnabled } = req.body;
 
-  if (notificationsEnabled === undefined) {
-    return res.status(400).json({
-      success: false,
-      message: "Missing 'notificationsEnabled' field"
-    });
+    if (notificationsEnabled === undefined) {
+      return res.status(400).json({ success: false, message: "Missing 'notificationsEnabled' field" });
+    }
+
+    await User.findByIdAndUpdate(req.user.id, { $set: { notificationsEnabled } });
+
+    res.json({ success: true, message: `Notifications ${notificationsEnabled ? "enabled" : "disabled"} successfully!` });
+  } catch (error) {
+    console.error("Error updating notifications:", error);
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
-
-  userData.notificationsEnabled = notificationsEnabled;
-
-  res.json({
-    success: true,
-    message: `Notifications ${notificationsEnabled ? "enabled" : "disabled"} successfully!`
-  });
-});
-
-// UPDATE PROFILE (Email or Password)
-router.post("/account/update", (req, res) => {
-  const { email, password } = req.body;
-  console.log("Profile update request received:", req.body);
-
-  if (!email && !password) {
-    return res.status(400).json({
-      success: false,
-      message: "Missing fields. Provide 'email' or 'password' to update."
-    });
-  }
-
-  if (email) {
-    userData.email = email; // Update email
-    console.log(`Email updated to: ${email}`);
-  }
-
-  if (password) {
-    userData.password = password; // Update password
-    console.log("Password updated successfully!");
-  }
-
-  res.json({
-    success: true,
-    message: "Profile updated successfully!"
-  });
 });
 
 module.exports = router;
