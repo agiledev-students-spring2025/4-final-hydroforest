@@ -29,6 +29,8 @@ const homeRoutes = require('./routes/home');
 const forestRoutes = require('./routes/forest');
 const authRoutes = require('./routes/auth'); 
 const calendarRoutes = require('./routes/calendar');
+const userRoutes = require('./routes/userRoutes');
+const treeRoutes = require('./routes/treeRoutes');
 
 app.use('/images', express.static('images'));
 
@@ -42,6 +44,8 @@ app.use('/api/Home', homeRoutes.router);
 app.use('/api/forest', forestRoutes);
 app.use('/api/auth', authRoutes); // 
 app.use('/api/calendar', calendarRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/trees', treeRoutes);
 
 if (process.env.NODE_ENV !== 'test') {
     const PORT = process.env.PORT || 5005;
