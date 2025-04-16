@@ -1,8 +1,8 @@
 const express = require('express');
 const { body, validationResult } = require('express-validator');
 const passport = require('passport');
-const User = require('../models/User');
-const Tree = require('../models/Tree');
+const User = require('../database/User');
+const Tree = require('../database/Tree');
 
 const router = express.Router();
 
@@ -24,7 +24,7 @@ function getTreeStage(totalMl) {
   else return "adultTree";
 }
 
-// 🔐 GET /api/home/data — Protected
+// GET /api/home/data — Protected
 router.get(
   '/data',
   passport.authenticate('jwt', { session: false }),
