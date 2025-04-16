@@ -8,11 +8,9 @@ const router = express.Router();
 
 //test token
 const jwt = require('jsonwebtoken');
-
-const userId = '67ff39e04d4948ffd9ffdc37'; // your MongoDB ObjectId as a string
-const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: '2h' });
-
+const token = jwt.sign({ id: '67ff49eb8cd65d5191328119' }, process.env.JWT_SECRET, { expiresIn: '2h' });
 console.log(token);
+//end here
 
 // Utility: Get today’s date in YYYY-MM-DD (Eastern Time)
 function getTodayDate() {
@@ -48,7 +46,7 @@ router.get(
 
       const treeDoc = await Tree.findOne({ name: selectedTreeName });
       const currentStage = getTreeStage(totalIntake);
-
+      const unlockableTreeDocs = await Tree.find({ name: { $in: user.unlockableTrees } });
       res.json({
         user: {
           username: user.username,
@@ -59,6 +57,7 @@ router.get(
           hasUnlockedTree: !!todayRecord?.unlockedPlant,
           unlockableTrees: user.unlockableTrees
         },
+        trees: unlockableTreeDocs, 
         selectedTree: selectedTreeName,
         totalIntake,
         currentStage,
