@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
   longestStreak: { type: Number, default: 0 },
   currentStreak: { type: Number, default: 0 },
   totalWaterLogged: { type: Number, default: 0 },
-  notificationsEnabled: { type: Boolean, default: false }
+  notificationsEnabled: { type: Boolean, default: false },
+  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 
 module.exports = mongoose.model('User', userSchema);
