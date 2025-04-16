@@ -13,8 +13,10 @@
     "license": "ISC",
     "dependencies": {
         "cors": "^2.8.5",
-        "dotenv": "^16.4.7",
-        "express": "^4.21.2"
+        "dotenv": "^16.5.0",
+        "express": "^4.21.2",
+        "express-validator": "^7.2.1",
+        "mongoose": "^8.13.2"
     },
     "devDependencies": {
         "c8": "^8.0.1",

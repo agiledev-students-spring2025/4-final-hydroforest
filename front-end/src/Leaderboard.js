@@ -9,7 +9,7 @@ const Leaderboard = () => {
   const location = useLocation();
   const [showHelp, setShowHelp] = useState(false);
   const [isOpen, setOpen] = useState(false);
-  const [friends, setFriends] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const originalOverflow = document.body.style.overflow;
@@ -22,9 +22,9 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await fetch('http://localhost:5005/api/leaderboard');
+        const response = await fetch('/api/leaderboard');
         const { leaderboard } = await response.json();
-        setFriends(leaderboard);
+        setUsers(leaderboard || []);
       } catch (err) {
         console.error('Failed to load leaderboard:', err);
       }
@@ -80,27 +80,27 @@ const Leaderboard = () => {
       )}
 
       {/* Podium */}
-      {friends.length >= 3 && (
+      {users.length >= 3 && (
         <div className="leaderboard-podium">
           <motion.div className="podium-item podium-second">
-            <img className="profile-image" src={friends[1].src} alt={friends[1].name} />
-            <p className="podium-name">{friends[1].name}</p>
+            <img className="profile-image" src="https://picsum.photos/101" alt={users[1].username} />
+            <p className="podium-name">{users[1].username}</p>
             <p className="podium-rank">2nd place</p>
-            <p className="podium-score">{friends[1].hydration} L</p>
+            <p className="podium-score">{users[1].totalWaterLogged} mL</p>
           </motion.div>
 
           <motion.div className="podium-item podium-first">
-            <img className="profile-image" src={friends[0].src} alt={friends[0].name} />
-            <p className="podium-name">{friends[0].name}</p>
+            <img className="profile-image" src="https://picsum.photos/100" alt={users[0].username} />
+            <p className="podium-name">{users[0].username}</p>
             <p className="podium-rank">1st place</p>
-            <p className="podium-score">{friends[0].hydration} L</p>
+            <p className="podium-score">{users[0].totalWaterLogged} mL</p>
           </motion.div>
 
           <motion.div className="podium-item podium-third">
-            <img className="profile-image" src={friends[2].src} alt={friends[2].name} />
-            <p className="podium-name">{friends[2].name}</p>
+            <img className="profile-image" src="https://picsum.photos/102" alt={users[2].username} />
+            <p className="podium-name">{users[2].username}</p>
             <p className="podium-rank">3rd place</p>
-            <p className="podium-score">{friends[2].hydration} L</p>
+            <p className="podium-score">{users[2].totalWaterLogged} mL</p>
           </motion.div>
         </div>
       )}
@@ -112,15 +112,18 @@ const Leaderboard = () => {
             <tr>
               <th>Rank</th>
               <th>Profile</th>
-              <th>Plant Level</th>
+              <th>Water Logged</th>
             </tr>
           </thead>
           <tbody>
-            {friends.length > 3 && friends.slice(3).map((friend, index) => (
-              <tr key={friend.id}>
+            {users.length > 3 && users.slice(3).map((user, index) => (
+              <tr key={user._id}>
                 <td>{index + 4}</td>
-                <td><img className="profile-image" src={friend.src} alt={friend.name} /></td>
-                <td>{friend.hydration}</td>
+                <td>
+                  <img className="profile-image" src="https://picsum.photos/100" alt={user.username} />
+                  <span>{user.username}</span>
+                </td>
+                <td>{user.totalWaterLogged} mL</td>
               </tr>
             ))}
           </tbody>
