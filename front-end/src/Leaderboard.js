@@ -22,16 +22,18 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await fetch('/api/leaderboard');
+        const userId = '661f0f8e32abc1234567890a'; // replace with actual ID
+        const response = await fetch(`/api/leaderboard/${userId}`);
         const { leaderboard } = await response.json();
         setUsers(leaderboard || []);
       } catch (err) {
         console.error('Failed to load leaderboard:', err);
       }
     };
-
+  
     fetchLeaderboard();
   }, []);
+  
 
   return (
     <div className="leaderboard-page">
