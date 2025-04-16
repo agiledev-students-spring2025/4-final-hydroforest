@@ -2,17 +2,24 @@ const express = require('express');
 const router = express.Router();
 const User = require('../database/User');
 
-// GET top users by total water logged (leaderboard)
+// GET /api/leaderboard/:userId
 router.get('/:userId', async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId).populate('friends', 'username totalWaterLogged');
+    const user = await User.findById(req.params.userId).populate({
+      path: 'friends',
+      select: 'username totalWaterLogged'
+    });
+
     if (!user) return res.status(404).json({ error: 'User not found' });
 
-    // Return friends sorted by totalWaterLogged
-    const sortedFriends = [...user.friends].sort((a, b) => b.totalWaterLogged - a.totalWaterLogged);
-    res.json({ leaderboard: sortedFriends });
+    const leaderboard = user.friends.sort(
+      (a, b) => b.totalWaterLogged - a.totalWaterLogged
+    );
+
+    res.json({ leaderboard });
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch leaderboard.' });
+    console.error('Leaderboard error:', err);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
