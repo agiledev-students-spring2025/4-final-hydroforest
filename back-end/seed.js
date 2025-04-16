@@ -43,6 +43,46 @@ async function seedDatabase() {
         sapling: '/images/tree3/sapling.png',
         adultTree: '/images/tree3/adult_tree.png'
       }
+    },
+    {
+      name: 'Blooming Berry',
+      stages: {
+        seed: '/images/tree4/seed.png',
+        sprout: '/images/tree4/sprout.png',
+        seedling: '/images/tree4/seedling.png',
+        sapling: '/images/tree4/sapling.png',
+        adultTree: '/images/plants1.png'
+      }
+    },
+    {
+      name: 'Sunleaf',
+      stages: {
+        seed: '/images/tree5/seed.png',
+        sprout: '/images/tree5/sprout.png',
+        seedling: '/images/tree5/seedling.png',
+        sapling: '/images/tree5/sapling.png',
+        adultTree: '/images/plants2.png'
+      }
+    },
+    {
+      name: 'Aqua Fern',
+      stages: {
+        seed: '/images/tree6/seed.png',
+        sprout: '/images/tree6/sprout.png',
+        seedling: '/images/tree6/seedling.png',
+        sapling: '/images/tree6/sapling.png',
+        adultTree: '/images/plants3.png'
+      }
+    },
+    {
+      name: 'Hydro Cactus',
+      stages: {
+        seed: '/images/tree7/seed.png',
+        sprout: '/images/tree7/sprout.png',
+        seedling: '/images/tree7/seedling.png',
+        sapling: '/images/tree7/sapling.png',
+        adultTree: '/images/plants4.png'
+      }
     }
   ]);
   console.log('🌱 Trees seeded');
