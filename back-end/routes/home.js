@@ -24,7 +24,7 @@ function getTreeStage(totalMl) {
   else return "adultTree";
 }
 
-// 🔐 GET /api/home/data — Protected
+// GET /api/home/data — Protected
 router.get(
   '/data',
   passport.authenticate('jwt', { session: false }),
