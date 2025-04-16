@@ -7,8 +7,11 @@ const passport = require("passport");
 // GET ACCOUNT DETAILS (Authenticated route)
 router.get("/account", passport.authenticate("jwt", { session: false }), async (req, res) => {
   try {
-    // Fetch user & populate friends list
-    const user = await User.findById(req.user.id).populate("friends"); 
+    // Fetch user & populate friends list (Ensures only actual friends are retrieved)
+    const user = await User.findById(req.user.id).populate({
+      path: "friends",
+      select: "username plantLevel" // Limits the data returned for friends
+    });
 
     if (!user) {
       return res.status(404).json({ success: false, message: "User not found" });
@@ -24,11 +27,11 @@ router.get("/account", passport.authenticate("jwt", { session: false }), async (
         currentStreak: user.currentStreak || 0,
         totalWaterLogged: user.totalWaterLogged || 0,
         notificationsEnabled: user.notificationsEnabled || false,
-        hydrationData: user.hydrationData || [], // Added hydration history
+        hydrationData: user.hydrationData || [], // Returns user's hydration history
         friends: user.friends.map(friend => ({
           username: friend.username,
           plantLevel: friend.plantLevel
-        })) // Populating friend data
+        })) // Correctly formats actual friends data
       }
     });
   } catch (error) {
@@ -56,4 +59,5 @@ router.post("/account/notifications", passport.authenticate("jwt", { session: fa
 });
 
 module.exports = router;
+
 

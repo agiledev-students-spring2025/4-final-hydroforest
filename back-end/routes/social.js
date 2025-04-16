@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const User = require('../database/User');
 
 // GET all friends for a specific user
 router.get('/:userId', async (req, res) => {
