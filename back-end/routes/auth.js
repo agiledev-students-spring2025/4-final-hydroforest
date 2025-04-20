@@ -4,9 +4,11 @@ const { check, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const router = express.Router();
+const authMiddleware = require('../middleware/auth'); // Create this in a sec
 
 const User = require('../database/User'); // Your Mongoose User model
 require('dotenv').config(); // Load env variables
+
 
 // SIGNUP Endpoint
 router.post(
@@ -113,5 +115,21 @@ router.post('/forgot-password', (req, res) => {
     message: 'If this email is registered, you will receive a password reset link.'
   });
 });
+
+// GET /me - returns current logged-in user's full data
+router.get('/me', authMiddleware, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select('-password'); // exclude hashed password
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    return res.status(200).json({ success: true, user });
+  } catch (err) {
+    console.error("Fetch user error:", err);
+    return res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
+
 
 module.exports = router;
