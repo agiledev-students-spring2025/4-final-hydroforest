@@ -22,8 +22,12 @@ const Leaderboard = () => {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const userId = '67ff39e04d4948ffd9ffdc37'; // Replace with dynamic ID if needed
-        const response = await fetch(`/api/leaderboard/${userId}`);
+        const token = localStorage.getItem('token');
+        const response = await fetch('/api/leaderboard', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         const { leaderboard } = await response.json();
         setUsers(leaderboard || []);
       } catch (err) {
@@ -85,7 +89,7 @@ const Leaderboard = () => {
         <div className="leaderboard-podium">
           {users[1] && (
             <motion.div className="podium-item podium-second">
-              <img className="profile-image" src={users[1].src || 'https://picsum.photos/101'} alt={users[1].username} />
+              <img className="profile-image" src="https://picsum.photos/101" alt={users[1].username} />
               <p className="podium-name">{users[1].username}</p>
               <p className="podium-rank">2nd place</p>
               <p className="podium-score">{users[1].totalWaterLogged} mL</p>
@@ -93,7 +97,7 @@ const Leaderboard = () => {
           )}
           {users[0] && (
             <motion.div className="podium-item podium-first">
-              <img className="profile-image" src={users[0].src || 'https://picsum.photos/100'} alt={users[0].username} />
+              <img className="profile-image" src="https://picsum.photos/100" alt={users[0].username} />
               <p className="podium-name">{users[0].username}</p>
               <p className="podium-rank">1st place</p>
               <p className="podium-score">{users[0].totalWaterLogged} mL</p>
@@ -101,7 +105,7 @@ const Leaderboard = () => {
           )}
           {users[2] && (
             <motion.div className="podium-item podium-third">
-              <img className="profile-image" src={users[2].src || 'https://picsum.photos/102'} alt={users[2].username} />
+              <img className="profile-image" src="https://picsum.photos/102" alt={users[2].username} />
               <p className="podium-name">{users[2].username}</p>
               <p className="podium-rank">3rd place</p>
               <p className="podium-score">{users[2].totalWaterLogged} mL</p>
@@ -125,7 +129,7 @@ const Leaderboard = () => {
               <tr key={user._id}>
                 <td>{index + 4}</td>
                 <td>
-                  <img className="profile-image" src={user.src || 'https://picsum.photos/100'} alt={user.username} />
+                  <img className="profile-image" src="https://picsum.photos/100" alt={user.username} />
                   <span>{user.username}</span>
                 </td>
                 <td>{user.totalWaterLogged} mL</td>

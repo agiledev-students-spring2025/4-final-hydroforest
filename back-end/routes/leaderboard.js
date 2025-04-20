@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 const User = require('../database/User');
 
-// GET /api/leaderboard/:userId
-router.get('/:userId', async (req, res) => {
+// GET /api/leaderboard — returns leaderboard of current user's friends
+router.get('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId).populate({
+    const user = await User.findById(req.user.id).populate({
       path: 'friends',
       select: 'username totalWaterLogged'
     });
