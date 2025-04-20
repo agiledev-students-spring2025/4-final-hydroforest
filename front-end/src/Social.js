@@ -7,20 +7,23 @@ import { Sling as Hamburger } from 'hamburger-react';
 const Social = () => {
   const navigate = useNavigate();
   const location = useLocation();
-
-  const userId = '67ffcc8555b2f902aee5c851';
-
   const [isOpen, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [friendSuggestions, setFriendSuggestions] = useState([]);
   const [friends, setFriends] = useState([]);
   const [showHelp, setShowHelp] = useState(false);
 
-  // Load all friends on mount
+  const token = localStorage.getItem('token');
+
+  // Load friends on mount
   useEffect(() => {
     const fetchFriends = async () => {
       try {
-        const response = await fetch(`/api/social/${userId}`);
+        const response = await fetch('/api/social', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         const { friends } = await response.json();
         setFriends(friends || []);
       } catch (error) {
@@ -29,9 +32,9 @@ const Social = () => {
     };
 
     fetchFriends();
-  }, [userId]);
+  }, [token]);
 
-  // Load suggestions when typing
+  // Load suggestions while typing
   useEffect(() => {
     if (searchQuery.trim() === '') {
       setFriendSuggestions([]);
@@ -40,7 +43,11 @@ const Social = () => {
 
     const fetchSuggestions = async () => {
       try {
-        const response = await fetch(`/api/social/suggestions/${userId}?q=${searchQuery}`);
+        const response = await fetch(`/api/social/suggestions?q=${searchQuery}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         const data = await response.json();
         setFriendSuggestions(data.suggestions || []);
       } catch (error) {
@@ -50,14 +57,17 @@ const Social = () => {
     };
 
     fetchSuggestions();
-  }, [searchQuery, userId]);
+  }, [searchQuery, token]);
 
   const handleAddFriend = async (friendId) => {
     try {
       await fetch('/api/social/add', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId, friendId }),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ friendId }),
       });
       setFriends(prev => [...prev, friendSuggestions.find(f => f._id === friendId)]);
       setSearchQuery('');
@@ -71,8 +81,11 @@ const Social = () => {
     try {
       await fetch('/api/social/remove', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId, friendId }),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ friendId }),
       });
       setFriends(prev => prev.filter(friend => friend._id !== friendId));
     } catch (error) {
