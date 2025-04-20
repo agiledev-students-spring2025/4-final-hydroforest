@@ -1,70 +1,137 @@
-# Guide to Contributing to Hydroforest
+# 🤝 Guide to Contributing to HydroForest
 
-Welcome to Hydroforest! We appreciate your interest in contributing to our project. Please read this guide carefully before making any contributions. If you have any questions, please reach out to project founders.
+Welcome to **HydroForest**! We’re excited that you’re interested in contributing. Please read through this guide carefully before you get started. If you have any questions, reach out to one of the project founders.
 
-## Team Norms
+---
+
+## 🧩 Team Norms
+
 - **Collaboration First**: We value open communication and teamwork.
-- **Code Quality**: Maintain clean, readable, and well-documented code.
-- **Respectful Environment**: Be respectful and constructive in all discussions.
-- **Transparency**:  Be honest about task progress and challenges. Open communication ensures the team can support each other effectively.
-- **Feedback**: Be open to receiving and giving constructive feedback.
-- **Seeking Help**: Reach out for help through Discord or private DMs, including all relevant team members who can assist with the issue.
-- **Support for Struggling Members**: If a team member falls behind, the Scrum Master will check in to understand the situation and provide support.
-- **Conflict Resolution**: Resolve conflicts first through chat discussions, as everyone is expected to respond promptly. If messaging is insufficient, escalate to a meeting for a more robust conversation.
-- **Timely Responses**: Team members should respond to messages within a couple of hours. For urgent matters, use a direct tag to ensure immediate attention.
+- **Code Quality**: Write clean, readable, and well-documented code.
+- **Respectful Environment**: Keep all communication respectful and constructive.
+- **Transparency**: Be honest about progress and blockers—open communication ensures we can support each other effectively.
+- **Feedback**: Be open to giving and receiving constructive feedback.
+- **Seeking Help**: Use Discord or DMs to ask for help—tag relevant team members when needed.
+- **Support for Struggling Members**: If someone falls behind, the Scrum Master will check in and offer support.
+- **Conflict Resolution**: Resolve issues via chat first. If unresolved, escalate to a team meeting.
+- **Timely Responses**: Respond to team messages within a couple of hours. Use direct tags for urgent matters.
 
-## Sprint cadence
+---
 
-- Sprints are usually two weeks long but could vary a few days based on the size of the features we're implementing. The team will decide when to use extensions based on the workload and time it is taking to finish our goals.
+## 🔁 Sprint Cadence
 
-## Daily standups
+- Sprints are generally two weeks long, but may vary depending on feature size.
+- Extensions are agreed upon by the team based on scope and progress.
 
- - We will have 45 minute standup meetings on weekdays based on members' availability. They will be conducted via Zoom call and members will share their screens to show everyone what they've been up to and what holdups they may be having.
-- Members who do not participate will be reported to Product Owner.
-- Members who make no progress for two meetings and don't reach out for help will be reported to management.
+---
 
-## Coding standards
+## 🧍‍♂️ Daily Standups
 
-- We will use Visual Studio Code
-- Code for each task and spike must be peer-reviewed and pass tests before merging into the `main` branch of code.
-- Always push working code, if a member break the pipeline/build then the member is required to fix it.
-- Make granular and small commits, per feature or per bug fix.
-- Provide descriptive commit messages.
-- Write self documenting code. Use descriptive variable and function names. Avoid unnecessary name shortening.
-- Don't leave dead/commented out code behind. 
-- Write automated tests to cover critical integration points and functionality. 
+- **Standups are 45 minutes** on weekdays, conducted over Zoom.
+- Members will share their screens to show progress or blockers.
+- Non-participating members will be reported to the Product Owner.
+- If someone makes no progress for two consecutive meetings and doesn’t ask for help, they will be escalated to management.
 
-## Git Workflow
-We follow a structured Git workflow to maintain code quality and organization.
+---
 
-1. **Fork the Repository**: Create your own copy of the Hydroforest repository.
-2. **Clone the Repository**: Clone your forked repository to your local machine.
-   ```sh
-   git clone https://github.com/agiledev-students-spring2025/4-final-hydroforest
-3. **Create a Branch**
+## 🧑‍💻 Coding Standards
+
+- Use **Visual Studio Code**.
+- All work must be peer-reviewed and pass tests before merging to `main`.
+- Only push working code. If you break the build, you are responsible for fixing it.
+- Make **granular commits** per feature or bug fix.
+- Use **clear commit messages** and **descriptive variable/function names**.
+- Remove dead/commented-out code.
+- Write **automated tests** for key functionality and integrations.
+
+---
+
+## 🌱 Git Workflow
+
+We follow a structured Git workflow to keep things organized and maintain code quality:
+
+1. **Fork the repository**
+
+2. **Clone your fork locally**
+   ```bash
+   git clone https://github.com/your-username/4-final-hydroforest
+   cd 4-final-hydroforest
+
+3. **Create a new Branch**
    ```sh
    git checkout -b BRANCH_NAME
-4. **Commityour changes.**
+4. **Commit your changes.**
     ```sh
     git commit -m "Add feature-name with description"
 5. **Push your changes**
     ```sh
     git push origin feature-name
 6. **Create a Pull Request.**
+    - open a PR from your forked branch to the main branch of the original repository
+    - Include a clear description of what the PR does and any context.
 
+## 📌 Rules for Contributing
 
-## Rules for Contributing
+We want HydroForest to be a fun and collaborative environment to work in—following these contribution rules will help ensure a smooth development experience for everyone.
 
-- Follow the coding style and guidelines set in the project.
-- Ensure all changes are tested before submitting a PR.
-- Write meaningful commit messages and pull request descriptions.
-- Do not commit directly to the main branch.
-- Address any feedback or requested changes on your PR in a timely manner.
-- Contact the project founders if you have any questions or need guidance.
+### ✅ 1. Follow Code Standards
+
+- Adhere to the coding style and best practices defined in the project.
+- Write clean, modular, and well-documented code.
+- Use meaningful and descriptive names for variables, functions, and components.
+- Keep your functions short and focused—each function should do one thing well.
+
+### 🧪 2. Test Before You Push
+
+- Always test your changes locally before creating a pull request (PR).
+- Make sure you’re not breaking existing functionality.
+- Write automated tests where applicable to ensure future stability.
+- Double-check edge cases and potential bugs before pushing.
+
+### 🚫 3. Don’t Push Directly to `main`
+
+- All changes must go through a feature branch and be merged via a pull request.
+- Never commit or push directly to the `main` branch.
+- Use descriptive branch names, like `feature/tree-animation` or `bugfix/login-crash`.
+
+### 🗣 4. Respond to Feedback
+
+- Be open to constructive feedback on your PRs—code reviews help us all grow.
+- Make revisions promptly when requested by reviewers.
+- Keep discussions respectful and focused on improving the codebase.
+
+### ❓ 5. Ask Questions Early
+
+- If you’re stuck or unsure, **ask for help!**
+- Use Discord or tag teammates in GitHub for questions.
+- It’s always better to clarify early than to waste time or risk introducing bugs later.
+
+### 🧼 6. Keep It Clean
+
+- Don’t leave behind commented-out or unused code.
+- Make sure to remove debugging statements (e.g., `console.log`) before committing.
+- Keep your commits atomic—one logical change per commit.
+
+### 📖 7. Write Helpful Commit Messages
+
+- Your commit messages should describe *what* changed and *why*.
+- Use the format: `Add login validation to prevent empty passwords`
+- Avoid vague messages like `fixed stuff` or `update`.
+
+---
+
+By following these rules, you help keep the project stable, readable, and enjoyable for everyone. Thanks for being a great contributor! 
+
 
 ## Setting Up The Local Development Environment
 - Download Visual Studio Code
 - Clone the git repo
 
-We hope you enjoy working on Hydroforest and welcome any and all contributors!
+```bash 
+git clone https://github.com/agiledev-students-spring2025/4-final-hydroforest
+cd 4-final-hydroforest
+```
+
+
+We’re thrilled to have you here. Happy coding, and thank you for contributing to HydroForest! 🌳💧
 
