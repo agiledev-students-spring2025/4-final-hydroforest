@@ -10,6 +10,7 @@
     "framer-motion": "^12.4.10",
     "hamburger-react": "^2.5.2",
     "lucide-react": "^0.264.0",
+    "mongodb": "^6.15.0",
     "path-browserify": "^1.0.1",
     "querystring-es3": "^0.2.1",
     "react": "^18.3.1",

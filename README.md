@@ -1,81 +1,84 @@
-# HydroForest
+# 🌲 HydroForest
 
-## Project Overview
+## 🚀 Project Overview
 
-HydroForest is a web app designed to help users track their daily water intake while making hydration a fun and rewarding experience. Every time a user logs a bottle of water, a virtual tree grows in their digital forest. Over time, consistent hydration leads to a thriving forest, encouraging users to build healthy habits through gamification.
+**HydroForest** is a full-stack web application that transforms hydration tracking into a fun and rewarding experience. Every time a user logs a bottle of water, a virtual tree grows in their digital forest. Over time, consistent hydration leads to a thriving virtual environment—gamifying the habit of staying hydrated.
 
-## Product Vision Statement
+## 🌟 Product Vision
 
-HydroForest transforms the habit of drinking water into an engaging and rewarding experience by allowing users to grow a virtual forest as they stay hydrated.
+*HydroForest turns daily water intake into an engaging, habit-forming experience by letting users grow a customizable forest as they hydrate.*
 
-## Team Members
+## 👥 Team Members
 
-- **[Jun Li](https://github.com/jljune9li)**
-- **[Natalie Ovcarov](https://github.com/nataliovcharov)**
-- **[Daniel Brito](https://github.com/danny031103)**
-- **[Nabiha Siddique](https://github.com/ns5190)**
-- **[Alvaro Martinez](https://github.com/AlvaroMartinezM)**
+- [Jun Li](https://github.com/jljune9li)  
+- [Natalie Ovcarov](https://github.com/nataliovcharov)  
+- [Daniel Brito](https://github.com/danny031103)  
+- [Nabiha Siddique](https://github.com/ns5190)  
+- [Alvaro Martinez](https://github.com/AlvaroMartinezM)  
 
-## How It Works
+## 🧠 How It Works
 
-From an end-user perspective, HydroForest will:
+From the user’s perspective, HydroForest provides the following features:
 
-- Allow users to log their daily water intake (e.g., one bottle = tree growth).
-- Visually represent progress through a growing virtual forest.
-- Track historical hydration data to show trends over time.
-- Gamify the experience with forest customization.
-- Send reminders and notifications to encourage hydration.
+- Log daily water intake (e.g., 1 bottle = 1 tree growth)
+- View progress through a growing visual forest
+- Track hydration history over time
+- Customize your forest with unlockable elements
+- Receive hydration reminders and motivational notifications
 
-## Project History
+## 📜 Project History
 
-HydroForest began as an innovative project for our Agile Software Development & DevOps course, sparked by the everyday challenge of staying properly hydrated. Recognizing that many people struggle to drink enough water, our team set out to create a fun and engaging solution that makes hydration rewarding and interactive.
+HydroForest began as part of our **Agile Software Development & DevOps** course, inspired by a shared challenge—drinking enough water. Our goal was to build a tool that makes hydration fun, motivating users with visual rewards and habit-forming gamification.
 
-Our journey started with a dynamic brainstorming session where we explored creative ways to encourage healthy habits through digital incentives. The result was the concept of a virtual forest—each time users log their water intake, they are one step closer to build their own personal forest.
+We followed an **Agile methodology**, continuously iterating through sprints to build and improve the app:
 
-Using an **Agile** approach, we focused on building core functionality first and are continuously iterating to refine and enhance the experience. Here’s a snapshot of our progress so far:
+- **Sprint 0**  
+  We built our app map and prototype to define the user flow and core features like hydration tracking, virtual forest growth, and progress history.
 
-- **Sprint 0**:
-  We laid the foundation for HydroForest by creating the app map and prototype. This helped us visualize the user flow and define the core features, such as logging water intake, tracking hydration progress, and growing a virtual forest.
+- **Sprint 1**  
+  Focused on front-end development—designing the UI, hydration tracker, forest visualization, calendar view, social features, and navigation.
 
-- **Sprint 1**:
-  We completed the front-end development, bringing the app’s design to life. This included building the user interface for the hydration tracker, forest visualization, calendar page, social page and navigation system.
-- **Sprint 2**:
-  We completed the back-end development by building a Express.js server. Our team implemented dynamic API routes to handle user authentication, hydration logging, and tree selection functionality. We integrated mock JSON data to simulate database operations, ensuring that the front-end could retrieve and update hydration progress, unlock new trees, and manage user profiles.
+- **Sprint 2**  
+  Back-end development with an Express.js server. We implemented dynamic API routes for:
+  - User authentication
+  - Hydration logging
+  - Tree unlocking  
+  Using mock JSON data, we connected front-end components to simulate full-stack functionality, including profile management and hydration history.
 
-Our goal is to deliver a polished, engaging product by the end of the semester that not only helps you stay hydrated but also makes the process enjoyable.
+Our end goal: deliver a polished, engaging app that helps users build better habits by the end of the semester.
 
-## How to Contribute
+## 🤝 How to Contribute
 
-Interested in contributing? Check out our [CONTRIBUTING.md](https://github.com/agiledev-students-spring2025/4-final-hydroforest/blob/master/CONTRIBUTING.md) for guidelines on how to get involved.
+Interested in contributing?  
+Please read our [CONTRIBUTING.md](https://github.com/agiledev-students-spring2025/4-final-hydroforest/blob/master/CONTRIBUTING.md) for guidelines.
 
-# Running the Program
+---
 
-Follow these steps to run the project on your local machine:
+## 🛠️ Running the Project Locally
 
-1. **Fork and Clone the Repository:**
+Follow the steps below to set up and run **HydroForest** on your local machine:
 
-   - Fork the repository on GitHub.
-   - Clone the forked repository to your local machine:
+### 1. Fork and Clone the Repository
 
-   ```bash
-     git clone https://github.com/agiledev-students-spring2025/4-final-hydroforest
-   ```
+```bash
+git clone https://github.com/agiledev-students-spring2025/4-final-hydroforest
+```
 
-2. **Open the Project in VS Code:**
+### 2. Open the Project on Visual Studio Code
 
    - Launch Visual Studio Code.
-   - Open the cloned repository folder.
+   - Open the cloned repository folder (4-final-hydroforest)
 
-3. **Navigate to the Front-End Folder:**
+### 3. Navigate to the Front-End Folder:
 
    - Open the integrated terminal in VS Code.
    - Change directory to the `front-end` folder:
-
+   
    ```bash
    cd front-end
    ```
 
-4. **Install Dependencies of Front-End and Launch the Front-End:**
+### 4. Install Dependencies of Front-End and Launch the Front-End:**
 
    - Install the necessary packages:
 
@@ -89,7 +92,7 @@ Follow these steps to run the project on your local machine:
    npm start
    ```
 
-5. **Navigate to the Back-End Folder:**
+### 5. Navigate to the Back-End Folder:**
 
    - in a different shell
    - Change directory to the `back-end` folder:
@@ -98,7 +101,7 @@ Follow these steps to run the project on your local machine:
    cd back-end
    ```
 
-6. **Install Dependencies of Back-end and Launch the Application:**
+### 6. Install Dependencies of Back-end and Launch the Application:**
 
    - Install the necessary packages:
 
@@ -111,13 +114,13 @@ Follow these steps to run the project on your local machine:
    ```bash
    npm start
    ```
-7. **Access the app**
+### 7. Access the app**
    Once both the back-end and front-end are running, open your browser and go to
    ```bash
    http://localhost:3000
    ```
 
-8. **For testing:**
+### 8. For testing:**
 
    ```bash
    npm test

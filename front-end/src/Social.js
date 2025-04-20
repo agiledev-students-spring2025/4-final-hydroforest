@@ -8,7 +8,7 @@ const Social = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const userId = '67ff39e04d4948ffd9ffdc37';
+  const userId = '67ffcc8555b2f902aee5c851';
 
   const [isOpen, setOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');

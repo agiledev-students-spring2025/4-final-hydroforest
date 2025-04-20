@@ -1,142 +1,117 @@
 // routes/auth.js
 const express = require('express');
-const fs = require('fs');
-const path = require('path');
+const { check, validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const router = express.Router();
 
-// Define the paths to your JSON data files
-const dataFilePath = path.join(__dirname, '../mock-data/data.json');
-const newUserFilePath = path.join(__dirname, '../mock-data/newUser.json');
+const User = require('../database/User'); // Your Mongoose User model
+require('dotenv').config(); // Load env variables
 
-// Utility function to load users from data.json
-function loadUsers() {
-  try {
-    const data = fs.readFileSync(dataFilePath, 'utf8');
-    let users = JSON.parse(data);
-    // Ensure we work with an array
-    if (!Array.isArray(users)) {
-      users = [users];
+// SIGNUP Endpoint
+router.post(
+  '/signup',
+  [
+    // Validate input fields
+    check('username', 'Username is required').notEmpty(),
+    check('email', 'Please include a valid email').isEmail(),
+    check('password', 'Password must be at least 6 characters long').isLength({ min: 6 }),
+  ],
+  async (req, res) => {
+    // Check for validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      // Return the first validation error message
+      return res.status(400).json({ success: false, message: errors.array()[0].msg });
     }
-    return users;
-  } catch (err) {
-    console.error("Error reading data file:", err);
-    return [];
-  }
-}
 
-// Utility function to save users to data.json
-function saveUsers(users) {
-  try {
-    fs.writeFileSync(dataFilePath, JSON.stringify(users, null, 2), 'utf8');
-  } catch (err) {
-    console.error("Error writing to data file:", err);
-  }
-}
+    try {
+      let { username, email, password } = req.body;
+      username = username.trim();
+      email = email.trim();
 
-// Utility function to load new users from newUser.json
-function loadNewUsers() {
-  try {
-    // If the file doesn't exist, return an empty array.
-    if (!fs.existsSync(newUserFilePath)) {
-      return [];
+      // Check if a user with the same username or email exists
+      let existingUser = await User.findOne({ $or: [{ username }, { email }] });
+      if (existingUser) {
+        return res.status(400).json({ success: false, message: 'User already exists' });
+      }
+
+      // Hash the password before storing it
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+
+      // Create and save a new user
+      let user = new User({
+        username,
+        email,
+        password: hashedPassword,
+        hydrationData: [],
+        hasUnlockedTree: false,
+        unlockableTrees: ["Misty Bonsai", "Sunflower", "Golden Sun"],
+        plantLevel: 0,
+        longestStreak: 0,
+        currentStreak: 0,
+        totalWaterLogged: 0,
+        notificationsEnabled: false,  // Using a Boolean per schema
+      });
+
+      await user.save();
+
+      // Generate a JWT token for the new user
+      const payload = { id: user.id };
+      const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+      // Return a successful signup response
+      return res.status(200).json({ success: true, token, message: 'Signup successful!' });
+    } catch (err) {
+      console.error("Signup error:", err);
+      return res.status(500).json({ success: false, message: 'Server error' });
     }
-    const data = fs.readFileSync(newUserFilePath, 'utf8');
-    let newUsers = JSON.parse(data);
-    if (!Array.isArray(newUsers)) {
-      newUsers = [newUsers];
+  }
+);
+
+// LOGIN Endpoint
+router.post(
+  '/login',
+  [
+    check('username', 'Username is required').notEmpty(),
+    check('password', 'Password is required').exists(),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ success: false, message: errors.array()[0].msg });
     }
-    return newUsers;
-  } catch (err) {
-    console.error("Error reading newUser file:", err);
-    return [];
+
+    try {
+      const { username, password } = req.body;
+      let user = await User.findOne({ username });
+      if (!user) {
+        return res.status(400).json({ success: false, message: 'Invalid credentials' });
+      }
+
+      const isMatch = await bcrypt.compare(password, user.password);
+      if (!isMatch) {
+        return res.status(400).json({ success: false, message: 'Invalid credentials' });
+      }
+
+      const payload = { id: user.id };
+      const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+      return res.status(200).json({ success: true, token, message: 'Login successful!' });
+    } catch (err) {
+      console.error("Login error:", err);
+      return res.status(500).json({ success: false, message: 'Server error' });
+    }
   }
-}
+);
 
-// Utility function to save new users to newUser.json
-function saveNewUsers(newUsers) {
-  try {
-    fs.writeFileSync(newUserFilePath, JSON.stringify(newUsers, null, 2), 'utf8');
-  } catch (err) {
-    console.error("Error writing to newUser file:", err);
-  }
-}
-
-// Helper function to load all users (from data.json and newUser.json)
-function loadAllUsers() {
-  const usersFromData = loadUsers();
-  const usersFromNew = loadNewUsers();
-  return [...usersFromData, ...usersFromNew];
-}
-
-// Initialize our users array from data.json (used for existence check)
-let users = loadUsers();
-
-// LOGIN
-router.post('/login', (req, res) => {
-  const { username, password } = req.body;
-  console.log('Login request received:', req.body);
-
-  // Combine users from both files
-  const allUsers = loadAllUsers();
-  console.log("All users:", allUsers);
-  // Find the matching user
-  const user = allUsers.find(u => u.username === username && u.password === password);
-
-  if (user) {
-    res.json({ success: true, message: 'Login successful!' });
-  } else {
-    res.status(401).json({ success: false, message: 'Invalid username or password' });
-  }
-});
-
-// SIGNUP
-router.post('/signup', (req, res) => {
-  const { username, email, password } = req.body;
-  console.log('Signup request received:', req.body);
-
-  if (!username || !email || !password) {
-    return res.status(400).json({ success: false, message: 'Missing fields' });
-  }
-
-  // Create the new user object
-  const newUser = {
-    username: username.trim(),
-    password: password.trim(),
-    email: email.trim(),
-    hydrationData: [],
-    hasUnlockedTree: false,
-    unlockableTrees: ["Misty Bonsai", "Sunflower", "Golden Sun"],
-    plantLevel: 0,
-    longestStreak: 0,
-    currentStreak: 0,
-    totalWaterLogged: 0,
-    notificationsEnabled: "Turn On Notifications"
-  };
-
-  // Directly overwrite newUser.json
-  try {
-    fs.writeFileSync(newUserFilePath, JSON.stringify(newUser, null, 2), 'utf8');
-    console.log("New user successfully written to file.");
-  } catch (err) {
-    console.error("Error writing to newUser file:", err);
-    return res.status(500).json({ success: false, message: "Internal server error" });
-  }
-
-  console.log("New users after signup:", loadNewUsers());
-  res.json({ success: true, message: 'Signup successful!' });
-});
-
-
-// FORGOT PASSWORD
+// FORGOT PASSWORD Endpoint (stub)
 router.post('/forgot-password', (req, res) => {
-  const { email } = req.body;
-  // For security, always respond with success without confirming email existence
-  res.json({
+  return res.status(200).json({
     success: true,
     message: 'If this email is registered, you will receive a password reset link.'
   });
 });
 
 module.exports = router;
-
-
