@@ -6,11 +6,6 @@ const Tree = require('../database/Tree');
 
 const router = express.Router();
 
-//test token
-const jwt = require('jsonwebtoken');
-const token = jwt.sign({ id: '67ff49eb8cd65d5191328119' }, process.env.JWT_SECRET, { expiresIn: '2h' });
-console.log(token);
-//end here
 
 // Utility: Get today’s date in YYYY-MM-DD (Eastern Time)
 function getTodayDate() {

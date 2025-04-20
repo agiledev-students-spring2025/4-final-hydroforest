@@ -26,7 +26,8 @@ const LoginPage = () => {
   
       if (response.ok) {
         console.log("Login successful:", data);
-        navigate("/"); // Go to homepage
+        localStorage.setItem("token", data.token); // ✅ Save token
+        navigate("/"); // ✅ Go to HomePage
       } else {
         console.error("Login error:", data.message);
         alert(data.message);
@@ -36,6 +37,7 @@ const LoginPage = () => {
       alert("Something went wrong. Please try again.");
     }
   };
+  
 
   return (
     <div className="login-page">
