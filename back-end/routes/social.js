@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
 const User = require('../database/User');
 
-// GET all friends for a specific user
-router.get('/:userId', async (req, res) => {
+// GET all friends for the authenticated user
+router.get('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId).populate('friends', 'username totalWaterLogged');
+    const user = await User.findById(req.user.id).populate('friends', 'username totalWaterLogged');
     if (!user) return res.status(404).json({ error: 'User not found' });
 
     res.json({ friends: user.friends });
@@ -14,11 +15,11 @@ router.get('/:userId', async (req, res) => {
   }
 });
 
-// GET friend suggestions for a user (not already friends + matches query)
-router.get('/suggestions/:userId', async (req, res) => {
+// GET friend suggestions based on query
+router.get('/suggestions', passport.authenticate('jwt', { session: false }), async (req, res) => {
   try {
     const query = req.query.q?.toLowerCase() || '';
-    const user = await User.findById(req.params.userId);
+    const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ error: 'User not found' });
 
     const allUsers = await User.find({ _id: { $ne: user._id } });
@@ -35,16 +36,15 @@ router.get('/suggestions/:userId', async (req, res) => {
 });
 
 // POST to add a friend
-router.post('/add', async (req, res) => {
-  const { userId, friendId } = req.body;
+router.post('/add', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  const { friendId } = req.body;
 
   try {
-    const user = await User.findById(userId);
+    const user = await User.findById(req.user.id);
     const friend = await User.findById(friendId);
 
     if (!user || !friend) return res.status(404).json({ error: 'User or friend not found' });
 
-    // Prevent duplicates
     if (!user.friends.includes(friend._id)) {
       user.friends.push(friend._id);
       await user.save();
@@ -57,11 +57,11 @@ router.post('/add', async (req, res) => {
 });
 
 // POST to remove a friend
-router.post('/remove', async (req, res) => {
-  const { userId, friendId } = req.body;
+router.post('/remove', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  const { friendId } = req.body;
 
   try {
-    const user = await User.findById(userId);
+    const user = await User.findById(req.user.id);
     if (!user) return res.status(404).json({ error: 'User not found' });
 
     user.friends = user.friends.filter(fId => fId.toString() !== friendId);
