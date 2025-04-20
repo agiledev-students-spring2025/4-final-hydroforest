@@ -29,17 +29,18 @@ const SignupPage = () => {
   
       if (response.ok) {
         console.log("Signup successful:", data);
-        navigate("/login"); // Go to login page
+        navigate("/login"); // Redirect to login page on success
       } else {
-        console.error("Signup error:", data.message);
-        alert(data.message);
+        // If message is missing, check if errors exist.
+        const errorMessage = data.message || (data.errors && data.errors[0].msg) || "Signup failed";
+        console.error("Signup error:", errorMessage);
+        alert(errorMessage);
       }
     } catch (error) {
       console.error("Signup error:", error);
       alert("Something went wrong. Please try again.");
     }
   };
-  
 
   return (
     <div className="signup-page">
@@ -59,7 +60,6 @@ const SignupPage = () => {
             onChange={handleInputChange}
             className="signup-input"
             required
-            whileFocus={{ scale: 1.02 }}
           />
           <motion.input
             type="email"
@@ -69,7 +69,6 @@ const SignupPage = () => {
             onChange={handleInputChange}
             className="signup-input"
             required
-            whileFocus={{ scale: 1.02 }}
           />
           <motion.input
             type="password"
@@ -79,19 +78,15 @@ const SignupPage = () => {
             onChange={handleInputChange}
             className="signup-input"
             required
-            whileFocus={{ scale: 1.02 }}
           />
           <motion.button 
             type="submit" 
             className="signup-btn"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
           >
             Sign Up
           </motion.button>
         </form>
 
-        {/* Centered Already Have an Account? */}
         <div className="login-section">
           <p 
             className="login-text"
