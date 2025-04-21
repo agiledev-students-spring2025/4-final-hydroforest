@@ -88,7 +88,7 @@ const HomePage = () => {
       })
         .then(res => res.json())
         .then(() => {
-          // 👇 Refresh latest hydration info after logging
+          //  Refresh latest hydration info after logging
           return fetch("http://localhost:5005/api/Home/data", {
             headers: {
               Authorization: `Bearer ${token}`
@@ -98,8 +98,8 @@ const HomePage = () => {
         .then(res => res.json())
         .then(data => {
           setTotalIntake(data.totalIntake);
-          setTreeStage(data.currentStage);
-          setTreeImage(data.treeImage);
+          setTimeout(() => setTreeStage(data.currentStage), 1200);
+          setTimeout(() => setTreeImage(data.treeImage), 1200);
           setHasUnlockedTree(data.hasUnlockedTree);
         })
         .catch(err => console.error("Error updating water:", err))
@@ -111,7 +111,7 @@ const HomePage = () => {
   const handleSelectTree = (treeKey) => {
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:3001/api/home/select-tree", {
+    fetch("http://localhost:5005/api/home/select-tree", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
