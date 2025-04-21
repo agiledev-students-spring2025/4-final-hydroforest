@@ -89,7 +89,7 @@ cd front-end
 
 - You can find the required .env file in our team Discord.
 
-### 5. Install Dependencies of Front-End and Launch the Front-End:\*\*
+### 5. Install Dependencies of Front-End and Launch the Front-End:
 
 - Install the necessary packages:
 
@@ -103,7 +103,7 @@ npm install
 npm start
 ```
 
-### 6. Navigate to the Back-End Folder:\*\*
+### 6. Navigate to the Back-End Folder:
 
 - in a different shell
 - Change directory to the `back-end` folder:
@@ -118,7 +118,7 @@ cd back-end
 
 - You can find the required .env file in our team Discord.
 
-### 8. Install Dependencies of Back-end and Launch the Application:\*\*
+### 8. Install Dependencies of Back-end and Launch the Application:
 
 - Install the necessary packages:
 
@@ -132,7 +132,7 @@ npm install
 npm start
 ```
 
-### 9. Access the app\*\*
+### 9. Access the app
 
 Once both the back-end and front-end are running, open your browser and go to
 
@@ -140,7 +140,7 @@ Once both the back-end and front-end are running, open your browser and go to
 http://localhost:3000
 ```
 
-### 10. For testing:\*\*
+### 10. For testing:
 
 ```bash
 npm test
