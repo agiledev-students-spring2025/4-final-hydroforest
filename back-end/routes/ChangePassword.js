@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const { check, validationResult } = require("express-validator");
 const passport = require("passport");
-const User = require("../database/User"); 
+const User = require("../database/User");
 
 // CHANGE PASSWORD (Authenticated)
 router.post("/change-password", [
@@ -38,8 +38,11 @@ router.post("/change-password", [
     // Hash new password before storing
     const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-    // Update password in database
-    await User.findByIdAndUpdate(req.user.id, { $set: { password: hashedPassword } });
+    // Update password and save user
+    user.password = hashedPassword;
+    await user.save();
+
+    console.log("Password updated successfully for user:", user._id);
 
     res.json({ success: true, message: "Password changed successfully!" });
 
@@ -50,4 +53,3 @@ router.post("/change-password", [
 });
 
 module.exports = router;
-

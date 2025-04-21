@@ -35,16 +35,16 @@ router.post("/change-email", [
       return res.status(409).json({ success: false, message: "New email is already in use" });
     }
 
-    // Update email securely
-    await User.findByIdAndUpdate(req.user.id, { $set: { email: newEmail } });
+    // Update email and save user
+    user.email = newEmail;
+    await user.save();
 
-    res.json({ success: true, message: `Verification email sent to ${newEmail}` });
+    res.json({ success: true, message: "Email updated successfully!" });
 
   } catch (error) {
-    console.error("Error changing email:", error);
-    res.status(500).json({ success: false, message: "Internal server error" });
-  }
+    console.error("Error changing email:", error); // This prints the full error
+    res.status(500).json({ success: false, message: error.message });
+  }  
 });
 
 module.exports = router;
-
