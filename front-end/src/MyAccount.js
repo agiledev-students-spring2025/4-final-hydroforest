@@ -82,7 +82,7 @@ const MyAccount = () => {
           <p>Current Plant Level: <span>{accountData.plantLevel}</span></p>
           <p>Longest Streak: <span>{accountData.longestStreak} days</span></p>
           <p>Current Streak: <span>{accountData.currentStreak} days</span></p>
-          <p>Total Water Logged: <span>{accountData.totalWaterLogged}L</span></p>
+          <p>Total Water Logged: <span>{(accountData.totalWaterLogged / 1000).toFixed(2)}L</span></p>
         </div>
 
         <div className="account-info">
