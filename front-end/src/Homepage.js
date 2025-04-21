@@ -23,7 +23,7 @@ const HomePage = () => {
   const location = useLocation();
   const [isOpen, setOpen] = useState(false);
 
-  // 🔒 Redirect if no token
+  //  Redirect if no token
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -31,7 +31,7 @@ const HomePage = () => {
     }
   }, [navigate]);
 
-  // 🌲 Fetch home data on mount
+  // Fetch home data on mount
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -58,7 +58,7 @@ const HomePage = () => {
       .catch(err => console.error("Error fetching home data:", err));
   }, [navigate]);
 
-  // 🎉 Show unlock popup
+  //  Show unlock popup
   useEffect(() => {
     if (totalIntake >= 1920 && !hasUnlockedTree) {
       setTimeout(() => setShowUnlockPopup(true), 1800);

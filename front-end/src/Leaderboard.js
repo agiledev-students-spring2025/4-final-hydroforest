@@ -43,6 +43,7 @@ const Leaderboard = () => {
       <h1 className="page-title">Leaderboard</h1>
 
       <header>
+      <h2> </h2>
         <div className="hamburger-menu">
           <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
         </div>
@@ -121,13 +122,14 @@ const Leaderboard = () => {
             <tr>
               <th>Rank</th>
               <th>Profile</th>
+              <th>Name</th>
               <th>Water Logged</th>
             </tr>
           </thead>
           <tbody>
           {users.length === 0 ? (
             <tr>
-              <td colSpan="3" className="no-friends-message">
+              <td colSpan="4" className="no-friends-message">
                 You currently have no friends added to your leaderboard.
               </td>
             </tr>
@@ -137,14 +139,15 @@ const Leaderboard = () => {
                 <td>{index + 4}</td>
                 <td>
                   <img className="profile-image" src="https://picsum.photos/100" alt={user.username} />
-                  <span>{user.username}</span>
+                  
                 </td>
+                <td><span className = "leadboard-username">{user.username}</span></td>
                 <td>{user.totalWaterLogged} mL</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="3" className="no-friends-message">
+              <td colSpan="4" className="no-friends-message">
                 Only top 3 users so far — invite more friends to compete!
               </td>
             </tr>
@@ -152,7 +155,16 @@ const Leaderboard = () => {
         </tbody>
         </table>
       </motion.div>
-
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+        className="go-back-container"
+      >
+        <button className="go-back-social" onClick={() => navigate("/Social")}>
+          Go Back to Social
+        </button>
+      </motion.div>
       {/* Bottom Nav */}
       <div className="navbar">
         <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>
