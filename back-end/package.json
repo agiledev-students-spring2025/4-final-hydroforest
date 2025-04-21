@@ -7,7 +7,7 @@
         "start": "node app.js",
         "dev": "nodemon app.js",
         "coverage": "NODE_ENV=test c8 mocha",
-        "test": "NODE_ENV=test c8 mocha"
+        "test": "NODE_ENV=test c8 --reporter=lcov --reporter=text mocha --exit"
     },
     "author": "",
     "license": "ISC",

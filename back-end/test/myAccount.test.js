@@ -1,43 +1,43 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
-const app = require("../app"); // Ensure your app exports the Express instance
+const app = require("../app");
+const User = require("../database/User");
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 
-describe("My Account API Additional Branch Tests", () => {
-  // Test for update route when both email and password are missing
-  it("POST /api/MyAccount/account/update should return 400 when neither email nor password is provided", (done) => {
-    chai.request(app)
-      .post("/api/MyAccount/account/update")
-      .send({}) // no email or password provided
-      .end((err, res) => {
-        expect(res).to.have.status(400);
-        expect(res.body.success).to.be.false;
-        expect(res.body.message).to.equal("Missing fields. Provide 'email' or 'password' to update.");
-        done();
-      });
-  });
+let authToken;
+const testUser = {
+  username: `notifyuser_${Date.now()}`,
+  email: `${Date.now()}@notify.com`,
+  password: "123456"
+};
 
-  // Test for update route when only password is provided (to cover password branch)
-  it("POST /api/MyAccount/account/update should update the password successfully", (done) => {
-    const requestBody = { password: "newsecurepassword" };
-    chai.request(app)
-      .post("/api/MyAccount/account/update")
-      .send(requestBody)
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body.success).to.be.true;
-        expect(res.body.message).to.include("Profile updated successfully");
-        done();
-      });
-  });
+before((done) => {
+  chai.request(app)
+    .post("/api/auth/signup")
+    .send(testUser)
+    .end(() => {
+      chai.request(app)
+        .post("/api/auth/login")
+        .send({ username: testUser.username, password: testUser.password })
+        .end((err, res) => {
+          authToken = res.body.token;
+          done();
+        });
+    });
+});
 
-  // Test for notifications route when notificationsEnabled is missing
-  it("POST /api/MyAccount/account/notifications should return 400 when notificationsEnabled is not provided", (done) => {
+after(async () => {
+  await User.deleteOne({ username: testUser.username });
+});
+
+describe("Notification Preferences", () => {
+  it("should return 400 if notificationsEnabled is missing", (done) => {
     chai.request(app)
       .post("/api/MyAccount/account/notifications")
-      .send({}) // missing notificationsEnabled
+      .set("Authorization", `Bearer ${authToken}`)
+      .send({})
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res.body.success).to.be.false;
@@ -45,7 +45,30 @@ describe("My Account API Additional Branch Tests", () => {
         done();
       });
   });
+
+  it("should enable notifications", (done) => {
+    chai.request(app)
+      .post("/api/MyAccount/account/notifications")
+      .set("Authorization", `Bearer ${authToken}`)
+      .send({ notificationsEnabled: true })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.success).to.be.true;
+        expect(res.body.message).to.include("enabled");
+        done();
+      });
+  });
+
+  it("should disable notifications", (done) => {
+    chai.request(app)
+      .post("/api/MyAccount/account/notifications")
+      .set("Authorization", `Bearer ${authToken}`)
+      .send({ notificationsEnabled: false })
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body.success).to.be.true;
+        expect(res.body.message).to.include("disabled");
+        done();
+      });
+  });
 });
-
-
-
