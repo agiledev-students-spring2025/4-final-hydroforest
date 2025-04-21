@@ -58,41 +58,43 @@ const ForestPage = () => {
   }, []);
   
 
-  // Fetch hydration data from database
   useEffect(() => {
-    fetch("http://localhost:5005/api/forest")
-      .then((res) => res.json())
+    const token = localStorage.getItem("token");
+  
+    fetch("http://localhost:5005/api/forest", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          localStorage.removeItem("token");
+          navigate("/Login");
+          return;
+        }
+        return res.json();
+      })
       .then((data) => {
         const sortedData = data.hydrationData.sort(
           (a, b) => new Date(a.date) - new Date(b.date)
         );
         setHydrationData(sortedData);
-        console.log("Hydration data fetched:", hydrationData);
-        console.log("Forest plants after processing:", forestPlants);
-
+  
         const unlockedPlantsWithDates = sortedData
           .filter(record => record.unlockedPlant)
           .map(record => ({ name: record.unlockedPlant, unlockedOn: record.date }));
-
-            
-        // Map names to DB-sourced image paths
-        const unlockedPlantsWithImages = unlockedPlantsWithDates.map(({ name, unlockedOn }) => {
-          const plantObj = treeImages.find(p => p.name.trim().toLowerCase() === name.trim().toLowerCase());
-          if (!plantObj) {
-            console.warn(`Couldn't match:`, name, "against:", treeImages.map(p => p.name));
-          }
-
-          
-          return plantObj ? { name, src: plantObj.src, unlockedOn } : null;
-        }).filter(Boolean);
-
-        console.log("Mapped unlocked plants with images:", unlockedPlantsWithImages);
+  
+        const unlockedPlantsWithImages = unlockedPlantsWithDates
+          .map(({ name, unlockedOn }) => {
+            const plantObj = treeImages.find(p => p.name.trim().toLowerCase() === name.trim().toLowerCase());
+            return plantObj ? { name, src: plantObj.src, unlockedOn } : null;
+          })
+          .filter(Boolean);
+  
         setForestPlants(unlockedPlantsWithImages);
-        
-
       })
       .catch(err => console.error("Error fetching forest data:", err));
-  }, [treeImages]); // depend on treeImages
+  }, [treeImages]);
 
 
   // // Place unlocked plants into grid positions (if any)
@@ -105,7 +107,7 @@ const ForestPage = () => {
   // });
 
   useEffect(() => {
-    console.log("🌿 forestPlants:", forestPlants); // See what plants made it in
+    console.log(" forestPlants:", forestPlants); // See what plants made it in
   
     const newGrid = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(null));
   
@@ -113,12 +115,7 @@ const ForestPage = () => {
       const x = index % GRID_SIZE;
       const y = Math.floor(index / GRID_SIZE);
   
-      // Log details about placement and image source
-      console.log(`🪴 Placing plant:`, {
-        name: plant.name,
-        src: plant.src,
-        gridPosition: `[${y}][${x}]`
-      });
+
   
       if (x < GRID_SIZE && y < GRID_SIZE) {
         newGrid[y][x] = plant;
@@ -202,7 +199,9 @@ const ForestPage = () => {
             <img src={selectedPlant.src} alt={selectedPlant.name} className="popup-plant-image" />
             <h3>{selectedPlant.name}</h3>
             {selectedPlant.unlockedOn && (
-              <p>Unlocked on: {selectedPlant.unlockedOn}</p>
+              <p>
+          Unlocked on: {new Date(selectedPlant.unlockedOn).toISOString().slice(0, 10)}
+        </p>
             )}
             <button className="close-btn" onClick={() => setSelectedPlant(null)}>Close</button>
           </div>

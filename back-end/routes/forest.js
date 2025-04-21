@@ -1,20 +1,23 @@
 const express = require('express');
+const passport = require('passport');
+const User = require('../database/User');
 const router = express.Router();
 
-// Use the shared in-memory data from data.json
-const userData = require('../mock-data/data.json');
+router.get(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    try {
+      const user = await User.findById(req.user.id);
+      if (!user) return res.status(404).json({ error: 'User not found' });
 
-// GET hydration data for the entire month (or all hydrationData)
-router.get('/', (req, res) => {
-  res.json({ hydrationData: userData.hydrationData });
-});
-
-// POST new hydration log (mock endpoint)
-router.post('/', (req, res) => {
-  const { date, cups } = req.body;
-  console.log(`Received hydration data: ${date}, ${cups}`);
-  res.json({ success: true, message: "Mock hydration data received." });
-
-});
+      res.json({ hydrationData: user.hydrationData });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Server error' });
+    }
+  }
+);
 
 module.exports = router;
+
