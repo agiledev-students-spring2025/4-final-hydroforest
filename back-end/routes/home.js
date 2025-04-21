@@ -31,13 +31,13 @@ router.get(
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
     try {
-      const user = await User.findById(req.user.id).lean();
+      const user = await User.findById(req.user.id);
       if (!user) return res.status(404).json({ error: 'User not found' });
 
       const today = getTodayDate();
       const todayRecord = user.hydrationData.find(r => r.date.toISOString().startsWith(today));
       const totalIntake = todayRecord?.amount || 0;
-      const selectedTreeName = todayRecord?.unlockedPlant || user.unlockableTrees[0];
+      const selectedTreeName = user.selectedTree || todayRecord?.unlockedPlant || user.unlockableTrees[0];
 
       const treeDoc = await Tree.findOne({ name: selectedTreeName });
       const currentStage = getTreeStage(totalIntake);
@@ -104,7 +104,7 @@ router.post(
       const updatedRecord = user.hydrationData.find(r => r.date.toISOString().startsWith(today));
       const totalIntake = updatedRecord.amount;
       const currentStage = getTreeStage(totalIntake);
-      const selectedTreeName = user.unlockableTrees[0];
+      const selectedTreeName = user.selectedTree || user.unlockableTrees[0];
       let justUnlocked = false;
 
       if (totalIntake >= 1920 && !updatedRecord.unlockedPlant) {

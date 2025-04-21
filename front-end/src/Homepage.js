@@ -87,8 +87,10 @@ const HomePage = () => {
         body: JSON.stringify({ amount: amountInMl })
       })
         .then(res => res.json())
-        .then(() => {
-          //  Refresh latest hydration info after logging
+        .then(data => {
+          if (data.justUnlocked) {
+            setTimeout(() => setShowUnlockPopup(true), 1800);
+          }
           return fetch("http://localhost:5005/api/Home/data", {
             headers: {
               Authorization: `Bearer ${token}`
@@ -101,6 +103,10 @@ const HomePage = () => {
           setTimeout(() => setTreeStage(data.currentStage), 1200);
           setTimeout(() => setTreeImage(data.treeImage), 1200);
           setHasUnlockedTree(data.hasUnlockedTree);
+          if (data.justUnlocked) {
+            console.log(" Tree just unlocked!");
+            setTimeout(() => setShowUnlockPopup(true), 1800);
+          }
         })
         .catch(err => console.error("Error updating water:", err))
         .finally(() => setTimeout(() => setIsWatering(false), 1300));
@@ -110,7 +116,7 @@ const HomePage = () => {
 
   const handleSelectTree = (treeKey) => {
     const token = localStorage.getItem("token");
-
+  
     fetch("http://localhost:5005/api/home/select-tree", {
       method: "POST",
       headers: {
@@ -123,8 +129,18 @@ const HomePage = () => {
         if (!res.ok) return res.json().then(err => { throw new Error(err.error); });
         return res.json();
       })
+      .then(() => {
+        return fetch("http://localhost:5005/api/Home/data", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      })
+      .then(res => res.json())
       .then(data => {
         setSelectedTree(data.selectedTree);
+        setTreeImage(data.treeImage); //  image now updates
+        setTreeStage(data.currentStage);
         setIsModalOpen(false);
       })
       .catch(err => {
@@ -132,6 +148,7 @@ const HomePage = () => {
         alert(err.message);
       });
   };
+  
 
   const getWaterNeededForNextStage = () => {
     const thresholds = {
