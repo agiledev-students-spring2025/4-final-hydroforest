@@ -111,7 +111,7 @@ const Social = () => {
             <li onClick={() => { navigate('/Account'); setOpen(false); }}>My Account</li>
             <li onClick={() => { navigate('/AboutUs'); setOpen(false); }}>About Us</li>
             <li onClick={() => { setShowHelp(true); setOpen(false); }}>Help</li>
-            <li onClick={() => { navigate('/Login'); setOpen(false); }}>Logout</li>
+            <li className="logout" onClick={() => { localStorage.clear(); navigate("/Login"); setOpen(false); }}>Logout</li>
           </ul>
         </motion.div>
       </header>
