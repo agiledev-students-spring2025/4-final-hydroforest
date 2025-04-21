@@ -133,13 +133,13 @@ const Leaderboard = () => {
             </tr>
           ) : users.length > 3 ? (
             users.slice(3).map((user, index) => (
-              <tr key={user.id}>
+              <tr key={user._id}>
                 <td>{index + 4}</td>
                 <td>
-                  <img className="profile-image" src={user.src} alt={user.name} />
-                  <span>{user.name}</span>
+                  <img className="profile-image" src="https://picsum.photos/100" alt={user.username} />
+                  <span>{user.username}</span>
                 </td>
-                <td>{user.hydration}</td>
+                <td>{user.totalWaterLogged} mL</td>
               </tr>
             ))
           ) : (
