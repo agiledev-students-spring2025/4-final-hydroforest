@@ -26,8 +26,8 @@ const LoginPage = () => {
   
       if (response.ok) {
         console.log("Login successful:", data);
-        localStorage.setItem("token", data.token); // ✅ Save token
-        navigate("/"); // ✅ Go to HomePage
+        localStorage.setItem("token", data.token); //  Save token
+        navigate("/"); //  Go to HomePage
       } else {
         console.error("Login error:", data.message);
         alert(data.message);
@@ -87,7 +87,7 @@ const LoginPage = () => {
           </motion.button>
         </form>
 
-        {/* 🔹 Sign-Up Redirect */}
+        {/*  Sign-Up Redirect */}
         <div className="signup-section">
           <p 
             className="signup-text"

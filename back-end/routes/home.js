@@ -70,7 +70,7 @@ router.get(
   }
 );
 
-// 💧 POST /api/home/log-water — Protected
+//  POST /api/home/log-water — Protected
 router.post(
   '/log-water',
   passport.authenticate('jwt', { session: false }),
@@ -136,7 +136,7 @@ router.post(
   }
 );
 
-// 🌳 POST /api/home/select-tree — Protected
+// POST /api/home/select-tree — Protected
 router.post(
   '/select-tree',
   passport.authenticate('jwt', { session: false }),
