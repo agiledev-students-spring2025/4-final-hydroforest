@@ -155,7 +155,16 @@ const Leaderboard = () => {
         </tbody>
         </table>
       </motion.div>
-
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.4 }}
+        className="go-back-container"
+      >
+        <button className="go-back-social" onClick={() => navigate("/Social")}>
+          Go Back to Social
+        </button>
+      </motion.div>
       {/* Bottom Nav */}
       <div className="navbar">
         <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>
