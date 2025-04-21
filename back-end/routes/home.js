@@ -36,9 +36,9 @@ router.get(
 
       const today = getTodayDate();
       const todayRecord = user.hydrationData.find(r => r.date.toISOString().startsWith(today));
+
       const totalIntake = todayRecord?.amount || 0;
       const selectedTreeName = user.selectedTree || todayRecord?.unlockedPlant || user.unlockableTrees[0];
-
       const treeDoc = await Tree.findOne({ name: selectedTreeName });
       const currentStage = getTreeStage(totalIntake);
       const unlockableTreeDocs = await Tree.find({ name: { $in: user.unlockableTrees } });
@@ -161,6 +161,7 @@ router.post(
 
       user.selectedTree = selectedTree;
       await user.save();
+      console.log("✅ Saved user.selectedTree:", user.selectedTree);
 
       res.json({
         selectedTree,
