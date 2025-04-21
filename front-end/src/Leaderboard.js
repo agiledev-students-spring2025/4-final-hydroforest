@@ -125,17 +125,31 @@ const Leaderboard = () => {
             </tr>
           </thead>
           <tbody>
-            {users.length > 3 && users.slice(3).map((user, index) => (
-              <tr key={user._id}>
+          {users.length === 0 ? (
+            <tr>
+              <td colSpan="3" className="no-friends-message">
+                You currently have no friends added to your leaderboard.
+              </td>
+            </tr>
+          ) : users.length > 3 ? (
+            users.slice(3).map((user, index) => (
+              <tr key={user.id}>
                 <td>{index + 4}</td>
                 <td>
-                  <img className="profile-image" src="https://picsum.photos/100" alt={user.username} />
-                  <span>{user.username}</span>
+                  <img className="profile-image" src={user.src} alt={user.name} />
+                  <span>{user.name}</span>
                 </td>
-                <td>{user.totalWaterLogged} mL</td>
+                <td>{user.hydration}</td>
               </tr>
-            ))}
-          </tbody>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3" className="no-friends-message">
+                Only top 3 users so far — invite more friends to compete!
+              </td>
+            </tr>
+          )}
+        </tbody>
         </table>
       </motion.div>
 
