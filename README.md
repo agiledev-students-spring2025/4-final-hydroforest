@@ -40,10 +40,15 @@ We followed an **Agile methodology**, continuously iterating through sprints to 
 
 - **Sprint 2**  
   Back-end development with an Express.js server. We implemented dynamic API routes for:
+
   - User authentication
   - Hydration logging
   - Tree unlocking  
     Using mock JSON data, we connected front-end components to simulate full-stack functionality, including profile management and hydration history.
+
+- **Sprint 3**
+  - We integrated MongoDB Atlas to replace mock data. Using Mongoose, we defined schemas for users and trees, and established secure, JWT-protected API routes.
+  - All incoming data is validated using express-validator before being stored, ensuring data integrity and security.
 
 Our end goal: deliver a polished, engaging app that helps users build better habits by the end of the semester.
 

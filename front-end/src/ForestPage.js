@@ -37,7 +37,7 @@ const ForestPage = () => {
         }));
         setTreeImages(formatted);
         
-        console.log(formatted)
+        // console.log(formatted)
         
       })
       .catch(err => console.error("Error fetching tree images:", err));
@@ -84,7 +84,6 @@ const ForestPage = () => {
 
 
   useEffect(() => {
-    console.log(" forestPlants:", forestPlants); // See what plants made it in
   
     const newGrid = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(null));
   

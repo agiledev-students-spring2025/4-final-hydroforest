@@ -49,6 +49,10 @@ const Social = () => {
           }
         });
         const data = await response.json();
+        if (data.suggestions.length === 0) {
+          setFriendSuggestions([{ _id: "no-result", username: data.message || "No users found." }]);
+          return;
+        }
         setFriendSuggestions(data.suggestions || []);
       } catch (error) {
         console.error('Error loading suggestions:', error);
@@ -132,7 +136,9 @@ const Social = () => {
                 {friendSuggestions.map(user => (
                   <motion.li key={user._id} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
                     {user.username}
-                    <button onClick={() => handleAddFriend(user._id)}>Add</button>
+                    {user._id !== "no-result" && (
+                      <button onClick={() => handleAddFriend(user._id)}>Add</button>
+                    )}
                   </motion.li>
                 ))}
               </motion.ul>
