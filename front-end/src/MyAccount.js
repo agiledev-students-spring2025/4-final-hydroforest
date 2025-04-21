@@ -7,7 +7,6 @@ const MyAccount = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // State to store account details from the backend
   const [accountData, setAccountData] = useState({
     username: '',
     email: '',
@@ -18,15 +17,21 @@ const MyAccount = () => {
     notificationsEnabled: false,
   });
 
-  // State for managing notifications toggle (local copy)
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
-
-  // For hamburger menu (if used in your design)
   const [isOpen, setOpen] = useState(false);
 
-  // Fetch account details from the back-end on mount
   useEffect(() => {
-    fetch("http://localhost:5005/api/MyAccount/account")
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/Login");
+      return;
+    }
+
+    fetch("http://localhost:5005/api/MyAccount/account", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then(res => res.json())
       .then(response => {
         if (response.success) {
@@ -37,16 +42,20 @@ const MyAccount = () => {
         }
       })
       .catch(err => console.error("Error fetching account data:", err));
-  }, []);
+  }, [navigate]);
 
-  // Handler for toggling notifications
   const handleToggleNotifications = () => {
     const newSetting = !notificationsEnabled;
     setNotificationsEnabled(newSetting);
-    // Optionally update backend notifications setting
+
+    const token = localStorage.getItem("token");
+
     fetch("http://localhost:5005/api/MyAccount/account/notifications", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      },
       body: JSON.stringify({ notificationsEnabled: newSetting })
     })
       .then(res => res.json())
@@ -57,14 +66,10 @@ const MyAccount = () => {
   return (
     <div className="entire-account-page">
       <div className="account-container">
-
-        {/* Heading */}
         <h1 className="title">My Account</h1>
-
-        {/* Profile Section */}
         <div className="profile-section">
           <img
-            src="https://picsum.photos/100"  // Placeholder profile picture
+            src="https://picsum.photos/100"
             alt="Profile"
             className="profile-picture"
           />
@@ -73,7 +78,6 @@ const MyAccount = () => {
           </h2>
         </div>
 
-        {/* Stats Section */}
         <div className="stats">
           <p>Current Plant Level: <span>{accountData.plantLevel}</span></p>
           <p>Longest Streak: <span>{accountData.longestStreak} days</span></p>
@@ -81,7 +85,6 @@ const MyAccount = () => {
           <p>Total Water Logged: <span>{accountData.totalWaterLogged}L</span></p>
         </div>
 
-        {/* Editable Fields Section */}
         <div className="account-info">
           <label>Email:</label>
           <div className="editable-field">
@@ -96,7 +99,6 @@ const MyAccount = () => {
           </div>
         </div>
 
-        {/* Notification Preferences Section */}
         <div className="preferences">
           <label>
             <input
@@ -108,7 +110,6 @@ const MyAccount = () => {
           </label>
         </div>
 
-        {/* Navigation Bar */}
         <div className="navbar">
           <div className={`nav-item ${location.pathname === "/" ? "active" : ""}`} onClick={() => navigate("/")}>
             <img className="icon-image" src="images/icon/home1.png" alt="Home" />
@@ -129,4 +130,3 @@ const MyAccount = () => {
 };
 
 export default MyAccount;
-
