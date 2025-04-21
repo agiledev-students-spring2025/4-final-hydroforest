@@ -20,7 +20,7 @@ _HydroForest turns daily water intake into an engaging, habit-forming experience
 
 From the user’s perspective, HydroForest provides the following features:
 
-- Log daily water intake (e.g., 1 bottle = 1 tree growth)
+- Log daily water intake
 - View progress through a growing visual forest
 - Track hydration history over time
 - Customize your forest with unlockable elements
@@ -83,7 +83,13 @@ git clone https://github.com/agiledev-students-spring2025/4-final-hydroforest
 cd front-end
 ```
 
-### 4. Install Dependencies of Front-End and Launch the Front-End:\*\*
+### 4. Add Your Front-End Environment File
+
+- Copy the front end .env file into the front-end folder.
+
+- You can find the required .env file in our team Discord.
+
+### 5. Install Dependencies of Front-End and Launch the Front-End:\*\*
 
 - Install the necessary packages:
 
@@ -97,7 +103,7 @@ npm install
 npm start
 ```
 
-### 5. Navigate to the Back-End Folder:\*\*
+### 6. Navigate to the Back-End Folder:\*\*
 
 - in a different shell
 - Change directory to the `back-end` folder:
@@ -106,7 +112,13 @@ npm start
 cd back-end
 ```
 
-### 6. Install Dependencies of Back-end and Launch the Application:\*\*
+### 7. Add Your Back-End Environment File
+
+- Copy the back end .env file into the back-end folder.
+
+- You can find the required .env file in our team Discord.
+
+### 8. Install Dependencies of Back-end and Launch the Application:\*\*
 
 - Install the necessary packages:
 
@@ -120,7 +132,7 @@ npm install
 npm start
 ```
 
-### 7. Access the app\*\*
+### 9. Access the app\*\*
 
 Once both the back-end and front-end are running, open your browser and go to
 
@@ -128,7 +140,7 @@ Once both the back-end and front-end are running, open your browser and go to
 http://localhost:3000
 ```
 
-### 8. For testing:\*\*
+### 10. For testing:\*\*
 
 ```bash
 npm test
