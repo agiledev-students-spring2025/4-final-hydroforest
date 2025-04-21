@@ -205,6 +205,17 @@ const HomePage = () => {
           Math.round(totalIntake)
         } {unit}
       </p>
+
+      <div className="progress-container">
+        <div
+          className="progress-bar"
+          style={{ width: `${Math.min((totalIntake / 1920) * 100, 100)}%` }}
+        ></div>
+      </div>
+      <p className="progress-text">
+        {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of daily goal
+      </p>
+
       <p className="howFarFromGoal">
         {treeStage !== "adultTree"
           ? `Only ${waterLeft} more ${unit} to reach the ${nextStage}`
