@@ -147,10 +147,10 @@ const Leaderboard = () => {
             </tr>
           ) : users.length > 3 ? (
             users.slice(3).map((user, index) => (
-              <tr key={user._id}>
+              <tr key={user._id} className={user.isSelf ? "highlight-self" : ""}>
                 <td>{index + 4}</td>
                 <td>
-                  <img className="profile-image" src="https://picsum.photos/100" alt={user.username} />
+                  <img className="profile-image" src={user.src || `https://picsum.photos/${103 + index}`} alt={user.username} />
                   
                 </td>
                 <td><span className = "leadboard-username">{user.username}</span></td>

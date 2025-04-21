@@ -13,9 +13,20 @@ router.get('/', passport.authenticate('jwt', { session: false }), async (req, re
 
     if (!user) return res.status(404).json({ error: 'User not found' });
 
-    const leaderboard = user.friends.sort(
-      (a, b) => b.totalWaterLogged - a.totalWaterLogged
-    );
+    // Construct the user's own leaderboard entry
+    const self = {
+      _id: user._id,
+      username: user.username,
+      totalWaterLogged: user.totalWaterLogged,
+      isSelf: true
+    };
+
+    // Combine the user and friends into one array
+    const combined = [...user.friends, self];
+
+    // Sort by water logged (highest to lowest)
+    const leaderboard = combined.sort((a, b) => b.totalWaterLogged - a.totalWaterLogged);
+
 
     res.json({ leaderboard });
   } catch (err) {

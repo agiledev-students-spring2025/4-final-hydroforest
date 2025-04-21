@@ -165,8 +165,8 @@ const Social = () => {
               {friends.map((friend, index) => (
                 <motion.li key={friend._id} className="friend-item" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 20 }}>
                   <img       className="profile-image"
-      src={friend.src || `https://picsum.photos/${100 + index}`}
-      alt={friend.username} />
+                src={friend.src || `https://picsum.photos/${100 + index}`}
+                alt={friend.username} />
                   <div className="searched_friend_text">
                     <h6>{friend.username}</h6>
                     <p className="searched_friend_text-muted">{friend.totalWaterLogged || 0} mL Hydrated</p>
