@@ -6,20 +6,6 @@ import "./ForestPage.css";
 
 const GRID_SIZE = 5;
 
-const plantImages = [
-  { name: "Sunleaf", src: "/images/plants1.png" },
-  { name: "Aqua Fern", src: "/images/plants2.png" },
-  { name: "Hydro Cactus", src: "/images/plants3.png" },
-  { name: "Blooming Berry", src: "/images/plants4.png" },
-  { name: "Misty Bonsai", src: "/images/plants5.png" },
-  { name: "Crystal Orchid", src: "/images/plants6.png" },
-  { name: "Verdant Vine", src: "/images/plants7.png" },
-  { name: "Ethereal Sprout", src: "/images/plants8.png" },
-  { name: "Golden Growth", src: "/images/plants9.png" },
-  { name: "Sunflower", src: "/images/tree2.png" },
-  { name: "Golden Sun", src: "/images/tree3.png" }
-];
-
 const ForestPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -51,7 +37,7 @@ const ForestPage = () => {
         }));
         setTreeImages(formatted);
         
-        console.log(formatted)
+        // console.log(formatted)
         
       })
       .catch(err => console.error("Error fetching tree images:", err));
@@ -97,17 +83,7 @@ const ForestPage = () => {
   }, [treeImages]);
 
 
-  // // Place unlocked plants into grid positions (if any)
-  // forestPlants.forEach((plant, index) => {
-  //   const x = index % GRID_SIZE;
-  //   const y = Math.floor(index / GRID_SIZE);
-  //   if (x < GRID_SIZE && y < GRID_SIZE) {
-  //     grid[y][x] = plant;
-  //   }
-  // });
-
   useEffect(() => {
-    console.log(" forestPlants:", forestPlants); // See what plants made it in
   
     const newGrid = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(null));
   

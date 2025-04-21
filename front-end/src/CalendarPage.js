@@ -122,7 +122,7 @@ const CalendarPage = () => {
           <div className="help-message">
             <h2>HydroForest</h2>
             <p>This app helps you stay hydrated while growing a virtual forest!</p>
-            <p>Your goal is to drink 8 cups of water a day and unlock trees 🌳</p>
+            <p>Your goal is to drink 8 cups of water a day and unlock trees </p>
             <button onClick={() => setShowHelp(false)}>Close</button>
           </div>
         </motion.div>

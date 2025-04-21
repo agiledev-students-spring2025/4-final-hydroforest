@@ -92,4 +92,12 @@
   .go-back-social:hover {
     background-color: #246b45;
   }
-  
+
+  .highlight-self {
+    background-color: rgba(255, 255, 0, 0.15); /* light yellow */
+    font-weight: bold;
+  }
+  .podium-self {
+    background-color: rgba(255, 255, 150, 0.3); /* soft yellow */
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+  }

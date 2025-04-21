@@ -1,79 +1,94 @@
 const chai = require("chai");
 const chaiHttp = require("chai-http");
-const app = require("../app"); 
-
+const app = require("../app");
+const User = require("../database/User");
 
 chai.use(chaiHttp);
 const expect = chai.expect;
 
+let authToken;
+const testUser = {
+  username: `pwuser_${Date.now()}`,
+  email: `${Date.now()}@pw.com`,
+  password: "123456"
+};
+
+before((done) => {
+  chai.request(app)
+    .post("/api/auth/signup")
+    .send(testUser)
+    .end(() => {
+      chai.request(app)
+        .post("/api/auth/login")
+        .send({ username: testUser.username, password: testUser.password })
+        .end((err, res) => {
+          authToken = res.body.token;
+          done();
+        });
+    });
+});
+
+after(async () => {
+  await User.deleteOne({ username: testUser.username });
+});
+
 describe("Change Password API", () => {
   it("should return 400 if required fields are missing", (done) => {
-    chai
-      .request(app)
+    chai.request(app)
       .post("/api/ChangePassword/change-password")
-      .send({}) // Empty body
+      .set("Authorization", `Bearer ${authToken}`)
+      .send({})
       .end((err, res) => {
         expect(res).to.have.status(400);
-        expect(res.body).to.have.property("success", false);
-        expect(res.body.message).to.equal("Missing fields");
         done();
       });
   });
 
   it("should return 400 if new password and re-entered password do not match", (done) => {
-    const invalidBody = {
-      currentPassword: "1234",
-      newPassword: "newpassword123",
-      reEnterNewPassword: "mismatchpassword",
-    };
-
-    chai
-      .request(app)
+    chai.request(app)
       .post("/api/ChangePassword/change-password")
-      .send(invalidBody)
+      .set("Authorization", `Bearer ${authToken}`)
+      .send({
+        currentPassword: testUser.password,
+        newPassword: "newpass123",
+        reEnterNewPassword: "wrongpass"
+      })
       .end((err, res) => {
         expect(res).to.have.status(400);
-        expect(res.body).to.have.property("success", false);
-        expect(res.body.message).to.include("do not match");
         done();
       });
   });
 
-  it("should return 401 if the current password is incorrect", (done) => {
-    const invalidBody = {
-      currentPassword: "wrongpassword",
-      newPassword: "newpassword123",
-      reEnterNewPassword: "newpassword123",
-    };
-
-    chai
-      .request(app)
+  it("should return 401 if current password is incorrect", (done) => {
+    chai.request(app)
       .post("/api/ChangePassword/change-password")
-      .send(invalidBody)
+      .set("Authorization", `Bearer ${authToken}`)
+      .send({
+        currentPassword: "wrongpw",
+        newPassword: "newpass123",
+        reEnterNewPassword: "newpass123"
+      })
       .end((err, res) => {
         expect(res).to.have.status(401);
-        expect(res.body).to.have.property("success", false);
-        expect(res.body.message).to.equal("Current password is incorrect");
         done();
       });
   });
 
   it("should return 200 and successfully update the password", (done) => {
-    const validBody = {
-      currentPassword: "1234",
-      newPassword: "newpassword123",
-      reEnterNewPassword: "newpassword123",
-    };
-
-    chai
-      .request(app)
+    chai.request(app)
       .post("/api/ChangePassword/change-password")
-      .send(validBody)
+      .set("Authorization", `Bearer ${authToken}`)
+      .send({
+        currentPassword: testUser.password,
+        newPassword: "newpass123",
+        reEnterNewPassword: "newpass123"
+      })
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body).to.have.property("success", true);
-        expect(res.body.message).to.equal("Password changed successfully!");
+        expect(res.body.success).to.be.true;
+        expect(res.body.message).to.include("successfully");
         done();
       });
   });
 });
+

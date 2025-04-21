@@ -85,35 +85,47 @@ const Leaderboard = () => {
         </motion.div>
       )}
 
-      {/* Podium (top 3) */}
-      {users.length > 0 && (
-        <div className="leaderboard-podium">
-          {users[1] && (
-            <motion.div className="podium-item podium-second">
-              <img className="profile-image" src="https://picsum.photos/101" alt={users[1].username} />
-              <p className="podium-name">{users[1].username}</p>
-              <p className="podium-rank">2nd place</p>
-              <p className="podium-score">{users[1].totalWaterLogged} mL</p>
-            </motion.div>
-          )}
-          {users[0] && (
-            <motion.div className="podium-item podium-first">
-              <img className="profile-image" src="https://picsum.photos/100" alt={users[0].username} />
-              <p className="podium-name">{users[0].username}</p>
-              <p className="podium-rank">1st place</p>
-              <p className="podium-score">{users[0].totalWaterLogged} mL</p>
-            </motion.div>
-          )}
-          {users[2] && (
-            <motion.div className="podium-item podium-third">
-              <img className="profile-image" src="https://picsum.photos/102" alt={users[2].username} />
-              <p className="podium-name">{users[2].username}</p>
-              <p className="podium-rank">3rd place</p>
-              <p className="podium-score">{users[2].totalWaterLogged} mL</p>
-            </motion.div>
-          )}
-        </div>
-      )}
+  {/* Podium (top 3) */}
+<div className="leaderboard-podium">
+  <motion.div className="podium-item podium-second">
+    <img
+      className="profile-image"
+      src={users[1] ? "https://picsum.photos/101" : "images/icon/user-default.png"}
+      alt={users[1]?.username || "Vacant"}
+    />
+    <p className="podium-name">{users[1]?.username || "-"}</p>
+    <p className="podium-rank">2nd place</p>
+    <p className="podium-score">
+      {users[1]?.totalWaterLogged != null ? `${users[1].totalWaterLogged} mL` : "-"}
+    </p>
+  </motion.div>
+
+  <motion.div className="podium-item podium-first">
+    <img
+      className="profile-image"
+      src={users[0] ? "https://picsum.photos/100" : "images/icon/user-default.png"}
+      alt={users[0]?.username || "Vacant"}
+    />
+    <p className="podium-name">{users[0]?.username || "-"}</p>
+    <p className="podium-rank">1st place</p>
+    <p className="podium-score">
+      {users[0]?.totalWaterLogged != null ? `${users[0].totalWaterLogged} mL` : "-"}
+    </p>
+  </motion.div>
+
+  <motion.div className="podium-item podium-third">
+    <img
+      className="profile-image"
+      src={users[2] ? "https://picsum.photos/102" : "images/icon/user-default.png"}
+      alt={users[2]?.username || "Vacant"}
+    />
+    <p className="podium-name">{users[2]?.username || "-"}</p>
+    <p className="podium-rank">3rd place</p>
+    <p className="podium-score">
+      {users[2]?.totalWaterLogged != null ? `${users[2].totalWaterLogged} mL` : "-"}
+    </p>
+  </motion.div>
+</div>
 
       {/* Leaderboard Table */}
       <motion.div className="leaderboard-container">
@@ -135,10 +147,10 @@ const Leaderboard = () => {
             </tr>
           ) : users.length > 3 ? (
             users.slice(3).map((user, index) => (
-              <tr key={user._id}>
+              <tr key={user._id} className={user.isSelf ? "highlight-self" : ""}>
                 <td>{index + 4}</td>
                 <td>
-                  <img className="profile-image" src="https://picsum.photos/100" alt={user.username} />
+                  <img className="profile-image" src={user.src || `https://picsum.photos/${103 + index}`} alt={user.username} />
                   
                 </td>
                 <td><span className = "leadboard-username">{user.username}</span></td>
