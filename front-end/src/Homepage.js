@@ -138,6 +138,7 @@ const HomePage = () => {
       })
       .then(res => res.json())
       .then(data => {
+        console.log("🌲 After selecting tree, received from /data:", data);
         setSelectedTree(data.selectedTree);
         setTreeImage(data.treeImage); //  image now updates
         setTreeStage(data.currentStage);
