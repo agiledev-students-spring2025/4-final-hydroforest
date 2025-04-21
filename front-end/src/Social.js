@@ -168,7 +168,7 @@ const Social = () => {
               <hr />
             </ul>
           ) : (
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>You have no friends added yet.</motion.p>
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="no-leaderboard">You have no friends added yet</motion.p>
           )}
         </AnimatePresence>
       </motion.div>
