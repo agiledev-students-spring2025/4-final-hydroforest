@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ChangeEmail.css";
-
 const ChangeEmail = () => {
   const navigate = useNavigate();
   const [currentEmail, setCurrentEmail] = useState("");
@@ -17,11 +16,12 @@ const ChangeEmail = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE}/change-email`, {
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:5005/api/ChangeEmail/change-email", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`, // Send authentication token
+          
+          Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({ currentEmail, newEmail }),
       });
