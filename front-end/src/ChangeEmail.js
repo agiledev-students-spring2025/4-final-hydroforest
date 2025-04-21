@@ -20,12 +20,12 @@ const ChangeEmail = () => {
       const response = await fetch("http://localhost:5005/api/ChangeEmail/change-email", {
         method: "POST",
         headers: {
-          
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
         },
         body: JSON.stringify({ currentEmail, newEmail }),
       });
-
+      console.log("Submitting:", { currentEmail, newEmail });
       const data = await response.json();
       if (data.success) {
         setMessage("Email updated successfully!");
