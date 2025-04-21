@@ -17,7 +17,7 @@ const ChangeEmail = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE}/change-email`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE}/ChangeEmail`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
