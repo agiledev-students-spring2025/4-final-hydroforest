@@ -107,7 +107,7 @@ const ForestPage = () => {
   // });
 
   useEffect(() => {
-    console.log("🌿 forestPlants:", forestPlants); // See what plants made it in
+    console.log(" forestPlants:", forestPlants); // See what plants made it in
   
     const newGrid = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(null));
   
@@ -115,12 +115,7 @@ const ForestPage = () => {
       const x = index % GRID_SIZE;
       const y = Math.floor(index / GRID_SIZE);
   
-      // Log details about placement and image source
-      console.log(`🪴 Placing plant:`, {
-        name: plant.name,
-        src: plant.src,
-        gridPosition: `[${y}][${x}]`
-      });
+
   
       if (x < GRID_SIZE && y < GRID_SIZE) {
         newGrid[y][x] = plant;
