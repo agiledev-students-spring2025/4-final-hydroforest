@@ -199,7 +199,9 @@ const ForestPage = () => {
             <img src={selectedPlant.src} alt={selectedPlant.name} className="popup-plant-image" />
             <h3>{selectedPlant.name}</h3>
             {selectedPlant.unlockedOn && (
-              <p>Unlocked on: {selectedPlant.unlockedOn}</p>
+              <p>
+          Unlocked on: {new Date(selectedPlant.unlockedOn).toISOString().slice(0, 10)}
+        </p>
             )}
             <button className="close-btn" onClick={() => setSelectedPlant(null)}>Close</button>
           </div>
