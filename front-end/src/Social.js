@@ -98,6 +98,7 @@ const Social = () => {
       <h1 className="social-title">Social</h1>
 
       <header>
+      <h2> </h2>
         <div className="hamburger-menu">
           <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
         </div>

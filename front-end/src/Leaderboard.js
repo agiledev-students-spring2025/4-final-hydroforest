@@ -43,6 +43,7 @@ const Leaderboard = () => {
       <h1 className="page-title">Leaderboard</h1>
 
       <header>
+      <h2> </h2>
         <div className="hamburger-menu">
           <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
         </div>
