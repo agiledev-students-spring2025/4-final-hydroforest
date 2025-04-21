@@ -19,6 +19,7 @@ const userSchema = new mongoose.Schema({
   totalWaterLogged: { type: Number, default: 0 },
   notificationsEnabled: { type: Boolean, default: false },
   selectedTree: { type: String },
+  selectedTreeDate: { type: String },
   friends: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
 });
 

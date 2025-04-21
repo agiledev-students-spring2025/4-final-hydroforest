@@ -125,7 +125,14 @@ const Leaderboard = () => {
             </tr>
           </thead>
           <tbody>
-            {users.length > 3 && users.slice(3).map((user, index) => (
+          {users.length === 0 ? (
+            <tr>
+              <td colSpan="3" className="no-friends-message">
+                You currently have no friends added to your leaderboard.
+              </td>
+            </tr>
+          ) : users.length > 3 ? (
+            users.slice(3).map((user, index) => (
               <tr key={user._id}>
                 <td>{index + 4}</td>
                 <td>
@@ -134,8 +141,15 @@ const Leaderboard = () => {
                 </td>
                 <td>{user.totalWaterLogged} mL</td>
               </tr>
-            ))}
-          </tbody>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="3" className="no-friends-message">
+                Only top 3 users so far — invite more friends to compete!
+              </td>
+            </tr>
+          )}
+        </tbody>
         </table>
       </motion.div>
 

@@ -111,7 +111,7 @@ const Social = () => {
             <li onClick={() => { navigate('/Account'); setOpen(false); }}>My Account</li>
             <li onClick={() => { navigate('/AboutUs'); setOpen(false); }}>About Us</li>
             <li onClick={() => { setShowHelp(true); setOpen(false); }}>Help</li>
-            <li onClick={() => { navigate('/Login'); setOpen(false); }}>Logout</li>
+            <li className="logout" onClick={() => { localStorage.clear(); navigate("/Login"); setOpen(false); }}>Logout</li>
           </ul>
         </motion.div>
       </header>
@@ -168,7 +168,7 @@ const Social = () => {
               <hr />
             </ul>
           ) : (
-            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }}>You have no friends added yet.</motion.p>
+            <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="no-leaderboard">You have no friends added yet</motion.p>
           )}
         </AnimatePresence>
       </motion.div>

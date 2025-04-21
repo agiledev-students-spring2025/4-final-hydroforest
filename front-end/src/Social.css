@@ -370,3 +370,10 @@ hr {
   .help-message button:hover {
     background: #1d6b45;
   }
+
+  .no-leaderboard {
+    color: #333;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+  }
