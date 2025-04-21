@@ -121,13 +121,14 @@ const Leaderboard = () => {
             <tr>
               <th>Rank</th>
               <th>Profile</th>
+              <th>Name</th>
               <th>Water Logged</th>
             </tr>
           </thead>
           <tbody>
           {users.length === 0 ? (
             <tr>
-              <td colSpan="3" className="no-friends-message">
+              <td colSpan="4" className="no-friends-message">
                 You currently have no friends added to your leaderboard.
               </td>
             </tr>
@@ -137,14 +138,15 @@ const Leaderboard = () => {
                 <td>{index + 4}</td>
                 <td>
                   <img className="profile-image" src="https://picsum.photos/100" alt={user.username} />
-                  <span>{user.username}</span>
+                  
                 </td>
+                <td><span className = "leadboard-username">{user.username}</span></td>
                 <td>{user.totalWaterLogged} mL</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="3" className="no-friends-message">
+              <td colSpan="4" className="no-friends-message">
                 Only top 3 users so far — invite more friends to compete!
               </td>
             </tr>
