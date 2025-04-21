@@ -73,12 +73,12 @@ const HomePage = () => {
       setIsWatering(true);
       setShowWaterPouring(true);
       setTimeout(() => setShowWaterPouring(false), 1000);
-
+  
       let amountInMl = amount;
       if (unit === "cups") amountInMl = amount * 240;
       else if (unit === "oz") amountInMl = amount * 30;
-
-      fetch("http://localhost:3001/api/home/log-water", {
+  
+      fetch("http://localhost:5005/api/Home/log-water", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -87,17 +87,26 @@ const HomePage = () => {
         body: JSON.stringify({ amount: amountInMl })
       })
         .then(res => res.json())
+        .then(() => {
+          // 👇 Refresh latest hydration info after logging
+          return fetch("http://localhost:5005/api/Home/data", {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+        })
+        .then(res => res.json())
         .then(data => {
           setTotalIntake(data.totalIntake);
-          setTimeout(() => setTreeStage(data.currentStage), 1300);
-          setTimeout(() => setTreeImage(data.treeImage), 1300);
-          if (data.justUnlocked) setTimeout(() => setShowUnlockPopup(true), 1800);
+          setTreeStage(data.currentStage);
+          setTreeImage(data.treeImage);
           setHasUnlockedTree(data.hasUnlockedTree);
         })
-        .catch(err => console.error("Error logging water:", err))
+        .catch(err => console.error("Error updating water:", err))
         .finally(() => setTimeout(() => setIsWatering(false), 1300));
     }
   };
+  
 
   const handleSelectTree = (treeKey) => {
     const token = localStorage.getItem("token");
@@ -196,6 +205,17 @@ const HomePage = () => {
           Math.round(totalIntake)
         } {unit}
       </p>
+
+      <div className="progress-container">
+        <div
+          className="progress-bar"
+          style={{ width: `${Math.min((totalIntake / 1920) * 100, 100)}%` }}
+        ></div>
+      </div>
+      <p className="progress-text">
+        {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of daily goal
+      </p>
+
       <p className="howFarFromGoal">
         {treeStage !== "adultTree"
           ? `Only ${waterLeft} more ${unit} to reach the ${nextStage}`

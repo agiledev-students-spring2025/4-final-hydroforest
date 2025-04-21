@@ -16,7 +16,6 @@ const CalendarPage = () => {
   const [showHelp, setShowHelp] = useState(false);
   const [isOpen, setOpen] = useState(false);
 
-  // ✅ Get today's date in Eastern Time
   function getEasternTodayDate() {
     const now = new Date();
     const parts = new Intl.DateTimeFormat("en-US", {
@@ -33,7 +32,6 @@ const CalendarPage = () => {
     return new Date(`${year}-${month}-${day}T00:00:00`);
   }
 
-  // ✅ Format any date to YYYY-MM-DD in Eastern Time
   function getEasternDateStringFromDate(date) {
     const parts = new Intl.DateTimeFormat("en-US", {
       timeZone: "America/New_York",
@@ -49,7 +47,6 @@ const CalendarPage = () => {
     return `${year}-${month}-${day}`;
   }
 
-  // ✅ Set selectedDate to Eastern "today" on first load
   useEffect(() => {
     setSelectedDate(getEasternTodayDate());
   }, []);
@@ -59,12 +56,23 @@ const CalendarPage = () => {
 
     const fetchHydrationData = async () => {
       try {
-        const response = await fetch("http://localhost:5005/api/calendar");
-        const { hydrationData } = await response.json();
+        const token = localStorage.getItem("token");
+        const response = await fetch("http://localhost:5005/api/calendar", {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
 
+        if (!response.ok) {
+          throw new Error("Unauthorized or failed to fetch");
+        }
+
+        const { hydrationData } = await response.json();
         const selectedDateStr = getEasternDateStringFromDate(selectedDate);
 
-        const entry = hydrationData.find((item) => item.date === selectedDateStr);
+        const entry = hydrationData.find((item) =>
+          item.date.startsWith(selectedDateStr)
+        );
 
         if (entry) {
           const intakeInCups = Math.round(entry.amount / 240);
@@ -83,13 +91,12 @@ const CalendarPage = () => {
 
   return (
     <div className="calendar-page">
-     <h1 className="calendar-title">Hydration Calendar</h1>
-        <header className="calendar-header">
-          <h1></h1>
-          {/*  Hamburger Menu Button (Aligned Right) */}
-          <div className="hamburger-menu">
-            <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
-          </div>
+      <h1 className="calendar-title">Hydration Calendar</h1>
+      <header className="calendar-header">
+        <h1></h1>
+        <div className="hamburger-menu">
+          <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
+        </div>
         <motion.div
           className="sidebar-menu"
           initial={{ x: "100%" }}
@@ -100,7 +107,7 @@ const CalendarPage = () => {
             <li onClick={() => { navigate("/Account"); setOpen(false); }}>My Account</li>
             <li onClick={() => { navigate("/AboutUs"); setOpen(false); }}>About Us</li>
             <li onClick={() => { setShowHelp(true); setOpen(false); }}>Help</li>
-            <li onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
+            <li onClick={() => { localStorage.clear(); navigate("/Login"); setOpen(false); }}>Logout</li>
           </ul>
         </motion.div>
       </header>
@@ -154,4 +161,3 @@ const CalendarPage = () => {
 };
 
 export default CalendarPage;
-

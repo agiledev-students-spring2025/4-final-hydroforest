@@ -1,20 +1,19 @@
 const express = require('express');
+const passport = require('passport');
 const router = express.Router();
+const User = require('../database/User');
 
-// Use the shared in-memory data from dataStore.js
-const userData = require('../mock-data/data.json');
+// GET hydration data for the logged-in user
+router.get('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) return res.status(404).json({ error: 'User not found' });
 
-// GET hydration data for the entire month (or all hydrationData)
-router.get('/', (req, res) => {
-  res.json({hydrationData: userData.hydrationData});
-});
-
-// POST new hydration log (mock endpoint)
-router.post('/', (req, res) => {
-  const { date, cups } = req.body;
-  console.log(`Received hydration data: ${date}, ${cups}`);
-  res.json({ success: true, message: "Mock hydration data received." });
+    res.json({ hydrationData: user.hydrationData });
+  } catch (err) {
+    console.error("Calendar fetch error:", err);
+    res.status(500).json({ error: 'Server error' });
+  }
 });
 
 module.exports = router;
-
