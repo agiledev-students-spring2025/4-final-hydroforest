@@ -24,12 +24,15 @@ const ChangePassword = () => {
     setIsLoading(true);
     setMessage("");
 
+    const token = localStorage.getItem("token"); // Updated token retrieval
+    console.log("JWT Token Sent:", token);
+
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE}/api/change-password`, {
+      const response = await fetch("http://localhost:5005/api/ChangePassword/change-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+          Authorization: `Bearer ${token}`, // Updated token usage
         },
         body: JSON.stringify({ currentPassword, newPassword, reEnterNewPassword }),
       });
@@ -112,5 +115,3 @@ const ChangePassword = () => {
 };
 
 export default ChangePassword;
-
-
