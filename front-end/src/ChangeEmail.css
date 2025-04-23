@@ -116,4 +116,7 @@
     color: #777;
     text-align: center;
 }
-
+.email-back-button:hover {
+    background: #1d6b45;
+    text-decoration: underline;
+  }

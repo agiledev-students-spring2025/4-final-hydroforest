@@ -42,6 +42,9 @@ const ChangePassword = () => {
 
       if (data.success) {
         setMessage("Password changed successfully!");
+        setTimeout(() => {
+          navigate("/Account");
+        }, 1500); 
       } else {
         setMessage(data.message || "Password change failed.");
       }

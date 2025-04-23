@@ -29,6 +29,9 @@ const ChangeEmail = () => {
       const data = await response.json();
       if (data.success) {
         setMessage("Email updated successfully!");
+        setTimeout(() => {
+          navigate("/Account");
+        }, 1500); 
       } else {
         setMessage(data.message || "Email update failed.");
       }
