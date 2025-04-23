@@ -5,7 +5,7 @@ const passport = require("passport");
 const User = require("../database/User");
 
 // CHANGE EMAIL (Authenticated)
-router.post("/ChangeEmail", [
+router.post("/change-email", [
   check("currentEmail").isEmail().withMessage("Invalid current email format"),
   check("newEmail").isEmail().withMessage("Invalid new email format")
 ], passport.authenticate("jwt", { session: false }), async (req, res) => {
