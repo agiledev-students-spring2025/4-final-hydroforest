@@ -41,7 +41,7 @@ const ChangeEmail = () => {
     <div className="entire-changeEmail-page">
       <div className="change-email-container">
         {/* Back Button */}
-        <button className="back-button" onClick={() => navigate("/Account")}>
+        <button className="email-back-button" onClick={() => navigate("/Account")}>
           Back
         </button>
 
@@ -84,7 +84,12 @@ const ChangeEmail = () => {
           </div>
 
           {/* Success/Error Message */}
-          {message && <p className="confirmation-message">{message}</p>}
+          <p
+            className="email-confirmation-message"
+            style={{ visibility: message ? "visible" : "hidden" }}
+          >
+            {message || "placeholder"}
+          </p>
 
           {/* Submit Button */}
           <button type="submit" className="submit-button" disabled={!isSubmitEnabled}>
