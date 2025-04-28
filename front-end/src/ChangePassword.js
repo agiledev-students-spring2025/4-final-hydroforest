@@ -42,6 +42,9 @@ const ChangePassword = () => {
 
       if (data.success) {
         setMessage("Password changed successfully!");
+        setTimeout(() => {
+          navigate("/Account");
+        }, 1500); 
       } else {
         setMessage(data.message || "Password change failed.");
       }
@@ -102,8 +105,13 @@ const ChangePassword = () => {
             />
           </div>
 
-          {message && <p className="confirmation-message">{message}</p>}
-          {isLoading && <p className="loading-message">Processing...</p>}
+          <p
+            className="password-confirmation-message"
+            style={{ visibility: message ? "visible" : "hidden" }}
+          >
+            {message || "placeholder"}
+          </p>
+          {/* {isLoading && <p className="loading-message">Processing...</p>} */}
 
           <button type="submit" className="submit-button" disabled={!isSubmitEnabled}>
             Submit

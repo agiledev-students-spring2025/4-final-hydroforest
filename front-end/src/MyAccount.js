@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import Hamburger from 'hamburger-react';
 import './MyAccount.css';
+import { motion } from 'framer-motion';
 
 const MyAccount = () => {
   const navigate = useNavigate();
@@ -64,7 +65,28 @@ const MyAccount = () => {
   };
 
   return (
+    
     <div className="entire-account-page">
+      <header>
+      <h2> </h2>
+        <div className="hamburger-menu">
+          <Hamburger toggled={isOpen} toggle={setOpen} color="white" />
+        </div>
+
+        <motion.div
+          className="sidebar-menu"
+          initial={{ x: '100%' }}
+          animate={{ x: isOpen ? 0 : '100%' }}
+          transition={{ type: 'tween', duration: 0.4 }}
+        >
+          <ul>
+            <li onClick={() => { navigate("/Account"); setOpen(false); }}>My Account</li>
+            <li onClick={() => { navigate("/AboutUs"); setOpen(false); }}>About Us</li>
+            <li onClick={() => { setShowHelp(true); setOpen(false); }}>Help</li>
+            <li className="logout" onClick={() => { navigate("/Login"); setOpen(false); }}>Logout</li>
+          </ul>
+        </motion.div>
+      </header>
       <div className="account-container">
         <h1 className="title">My Account</h1>
         <div className="profile-section">

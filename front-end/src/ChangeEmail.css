@@ -13,7 +13,7 @@
 /* Overall Container */
 .change-email-container {
     font-family: 'Arial', sans-serif;
-    max-width: 400px;
+    width: 300px;
     margin: 30px ; /* Center container horizontally with vertical margin */
     padding: 20px;
     background-color: #ffffff;
@@ -25,15 +25,19 @@
 }
 
 /* Back Button */
-.back-button {
-    font-size: 16px;
-    color: #4caf50;
+.email-back-button {
+    display: inline-block;
     cursor: pointer;
-    background: none; /* Remove button background */
-    border: none; /* Remove border */
     text-align: left; /* Align text to the left */
     margin-bottom: 20px; /* Add spacing below the back button */
-    padding: 0; /* Remove default button padding */
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    background: #2E8B57;
+    border: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+    width: 75px;
 }
 
 /* Heading */
@@ -106,5 +110,13 @@
 .submit-button:hover:not(:disabled) {
     background-color: #388e3c; /* Darker green on hover */
 }
-
-
+.email-confirmation-message{
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #777;
+    text-align: center;
+}
+.email-back-button:hover {
+    background: #1d6b45;
+    text-decoration: underline;
+  }
