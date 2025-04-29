@@ -159,3 +159,40 @@
     gap: 10px;
   }
 }
+
+/* Logo styling */
+.login-logo {
+  display: block;
+  margin: 0 auto 1.5rem;
+  width: 100px;
+  height: auto;
+}
+
+/* Wrap the input and make it full-width */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;  /* ⬅️ vertical center */
+}
+
+/* Let the input fill the wrapper and keep space for the icon */
+.password-input {
+  flex: 1;               /* ⬅️ fill remaining space */
+  padding-right: 2.5rem; /* keep room for the toggle */
+}
+
+/* Absolutely position the toggle and center it vertically */
+.password-toggle {
+  position: absolute;
+  top: 0;
+  bottom: 1rem;
+  right: 0.75rem;
+  margin: auto 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
