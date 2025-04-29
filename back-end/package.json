@@ -7,8 +7,8 @@
         "start": "node app.js",
         "dev": "nodemon app.js",
         "coverage": "NODE_ENV=test c8 mocha",
-        "test": "NODE_ENV=test c8 --reporter=lcov --reporter=text mocha --exit"
-    },
+        "test": "NODE_ENV=test JWT_SECRET=yourStrongSecret MONGO_URI=yourMongoTestURI PORT=5005 c8 --reporter=lcov --reporter=text mocha --exit"
+},
     "author": "",
     "license": "ISC",
     "dependencies": {
