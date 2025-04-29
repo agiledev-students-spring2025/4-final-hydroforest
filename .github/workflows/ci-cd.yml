@@ -1,0 +1,70 @@
+name: HydroForest CI/CD
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mongo:
+        image: mongo
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd="mongosh --eval 'db.runCommand({ ping: 1 })'" 
+          --health-interval=10s 
+          --health-timeout=5s 
+          --health-retries=5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install back-end dependencies
+        working-directory: ./back-end
+        run: npm install
+
+      - name: Run back-end tests
+        working-directory: ./back-end
+        run: npm test
+
+      - name: Install front-end dependencies
+        working-directory: ./front-end
+        run: npm install
+
+      - name: Build front-end
+        working-directory: ./front-end
+        run: npm run build
+
+  deploy:
+    name: Deploy to Digital Ocean
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: SSH and deploy
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.DO_HOST }}
+          username: root
+          key: ${{ secrets.DO_SSH_KEY }}
+          script: |
+            cd /root/4-final-hydroforest
+            git pull
+            docker compose down
+            docker compose up -d --build
