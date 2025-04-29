@@ -28,7 +28,7 @@ const ForestPage = () => {
 
   // Fetch tree images from database
   useEffect(() => {
-    fetch('http://localhost:5005/api/trees')
+    fetch('/api/trees')
       .then(res => res.json())
       .then(data => {
         const formatted = data.map(tree => ({
@@ -47,7 +47,7 @@ const ForestPage = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
   
-    fetch("http://localhost:5005/api/forest", {
+    fetch("/api/forest", {
       headers: {
         Authorization: `Bearer ${token}`
       }
