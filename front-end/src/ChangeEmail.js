@@ -17,7 +17,7 @@ const ChangeEmail = () => {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5005/api/ChangeEmail/change-email", {
+      const response = await fetch("/api/ChangeEmail/change-email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

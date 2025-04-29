@@ -28,7 +28,7 @@ const ChangePassword = () => {
     console.log("JWT Token Sent:", token);
 
     try {
-      const response = await fetch("http://localhost:5005/api/ChangePassword/change-password", {
+      const response = await fetch("/api/ChangePassword/change-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

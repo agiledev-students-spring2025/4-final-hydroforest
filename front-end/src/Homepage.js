@@ -35,7 +35,7 @@ const HomePage = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:5005/api/Home/data", {
+    fetch("/api/Home/data", {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -78,7 +78,7 @@ const HomePage = () => {
       if (unit === "cups") amountInMl = amount * 240;
       else if (unit === "oz") amountInMl = amount * 30;
   
-      fetch("http://localhost:5005/api/Home/log-water", {
+      fetch("/api/Home/log-water", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const HomePage = () => {
           if (data.justUnlocked) {
             setTimeout(() => setShowUnlockPopup(true), 1800);
           }
-          return fetch("http://localhost:5005/api/Home/data", {
+          return fetch("/api/Home/data", {
             headers: {
               Authorization: `Bearer ${token}`
             }
@@ -117,7 +117,7 @@ const HomePage = () => {
   const handleSelectTree = (treeKey) => {
     const token = localStorage.getItem("token");
   
-    fetch("http://localhost:5005/api/home/select-tree", {
+    fetch("/api/home/select-tree", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -130,7 +130,7 @@ const HomePage = () => {
         return res.json();
       })
       .then(() => {
-        return fetch("http://localhost:5005/api/Home/data", {
+        return fetch("/api/Home/data", {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -246,7 +246,7 @@ const HomePage = () => {
         <div className="tree-container">
           <motion.img
             key={treeStage}
-            src={`${process.env.REACT_APP_API_BASE}${treeImage}`}
+            src={treeImage}
             alt="Tree Icon"
             className="tree-image"
             initial={{ opacity: 0 }}
@@ -288,7 +288,7 @@ const HomePage = () => {
               {treeData.map(tree => (
                 <img
                   key={tree.name}
-                  src={`${process.env.REACT_APP_API_BASE}${tree.stages.adultTree}`}
+                  src={tree.stages.adultTree}
                   alt={tree.name}
                   className="tree-option"
                   onClick={() => {
@@ -309,7 +309,7 @@ const HomePage = () => {
             <img
               src={
                 treeData.find(tree => tree.name === selectedTree)
-                  ? `${process.env.REACT_APP_API_BASE}${treeData.find(tree => tree.name === selectedTree).stages.adultTree}`
+                  ? treeData.find(tree => tree.name === selectedTree).stages.adultTree
                   : ""
               }
               alt="Unlocked Tree"

@@ -57,7 +57,7 @@ const CalendarPage = () => {
     const fetchHydrationData = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:5005/api/calendar", {
+        const response = await fetch("/api/calendar", {
           headers: {
             Authorization: `Bearer ${token}`
           }

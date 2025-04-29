@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./back-end
+    ports:
+      - "5005:5005"
+    env_file:
+      - ./back-end/.env
+    restart: always
+
+  frontend:
+    build: ./front-end
+    ports:
+      - "80:80"
+    restart: always

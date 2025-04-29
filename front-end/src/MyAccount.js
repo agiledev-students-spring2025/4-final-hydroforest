@@ -28,7 +28,7 @@ const MyAccount = () => {
       return;
     }
 
-    fetch("http://localhost:5005/api/MyAccount/account", {
+    fetch("/api/MyAccount/account", {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -51,7 +51,7 @@ const MyAccount = () => {
 
     const token = localStorage.getItem("token");
 
-    fetch("http://localhost:5005/api/MyAccount/account/notifications", {
+    fetch("/api/MyAccount/account/notifications", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
