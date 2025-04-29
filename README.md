@@ -50,6 +50,13 @@ We followed an **Agile methodology**, continuously iterating through sprints to 
   - We integrated MongoDB Atlas to replace mock data. Using Mongoose, we defined schemas for users and trees, and established secure, JWT-protected API routes.
   - All incoming data is validated using express-validator before being stored, ensuring data integrity and security.
 
+- **Sprint 4**
+   - We deployed our web application -- HydroForest using digital ocean.
+   - Extra Credits:
+      - Completed: Deploying to a docker container
+      - Completed: Implemented continuous integration.
+      - Completed: Continuous Deployment.
+      
 Our end goal: deliver a polished, engaging app that helps users build better habits by the end of the semester.
 
 ## How to Contribute
