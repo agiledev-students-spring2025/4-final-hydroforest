@@ -13,6 +13,7 @@
     text-align: center;
     margin-top: 10vh;
     letter-spacing: 0.5px;
+    animation: fadeInUp 1.5s ease-out;
   }
   
   /* Podium Layout */
