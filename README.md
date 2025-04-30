@@ -1,5 +1,8 @@
 # HydroForest
 
+## Project Link 
+[HydroForest](http://157.245.217.182)
+
 ## Project Overview
 
 **HydroForest** is a full-stack web application that transforms hydration tracking into a fun and rewarding experience. Every time a user logs a bottle of water, a virtual tree grows in their digital forest. Over time, consistent hydration leads to a thriving virtual environment—gamifying the habit of staying hydrated.
@@ -56,7 +59,7 @@ We followed an **Agile methodology**, continuously iterating through sprints to 
       - Completed: Deploying to a docker container
       - Completed: Implemented continuous integration.
       - Completed: Continuous Deployment.
-      
+
 Our end goal: deliver a polished, engaging app that helps users build better habits by the end of the semester.
 
 ## How to Contribute
