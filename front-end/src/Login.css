@@ -168,21 +168,21 @@
   height: auto;
 }
 
-/* Wrap the input and make it full-width */
+
 .password-wrapper {
   position: relative;
   width: 100%;
   display: flex;
-  align-items: center;  /* ⬅️ vertical center */
+  align-items: center;  
 }
 
-/* Let the input fill the wrapper and keep space for the icon */
+
 .password-input {
-  flex: 1;               /* ⬅️ fill remaining space */
-  padding-right: 2.5rem; /* keep room for the toggle */
+  flex: 1;               
+  padding-right: 2.5rem; 
 }
 
-/* Absolutely position the toggle and center it vertically */
+
 .password-toggle {
   position: absolute;
   top: 0;

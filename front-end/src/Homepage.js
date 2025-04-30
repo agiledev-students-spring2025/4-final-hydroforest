@@ -232,9 +232,11 @@ const HomePage = () => {
         ></div>
       </div>
       <p className="progress-text">
-        {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of daily goal
+        <div>
+          {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of daily goal  -
+          <HydrationTipsModal />
+        </div>
       </p>
-      <HydrationTipsModal />
 
       <p className="howFarFromGoal">
         {treeStage !== "adultTree"
