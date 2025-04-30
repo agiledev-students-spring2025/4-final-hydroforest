@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Homepage.css";
 import HydrationTipsModal from "./components/HydrationTipsModal";
-
+import HydrationTipRotate from "./components/HydrationTipRotate";
 
 const HomePage = () => {
   const [totalIntake, setTotalIntake] = useState(0);
@@ -234,8 +234,8 @@ const HomePage = () => {
       <p className="progress-text">
         {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of daily goal
       </p>
-      <HydrationTipsModal />
-
+      {/* <HydrationTipsModal /> */}
+      <HydrationTipRotate/>
       <p className="howFarFromGoal">
         {treeStage !== "adultTree"
           ? `Only ${waterLeft} more ${unit} to reach the ${nextStage}`
