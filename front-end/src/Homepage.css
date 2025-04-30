@@ -450,6 +450,7 @@ body {
   font-weight: 300;
   font-style: normal;
 }
+/* New progress -delete if anything -begin*/
 .progress-bar {
   position: relative;
   height: 100%;
@@ -471,6 +472,8 @@ body {
   text-shadow: 0 1px 2px rgba(0,0,0,0.4);
   margin-right: 15px;
 }
+/* New progress -delete - end*/
+
 
 /* Make sure the modal trigger still looks like an underlined link */
 .tip-button {
