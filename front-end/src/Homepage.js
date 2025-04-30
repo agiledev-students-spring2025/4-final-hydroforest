@@ -230,11 +230,17 @@ const HomePage = () => {
         className="progress-bar"
         style={{ width: `${Math.min((totalIntake / 1920) * 100, 100)}%` }}
       >
-        <span className="progress-label">
-          {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}%
-        </span>
+        <div className="leaf-progress">
+          <img src="/images/leaf.png" alt="Progress Leaf" />
+
+        </div>
+
       </div>
+
     </div>
+    <span className="leaf-percent">
+            {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of your daily goal
+          </span>
       {/* <HydrationTipsModal /> */}
       <HydrationTipRotate/>
       <p className="howFarFromGoal">
