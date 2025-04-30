@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
 
 /* Base Font & Layout */
-body, .social-page {
+.social-page {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   background-color: #5DA271;
