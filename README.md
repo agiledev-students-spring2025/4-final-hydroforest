@@ -155,3 +155,30 @@ http://localhost:3000
 ```bash
 npm test
 ```
+
+## Tech Stack
+
+**Frontend:** React, Tailwind CSS, Framer Motion  
+**Backend:** Node.js, Express.js  
+**Database:** MongoDB Atlas, Mongoose  
+**Authentication:** JSON Web Tokens (JWT)  
+**Deployment:** DigitalOcean, Docker  
+**DevOps:** GitHub Actions (CI/CD)
+
+## Features
+
+-  **Track Daily Water Intake** — log hydration in cups, oz, or ml
+-  **Grow a Virtual Tree** — hydration progresses your tree through stages: seed → sprout → sapling → adult
+-  **Unlock New Trees** — collect trees and customize your forest
+-  **Hydration History Calendar** — view your progress day by day
+-  **Motivational Reminders** — stay hydrated with fun, positive prompts
+-  **Secure Login System** — JWT-protected routes and token storage
+- **Cloud Deployed with CI/CD** — auto-deploys via GitHub Actions + Docker + DigitalOcean
+
+## Future Plans
+
+-  Mobile app version (React Native)
+-  Smart hydration suggestions based on weather or activity
+-  Social leaderboard for friendly hydration challenges
+-  Push notifications via service workers
+-  Forest expansion and personalization (rename trees, earn badges)
