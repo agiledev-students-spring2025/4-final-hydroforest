@@ -53,9 +53,11 @@ body {
     font-family: "dm-sans-24pt", sans-serif;
     font-weight: 300;
     font-style: normal;
+    color:#ffff;
   }
   .howFarFromGoal{
     font-style: italic;
+    color: #ffff;
   }
   /* Tree Container with Animation */
   .tree-container {
