@@ -4,7 +4,7 @@
     color: white;
     text-decoration: underline;
     font-size: 16px;
-    font-weight: 500;
+
     /* margin-bottom: 10px; */
     cursor: pointer;
     padding: 0;
@@ -53,4 +53,15 @@
     line-height: 1.4;
   }
 
+.tip-banner {
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 500;
+    height: 24px; /* ensures consistent height during transitions */
+    overflow: hidden;
+    position: relative;
+    margin-top: 25px;
+  }
   

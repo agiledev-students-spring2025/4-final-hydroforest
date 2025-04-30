@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Homepage.css";
 import HydrationTipsModal from "./components/HydrationTipsModal";
-
+import HydrationTipRotate from "./components/HydrationTipRotate";
 
 const HomePage = () => {
   const [totalIntake, setTotalIntake] = useState(0);
@@ -20,6 +20,7 @@ const HomePage = () => {
   const [hasUnlockedTree, setHasUnlockedTree] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [treeImage, setTreeImage] = useState("");
+  const [showPercent, setShowPercent] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -224,18 +225,43 @@ const HomePage = () => {
           Math.round(totalIntake)
         } {unit}
       </p>
-
+      <div className="progress-wrapper">
       <div className="progress-container">
+      <div
+        className="progress-bar"
+        style={{ width: `${Math.min((totalIntake / 1920) * 100, 100)}%` }}
+      >
         <div
-          className="progress-bar"
-          style={{ width: `${Math.min((totalIntake / 1920) * 100, 100)}%` }}
-        ></div>
-      </div>
-      <p className="progress-text">
-        {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of daily goal
-      </p>
-      <HydrationTipsModal />
+          className="leaf-progress"
+          onMouseEnter={() => setShowPercent(true)}
+          onMouseLeave={() => setShowPercent(false)}
+        >
+          <img src="/images/leaf.png" alt="Leaf" />
+        </div>
 
+      </div>
+
+    </div>
+    {/* <span
+    className="leaf-percent"
+    style={{
+      left: `${Math.min((totalIntake / 1920) * 100, 100)}%`
+    }}
+  >
+    {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of your daily goal
+  </span> */}
+  {showPercent && (
+    <span
+      className="leaf-percent"
+      style={{ left :`${Math.min((totalIntake / 1920) * 100, 100)}%` }}
+    >
+      {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of your daily goal
+    </span>
+  )}
+
+  </div>
+      {/* <HydrationTipsModal /> */}
+      <HydrationTipRotate/>
       <p className="howFarFromGoal">
         {treeStage !== "adultTree"
           ? `Only ${waterLeft} more ${unit} to reach the ${nextStage}`

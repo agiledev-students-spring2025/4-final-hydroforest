@@ -426,8 +426,47 @@ body {
   background-color: rgba(255, 255, 255, 0.25);
   border-radius: 20px;
   overflow: hidden;
-  margin: 12px auto 6px auto;
+  margin-left: 12px  ;
+  margin-right: 12px  ;
+  height: 25px;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
+  overflow: visible;
+  z-index: 1;
+
+}
+
+.progress-bar {
   height: 22px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  transition: width 0.5s ease-in-out;
+  border-radius: 20px 0 0 20px;
+}
+
+.progress-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  font-family: "dm-sans-24pt", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+/* New progress -delete if anything -begin*/
+.progress-wrapper {
+  position: relative;
+  width: 80%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.progress-container {
+  width: 100%;
+  height: 22px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 20px;
+  overflow: visible;
+  position: relative;
   box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(2px);
 }
@@ -437,18 +476,38 @@ body {
   background: linear-gradient(90deg, #00c6ff, #0072ff);
   transition: width 0.5s ease-in-out;
   border-radius: 20px 0 0 20px;
+  position: relative;
 }
 
-.progress-text {
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 20px;
-  color: white;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-  font-family: "dm-sans-24pt", sans-serif;
-  font-weight: 300;
-  font-style: normal;
+.leaf-progress {
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  z-index: 2;
 }
+
+.leaf-progress img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.leaf-percent {
+  position: absolute;
+  top: 32px; /* appears below the progress bar */
+  transform: translateX(-50%);
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: white;
+  text-shadow: 0 0 2px #000;
+}
+
+/* New progress -delete - end*/
+
 
 /* Make sure the modal trigger still looks like an underlined link */
 .tip-button {
