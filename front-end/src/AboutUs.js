@@ -9,30 +9,34 @@ const AboutUs = () => {
   return (
     <motion.div 
       className="about-us-page"
-      initial={{ opacity: 0, scale: 0.9 }}
+      initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.6 }}
     >
-      <h1 className="about-title">About Us</h1>
+      <h1 className="about-title">About HydroForest</h1>
+
       <motion.div 
-        className="about-section"
-        initial={{ opacity: 0, y: 20 }}
+        className="about-card"
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
+        transition={{ delay: 0.2 }}
       >
-        <h2>Project Overview</h2>
-        <p>HydroForest is a web app designed to help users track their daily water intake while making hydration a fun and rewarding experience. Every time a user logs a bottle of water, a virtual tree grows in their digital forest. Over time, consistent hydration leads to a thriving forest, encouraging users to build healthy habits through gamification.</p>
+        <h2 className="section-heading">Why We Built This</h2>
+        <p>
+          We wanted to help people stay hydrated and have fun doing it. 
+          HydroForest turns your water intake into a vibrant digital forest — 
+          grow trees as you drink and build healthy habits through visual rewards.
+        </p>
       </motion.div>
-      
-      
+
       <motion.div 
-        className="about-section"
-        initial={{ opacity: 0, y: 20 }}
+        className="about-card"
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.6 }}
+        transition={{ delay: 0.4 }}
       >
-        <h2>Team Members</h2>
-        <ul>
+        <h2 className="section-heading">The Dev Team</h2>
+        <ul className="team-list">
           <li><a href="https://github.com/jljune9li" target="_blank" rel="noopener noreferrer">Jun Li</a></li>
           <li><a href="https://github.com/nataliovcharov" target="_blank" rel="noopener noreferrer">Natalie Ovcarov</a></li>
           <li><a href="https://github.com/danny031103" target="_blank" rel="noopener noreferrer">Daniel Brito</a></li>
@@ -40,8 +44,10 @@ const AboutUs = () => {
           <li><a href="https://github.com/AlvaroMartinezM" target="_blank" rel="noopener noreferrer">Alvaro Martinez</a></li>
         </ul>
       </motion.div>
-      
-      <button className="back-button" onClick={() => navigate('/')}>Back to Home</button>
+
+      <button className="btn" onClick={() => navigate('/')}>
+       Back to Home
+      </button>
     </motion.div>
   );
 };
