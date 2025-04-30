@@ -20,6 +20,7 @@ const HomePage = () => {
   const [hasUnlockedTree, setHasUnlockedTree] = useState(false);
   const [showHelp, setShowHelp] = useState(false);
   const [treeImage, setTreeImage] = useState("");
+  const [showPercent, setShowPercent] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -224,23 +225,41 @@ const HomePage = () => {
           Math.round(totalIntake)
         } {unit}
       </p>
-
+      <div className="progress-wrapper">
       <div className="progress-container">
       <div
         className="progress-bar"
         style={{ width: `${Math.min((totalIntake / 1920) * 100, 100)}%` }}
       >
-        <div className="leaf-progress">
-          <img src="/images/leaf.png" alt="Progress Leaf" />
-
+        <div
+          className="leaf-progress"
+          onMouseEnter={() => setShowPercent(true)}
+          onMouseLeave={() => setShowPercent(false)}
+        >
+          <img src="/images/leaf.png" alt="Leaf" />
         </div>
 
       </div>
 
     </div>
-    <span className="leaf-percent">
-            {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of your daily goal
-          </span>
+    {/* <span
+    className="leaf-percent"
+    style={{
+      left: `${Math.min((totalIntake / 1920) * 100, 100)}%`
+    }}
+  >
+    {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of your daily goal
+  </span> */}
+  {showPercent && (
+    <span
+      className="leaf-percent"
+      style={{ left :`${Math.min((totalIntake / 1920) * 100, 100)}%` }}
+    >
+      {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of your daily goal
+    </span>
+  )}
+
+  </div>
       {/* <HydrationTipsModal /> */}
       <HydrationTipRotate/>
       <p className="howFarFromGoal">
