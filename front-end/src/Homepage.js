@@ -226,14 +226,15 @@ const HomePage = () => {
       </p>
 
       <div className="progress-container">
-        <div
-          className="progress-bar"
-          style={{ width: `${Math.min((totalIntake / 1920) * 100, 100)}%` }}
-        ></div>
+      <div
+        className="progress-bar"
+        style={{ width: `${Math.min((totalIntake / 1920) * 100, 100)}%` }}
+      >
+        <span className="progress-label">
+          {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}%
+        </span>
       </div>
-      <p className="progress-text">
-        {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of daily goal
-      </p>
+    </div>
       {/* <HydrationTipsModal /> */}
       <HydrationTipRotate/>
       <p className="howFarFromGoal">
