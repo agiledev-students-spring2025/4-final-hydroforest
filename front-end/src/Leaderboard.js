@@ -160,7 +160,7 @@ const Leaderboard = () => {
           ) : (
             <tr>
               <td colSpan="4" className="no-friends-message">
-                Only top 3 users so far — invite more friends to compete!
+                Only top 3 users so far — Invite more friends to compete!
               </td>
             </tr>
           )}
