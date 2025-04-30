@@ -3,6 +3,8 @@ import Hamburger from 'hamburger-react';
 import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./Homepage.css";
+import HydrationTipsModal from "./components/HydrationTipsModal";
+
 
 const HomePage = () => {
   const [totalIntake, setTotalIntake] = useState(0);
@@ -232,6 +234,7 @@ const HomePage = () => {
       <p className="progress-text">
         {Math.min(((totalIntake / 1920) * 100).toFixed(0), 100)}% of daily goal
       </p>
+      <HydrationTipsModal />
 
       <p className="howFarFromGoal">
         {treeStage !== "adultTree"
@@ -255,7 +258,7 @@ const HomePage = () => {
           />
         </div>
       </motion.div>
-
+      
       <button id="changetreebtn" className="btn" onClick={() => setIsModalOpen(true)}>
         Change Tree
       </button>

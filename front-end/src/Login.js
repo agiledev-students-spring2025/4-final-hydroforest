@@ -1,54 +1,62 @@
+// src/components/LoginPage.jsx
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
 import "./Login.css";
 
 const LoginPage = () => {
-  const navigate = useNavigate(); // Allows redirection
-
+  const navigate = useNavigate();
   const [credentials, setCredentials] = useState({ username: "", password: "" });
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleInputChange = (e) => {
-    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    setCredentials(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
     try {
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(credentials)
+        body: JSON.stringify(credentials),
       });
-  
       const data = await response.json();
-  
       if (response.ok) {
-        console.log("Login successful:", data);
-        localStorage.setItem("token", data.token); //  Save token
-        navigate("/"); //  Go to HomePage
+        localStorage.setItem("token", data.token);
+        navigate("/");
       } else {
-        console.error("Login error:", data.message);
         alert(data.message);
       }
-    } catch (error) {
-      console.error("Login error:", error);
+    } catch (err) {
+      console.error(err);
       alert("Something went wrong. Please try again.");
     }
   };
-  
 
   return (
     <div className="login-page">
-      <motion.div 
+      <motion.div
         className="login-container"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
+        {/* Logo */}
+        <motion.img
+          src="/images/logo/hydroforestlogo.png"
+          alt="HydroForest Logo"
+          className="login-logo"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.6, ease: "backOut" }}
+        />
+
         <h1 className="login-title">Welcome Back</h1>
+
         <form className="login-form" onSubmit={handleSubmit}>
+          {/* Username */}
           <motion.input
             type="text"
             name="username"
@@ -59,26 +67,35 @@ const LoginPage = () => {
             required
             whileFocus={{ scale: 1.02 }}
           />
-          <motion.input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={credentials.password}
-            onChange={handleInputChange}
-            className="login-input"
-            required
-            whileFocus={{ scale: 1.02 }}
-          />
-          
-          <p 
-            className="forgot-password-text"
-            onClick={() => navigate("/forgotpassword")}
-          >
+
+          {/* Password + Toggle */}
+          <div className="password-wrapper">
+            <motion.input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              value={credentials.password}
+              onChange={handleInputChange}
+              className="login-input password-input"
+              required
+              whileFocus={{ scale: 1.02 }}
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword(prev => !prev)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+            </button>
+          </div>
+
+          <p className="forgot-password-text" onClick={() => navigate("/forgotpassword")}>
             Forgot Password?
           </p>
 
-          <motion.button 
-            type="submit" 
+          <motion.button
+            type="submit"
             className="login-btn"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -87,12 +104,9 @@ const LoginPage = () => {
           </motion.button>
         </form>
 
-        {/*  Sign-Up Redirect */}
+        {/* Sign-Up Redirect */}
         <div className="signup-section">
-          <p 
-            className="signup-text"
-            onClick={() => navigate("/signup")}
-          >
+          <p className="signup-text" onClick={() => navigate("/signup")}>
             Don't have an account? <span className="signup-link">Sign up!</span>
           </p>
         </div>
