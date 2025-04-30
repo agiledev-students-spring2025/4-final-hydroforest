@@ -448,5 +448,15 @@ body {
   font-style: normal;
 }
 
+/* Make sure the modal trigger still looks like an underlined link */
+.tip-button {
+  background: transparent;
+  border: none;
+  color: white;
+  text-decoration: underline;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0;
+}
 
   
