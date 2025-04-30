@@ -1,71 +1,69 @@
 .about-us-page {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-height: 90vh;
-  }
-  
-  .about-title {
-    font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 20px;
-  }
-  
-  .about-section {
-    background: #ffffff;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .about-section h2 {
-    color: #16a085;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .about-section p, .about-section ul {
-    font-size: 1rem;
-    color: #34495e;
-    line-height: 1.6;
-  }
-  
-  .about-section ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .about-section li {
-    margin: 8px 0;
-  }
-  
-  .about-section a {
-    text-decoration: none;
-    color: #2980b9;
-    font-weight: bold;
-    transition: color 0.3s;
-  }
-  
-  .about-section a:hover {
-    color: #1abc9c;
-  }
-  
-  .back-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    color: white;
-    background: #2E8B57;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .back-button:hover {
-    background: #1d6b45;
-  }
+  background-color: #5DA271;
+  padding: 40px 20px 80px;
+  min-height: 100vh;
+  color: white;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-title {
+  font-size: 2.0rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin-bottom: 30px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+  font-style: normal;
+}
+
+.about-card {
+  background: linear-gradient(to bottom right, #E6F2E6, #d8f0da);
+  color: #2f4f4f;
+  max-width: 600px;
+  width: 90%;
+  margin-bottom: 25px;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  text-align: left;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.section-heading {
+  font-size: 1.6rem;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: #2E8B57;
+  font-style: normal;
+}
+
+.team-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  font-size: 1rem;
+  font-style: normal;
+}
+
+.team-list li {
+  margin: 10px 0;
+}
+
+.team-list a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #2980b9;
+  transition: color 0.3s ease;
+  font-style: normal;
+}
+
+.team-list a:hover {
+  color: #1abc9c;
+}
